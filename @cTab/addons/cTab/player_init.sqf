@@ -250,6 +250,14 @@ cTabColorGreen = [_r,_g,_b,_a];
 // MAIN,RED,GREEN,BLUE,YELLOW
 cTabColorTeam = [cTabColorBlue,[200/255,0,0,0.8],[0,199/255,0,0.8],[0,0,200/255,0.8],[225/255,225/255,0,0.8]];
 
+// GOL colors
+cTabColorGolRed = [0.9, 0.0, 0.0, 0.8];
+cTabColorGolWhite = [1.0, 1.0, 1.0, 0.8];
+cTabColorGolCiv = [0.4, 0.0, 0.5, 0.8];
+cTabColorGolOrange = [0.85, 0.4, 0.0, 0.8];
+cTabColorGolGreen = [0.0, 0.8, 0.0, 0.8];
+cTabColorGolYellow = [0.85, 0.85, 0.0, 0.8];
+
 // define vehicles that have FBCB2 monitor
 if (isNil "cTab_vehicleClass_has_FBCB2") then {
 	if (!isNil "cTab_vehicleClass_has_FBCB2_server") then {
