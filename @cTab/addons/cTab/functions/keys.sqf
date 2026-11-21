@@ -1,4 +1,5 @@
-#include "\a3\editor_f\Data\Scripts\dikCodes.h"
+// #include "\a3\editor_f\Data\Scripts\dikCodes.h"
+#include "\a3\ui_f\hpp\defineDIKCodes.inc"
 
 _keyConfig = (configFile >> "cTab_keys");
 
