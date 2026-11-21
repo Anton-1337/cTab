@@ -98,10 +98,6 @@
 // On-screen map centre cursor
 #define cTab_GUI_FBCB2_CURSOR (76)
 
-// set IDC counter to 0
-__EXEC(cTab_IDC = 0);
-#define IDC_COUNTER __EXEC(cTab_IDC = cTab_IDC + 1); idc = __EVAL(cTab_IDC);
-
 class cTab_RscText_FBCB2: cTab_RscText
 {
 	style = ST_CENTER;

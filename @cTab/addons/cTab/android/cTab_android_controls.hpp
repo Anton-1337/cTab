@@ -115,10 +115,6 @@
 #define pxToMenu_X(PIXEL) (((PIXEL) - cTab_GUI_android_OSD_MENU_X) / GUI_GRID_PX_W * GUI_GRID_W)
 #define pxToMenu_Y(PIXEL) (((PIXEL) - cTab_GUI_android_OSD_MENU_Y) / GUI_GRID_PX_H * GUI_GRID_H)
 
-// set IDC counter to 0
-__EXEC(cTab_IDC = 0);
-#define IDC_COUNTER __EXEC(cTab_IDC = cTab_IDC + 1); idc = __EVAL(cTab_IDC);
-
 class cTab_RscText_Android: cTab_RscText
 {
 	style = ST_CENTER;

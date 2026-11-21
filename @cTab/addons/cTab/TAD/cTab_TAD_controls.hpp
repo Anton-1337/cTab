@@ -72,10 +72,6 @@
 #define cTab_GUI_TAD_OSD_OSB19_Y (cTab_GUI_TAD_OSD_OSB07_Y)
 #define cTab_GUI_TAD_OSD_OSB20_Y (cTab_GUI_TAD_OSD_OSB06_Y)
 
-// set IDC counter to 0
-__EXEC(cTab_IDC = 0);
-#define IDC_COUNTER __EXEC(cTab_IDC = cTab_IDC + 1); idc = __EVAL(cTab_IDC);
-
 class cTab_RscButton_TAD_OSB: cTab_RscButtonInv
 {
 	w = pxToScreen_W(134);

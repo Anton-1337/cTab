@@ -150,10 +150,6 @@
 // On-screen map centre cursor
 #define cTab_GUI_tablet_CURSOR (32)
 
-// set IDC counter to 0
-__EXEC(cTab_IDC = 0);
-#define IDC_COUNTER __EXEC(cTab_IDC = cTab_IDC + 1); idc = __EVAL(cTab_IDC);
-
 class cTab_RscText_Tablet: cTab_RscText
 {
 	style = ST_CENTER;
