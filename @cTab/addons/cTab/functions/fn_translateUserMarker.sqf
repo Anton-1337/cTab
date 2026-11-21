@@ -63,6 +63,22 @@ _texture1 = call {
 	_color = cTabColorBlue;
 	if (_markerIcon == 30) exitWith {"\A3\ui_f\data\map\markers\nato\b_hq.paa"};
 	if (_markerIcon == 31) exitWith {"\A3\ui_f\data\map\markers\military\end_CA.paa"};
+
+	// GOL icons
+	if (_markerIcon == 246) exitWith {"\A3\ui_f\data\map\markers\military\destroy_CA.paa"};
+	if (_markerIcon == 248) exitWith {"\A3\ui_f\data\map\markers\military\dot_CA.paa"};
+	if (_markerIcon == 250) exitWith {"\A3\ui_f\data\map\markers\military\end_CA.paa"};
+	if (_markerIcon == 252) exitWith {"\A3\ui_f\data\map\markers\military\flag_CA.paa"};
+	if (_markerIcon == 254) exitWith {"\A3\ui_f\data\map\markers\military\join_CA.paa"};
+	if (_markerIcon == 256) exitWith {"\A3\ui_f\data\map\markers\military\marker_CA.paa"};
+	if (_markerIcon == 258) exitWith {"\A3\ui_f\data\map\markers\military\objective_CA.paa"};
+	if (_markerIcon == 260) exitWith {"\A3\ui_f\data\map\markers\military\pickup_CA.paa"};
+	if (_markerIcon == 262) exitWith {"\A3\ui_f\data\map\markers\military\start_CA.paa"};
+	if (_markerIcon == 264) exitWith {"\A3\ui_f\data\map\markers\military\triangle_CA.paa"};
+	if (_markerIcon == 266) exitWith {"\A3\ui_f\data\map\markers\military\unknown_CA.paa"};
+	if (_markerIcon == 268) exitWith {"\A3\ui_f\data\map\markers\military\warning_CA.paa"};
+	if (_markerIcon == 270) exitWith {"\a3\Ui_F_Curator\Data\CfgMarkers\minefield_ca.paa"};
+
 	""
 };
 
