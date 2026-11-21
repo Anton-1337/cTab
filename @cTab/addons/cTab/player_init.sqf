@@ -262,7 +262,7 @@ if (isNil "cTab_vehicleClass_has_FBCB2") then {
 _classNames = [];
 {
 	if (isClass (configfile >> "CfgVehicles" >> _x) && _classNames find _x == -1) then {
-		0 = _classNames pushBack _x;
+		_classNames pushBack _x;
 	};
 } count cTab_vehicleClass_has_FBCB2;
 cTab_vehicleClass_has_FBCB2 = [] + _classNames;
@@ -279,7 +279,7 @@ if (isNil "cTab_vehicleClass_has_TAD") then {
 _classNames = [];
 {
 	if (isClass (configfile >> "CfgVehicles" >> _x) && _classNames find _x == -1) then {
-		0 = _classNames pushBack _x;
+		_classNames pushBack _x;
 	};
 } count cTab_vehicleClass_has_TAD;
 cTab_vehicleClass_has_TAD = [] + _classNames;
@@ -296,7 +296,7 @@ if (isNil "cTab_helmetClass_has_HCam") then {
 _classNames = [];
 {
 	if (isClass (configfile >> "CfgWeapons" >> _x) && _classNames find _x == -1) then {
-		0 = _classNames pushBack _x;
+		_classNames pushBack _x;
 	};
 } count cTab_helmetClass_has_HCam;
 // iterate through all class names and add child classes, so we end up with a list of helmet classes that have the defined helmet classes as parents
@@ -305,7 +305,7 @@ _classNames = [];
 	{
 		_childClassName = configName _x;
 		if (_classNames find _childClassName == -1) then {
-			0 = _classNames pushBack configName _x;
+			_classNames pushBack configName _x;
 		};
 	} count _childClasses;
 } forEach _classNames;
@@ -328,15 +328,15 @@ cTab_fnc_update_txt_size = {
 // Beginning text and icon size
 cTabTxtFctr = 12;
 call cTab_fnc_update_txt_size;
-cTabBFTtxt = true;
+cTabBFTtxt = 1;
 
 // Draw Map Tolls (Hook)
-cTabDrawMapTools = false;
+cTabDrawMapTools = 0;
 
 // Base defines.
-cTabUavViewActive = false;
+cTabUavViewActive = 0;
 cTabUAVcams = [];
-cTabCursorOnMap = false;
+cTabCursorOnMap = 0;
 cTabMapCursorPos = [0,0];
 cTabMapWorldPos = [];
 cTabMapScale = 0.5;
@@ -355,7 +355,7 @@ uiNamespace setVariable ["cTab_microDAGR_dlg", displayNull];
 player setVariable ["ctab_messages",[]];
 
 // cTabIfOpenStart will be set to true while interface is starting and prevent further open attempts
-cTabIfOpenStart = false;
+cTabIfOpenStart = 0;
 
 /*
 Function handling IF_Main keydown event
@@ -370,7 +370,7 @@ cTab_fnc_onIfMainPressed = {
 	if (cTabUavViewActive) exitWith {
 		objNull remoteControl (gunner cTabActUav);
 		vehicle cTab_player switchCamera 'internal';
-		cTabUavViewActive = false;
+		cTabUavViewActive = 0;
 		call cTab_fnc_onIfTertiaryPressed;
 		true
 	};
@@ -430,7 +430,7 @@ cTab_fnc_onIfSecondaryPressed = {
 	if (cTabUavViewActive) exitWith {
 		objNull remoteControl (gunner cTabActUav);
 		vehicle cTab_player switchCamera 'internal';
-		cTabUavViewActive = false;
+		cTabUavViewActive = 0;
 		call cTab_fnc_onIfTertiaryPressed;
 		true
 	};
@@ -490,7 +490,7 @@ cTab_fnc_onIfTertiaryPressed = {
 	if (cTabUavViewActive) then {
 		objNull remoteControl (gunner cTabActUav);
 		vehicle cTab_player switchCamera 'internal';
-		cTabUavViewActive = false;
+		cTabUavViewActive = 0;
 		true
 	};
 	if (!isNil "cTabIfOpen" && {cTabIfOpen select 0 == 2}) exitWith {
@@ -985,7 +985,7 @@ cTabOnDrawHCam = {
 
 cTab_msg_gui_load = {
 	disableSerialization;
-	_return = true;
+	_return = 1;
 	_display = uiNamespace getVariable (cTabIfOpen select 1);
 	_playerEncryptionKey = call cTab_fnc_getPlayerEncryptionKey;
 	_msgArray = cTab_player getVariable [format ["cTab_messages_%1",_playerEncryptionKey],[]];
@@ -1030,7 +1030,7 @@ cTab_msg_gui_load = {
 
 cTab_msg_get_mailTxt = {
 	disableSerialization;
-	_return = true;
+	_return = 1;
 	_index = _this select 1;
 	_display = uiNamespace getVariable (cTabIfOpen select 1);
 	_playerEncryptionKey = call cTab_fnc_getPlayerEncryptionKey;
@@ -1055,7 +1055,7 @@ cTab_msg_get_mailTxt = {
 cTab_msg_Send = {
 	private ["_return","_display","_plrLBctrl","_msgBodyctrl","_plrList","_indices","_time","_msgTitle","_msgBody","_recip","_recipientNames","_msgArray","_playerEncryptionKey"];
 	disableSerialization;
-	_return = true;
+	_return = 1;
 	_display = uiNamespace getVariable (cTabIfOpen select 1);
 	_playerEncryptionKey = call cTab_fnc_getPlayerEncryptionKey;
 	_plrLBctrl = _display displayCtrl IDC_CTAB_MSG_RECIPIENTS;
