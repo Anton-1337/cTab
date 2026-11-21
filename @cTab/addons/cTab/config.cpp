@@ -21,12 +21,14 @@ class CfgPatches
 {
 	class PREFIX  // cTab
 		{
-			units[] = {Box_cTab_items};
-			weapons[] = {ItemcTab,ItemAndroid,ItemMicroDAGR,ItemcTabHCam};
+			units[] = {"Box_cTab_items"};
+			weapons[] = {"ItemcTab","ItemAndroid","ItemMicroDAGR","ItemcTabHCam"};
 			requiredVersion = REQUIRED_VERSION;
 			requiredAddons[] = {"CBA_MAIN"};
 			versionDesc = "cTab";
-			VERSION_CONFIG;
+			version = QUOTE(VERSION);
+			versionStr = QUOTE(VERSION);
+			versionAr[] = {VERSION_AR};
 			author[] = {"Gundy","Riouken","Raspu"};
 			authorUrl = "https://github.com/Riouken/cTab";
 		};
@@ -40,7 +42,7 @@ class CfgSettings
 		{
 			class PREFIX 
 			{
-				main_addon = PREFIX;
+				main_addon = QUOTE(PREFIX);
 				class Dependencies 
 				{
 					CBA[] = {"cba_main", { 1,0,0 },"true"};

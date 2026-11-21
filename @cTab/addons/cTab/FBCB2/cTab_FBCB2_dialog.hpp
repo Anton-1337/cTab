@@ -10,7 +10,7 @@
 
 class cTab_FBCB2_dlg {
 	idd = 1775144;
-	movingEnable = true;
+	movingEnable = 1;
 	onLoad = "_this call cTab_fnc_onIfOpen;";
 	onUnload = "[] call cTab_fnc_onIfclose;";
 	onKeyDown = "_this call cTab_fnc_onIfKeyDown;";
@@ -24,10 +24,10 @@ class cTab_FBCB2_dlg {
 		{
 			idc = IDC_CTAB_SCREEN;
 			text = "#(argb,8,8,3)color(1,1,1,1)";
-			x = pxToScreen_X(cTab_GUI_FBCB2_SCREEN_CONTENT_X);
-			y = pxToScreen_Y(cTab_GUI_FBCB2_SCREEN_CONTENT_Y);
-			w = pxToScreen_W(cTab_GUI_FBCB2_SCREEN_CONTENT_W);
-			h = pxToScreen_H(cTab_GUI_FBCB2_SCREEN_CONTENT_H);
+			x = QUOTE(pxToScreen_X(cTab_GUI_FBCB2_SCREEN_CONTENT_X));
+			y = QUOTE(pxToScreen_Y(cTab_GUI_FBCB2_SCREEN_CONTENT_Y));
+			w = QUOTE(pxToScreen_W(cTab_GUI_FBCB2_SCREEN_CONTENT_W));
+			h = QUOTE(pxToScreen_H(cTab_GUI_FBCB2_SCREEN_CONTENT_H));
 			onDraw = "nop = _this call cTabOnDrawbftVeh;";
 			onMouseButtonDblClick = "_ok = [3300,_this] execVM '\cTab\shared\cTab_markerMenu_load.sqf';";
 			onMouseMoving = "cTabCursorOnMap = _this select 3;cTabMapCursorPos = _this select 0 ctrlMapScreenToWorld [_this select 1,_this select 2];";
@@ -36,17 +36,17 @@ class cTab_FBCB2_dlg {
 			alphaFadeEndScale = 10;
 
 			// Rendering density coefficients
-			ptsPerSquareSea = 8 / (0.86 / GUI_GRID_H);		// seas
-			ptsPerSquareTxt = 8 / (0.86 / GUI_GRID_H);		// textures
-			ptsPerSquareCLn = 8 / (0.86 / GUI_GRID_H);		// count-lines
-			ptsPerSquareExp = 8 / (0.86 / GUI_GRID_H);		// exposure
-			ptsPerSquareCost = 8 / (0.86 / GUI_GRID_H);		// cost
+			ptsPerSquareSea = QUOTE(8 / (0.86 / GUI_GRID_H));		// seas
+			ptsPerSquareTxt = QUOTE(8 / (0.86 / GUI_GRID_H));		// textures
+			ptsPerSquareCLn = QUOTE(8 / (0.86 / GUI_GRID_H));		// count-lines
+			ptsPerSquareExp = QUOTE(8 / (0.86 / GUI_GRID_H));		// exposure
+			ptsPerSquareCost = QUOTE(8 / (0.86 / GUI_GRID_H));		// cost
 
 			// Rendering thresholds
-			ptsPerSquareFor = 3 / (0.86 / GUI_GRID_H);		// forests
-			ptsPerSquareForEdge = 100 / (0.86 / GUI_GRID_H);	// forest edges
-			ptsPerSquareRoad = 1.5 / (0.86 / GUI_GRID_H);		// roads
-			ptsPerSquareObj = 4 / (0.86 / GUI_GRID_H);		// other objects
+			ptsPerSquareFor = QUOTE(3 / (0.86 / GUI_GRID_H));		// forests
+			ptsPerSquareForEdge = QUOTE(100 / (0.86 / GUI_GRID_H));	// forest edges
+			ptsPerSquareRoad = QUOTE(1.5 / (0.86 / GUI_GRID_H));		// roads
+			ptsPerSquareObj = QUOTE(4 / (0.86 / GUI_GRID_H));		// other objects
 		};
 		class screenTopo: screen
 		{
