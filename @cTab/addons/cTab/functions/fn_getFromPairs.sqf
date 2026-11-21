@@ -31,7 +31,7 @@ else
 
 
 {
-	if (typeName _x != typeName []) exitWith
+	if (typeName _x != "ARRAY") exitWith
 	{
 		["Every item in the pair array must be an array!"] call BIS_fnc_error;
 	};
@@ -43,7 +43,7 @@ else
 	{
 		["Key cannot be nil!"] call BIS_fnc_error;
 	};
-	if (typeName(_x select 0) != typeName "") exitWith
+	if (typeName(_x select 0) != "STRING") exitWith
 	{
 		["Key must be a string!"] call BIS_fnc_error;
 	};

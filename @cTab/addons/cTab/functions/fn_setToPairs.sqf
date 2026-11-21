@@ -12,17 +12,15 @@
 	[["apple",3],["pear",10]] = [[["apple",3],["pear",2]],"pear",10] call BIS_fnc_setToPairs;
 */
 
-// private ["_pairs","_key","_value","_index"];
+private ["_pairs","_key","_value","_index"];
 
-// _pairs	= [_this,0,[],[[]]] call bis_fnc_param;
-// _key 	= [_this,1,"",[""]] call bis_fnc_param;
-// _value	= [_this,2,1] call bis_fnc_param;
-// _index  = -1;
-
-params ["_pairs","_key","_value","_index"];
+_pairs	= [_this,0,[],[[]]] call bis_fnc_param;
+_key 	= [_this,1,"",[""]] call bis_fnc_param;
+_value	= [_this,2,1] call bis_fnc_param;
+_index  = -1;
 
 {
-	if (typeName _x != typeName []) exitWith
+	if (typeName _x != "ARRAY") exitWith
 	{
 		["Every item in the pair array must be an array!"] call BIS_fnc_error;
 		_index = -2;
@@ -37,7 +35,7 @@ params ["_pairs","_key","_value","_index"];
 		["Key cannot be nil!"] call BIS_fnc_error;
 		_index = -2;
 	};
-	if (typeName(_x select 0) != typeName "") exitWith
+	if (typeName(_x select 0) != "STRING") exitWith
 	{
 		["Key must be a string!"] call BIS_fnc_error;
 		_index = -2;

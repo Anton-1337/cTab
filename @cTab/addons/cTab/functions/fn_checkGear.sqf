@@ -30,4 +30,4 @@ _chk_all_items pushBack (goggles _unit);
 // Some "units" don't return assignedItems, for example the Headquater module
 if (isNil "_chk_all_items") exitWith {false};
 
-{_x in _chk_all_items} count _items > 0
+({_x in _chk_all_items} count _items) > 0

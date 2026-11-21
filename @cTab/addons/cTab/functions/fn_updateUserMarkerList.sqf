@@ -24,7 +24,7 @@ _playerEncryptionKey = call cTab_fnc_getPlayerEncryptionKey;
 _tempList = [];
 {
 	_tempList pushBack [_x select 0,_x select 1 call cTab_fnc_translateUserMarker];
-} count ([cTab_userMarkerLists,_playerEncryptionKey,[]] call cTab_fnc_getFromPairs);
+} forEach ([cTab_userMarkerLists,_playerEncryptionKey,[]] call cTab_fnc_getFromPairs);
 
 cTabUserMarkerList = _tempList;
 

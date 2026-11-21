@@ -50,7 +50,7 @@ cTabBFTmembers --- GROUP MEMBERS
 	if ((_x != cTab_player) && {[_x,["ItemcTab","ItemAndroid","ItemMicroDAGR"]] call cTab_fnc_checkGear}) then {
 		_cTabBFTmembers pushBack [_x,_x call cTab_fnc_getInfMarkerIcon,"",name _x,str([_x] call CBA_fnc_getGroupIndex)];
 	};
-} count units cTab_player;
+} forEach units cTab_player;
 
 /*
 cTabBFTgroups --- GROUPS
@@ -76,7 +76,7 @@ Else, search through the group and use the first member we find equipped with a 
 			_cTabBFTgroups pushBack [_leader,"\A3\ui_f\data\map\markers\nato\b_inf.paa",_sizeIcon,groupID _x,""];
 		};
 	};
-} count allGroups;
+} forEach allGroups;
 
 /*
 cTabBFTvehicles --- VEHICLES
@@ -123,7 +123,7 @@ Vehciles on our side, that are not empty and that player is not sitting in.
 			_cTabBFTvehicles pushBack [_x,_iconA,_iconB,_name,_groupID];
 		};
 	};
-} count vehicles;
+} forEach vehicles;
 
 /*
 cTabUAVlist --- UAVs
@@ -132,7 +132,7 @@ cTabUAVlist --- UAVs
 	if (side _x in _validSides) then {
 		_cTabUAVlist pushBack _x;
 	};
-} count allUnitsUav;
+} forEach allUnitsUav;
 
 /*
 cTabHcamlist --- HELMET CAMS
@@ -144,7 +144,7 @@ Units on our side, that have either helmets that have been specified to include 
 			_cTabHcamlist pushBack _x;
 		};
 	};
-} count allUnits;
+} forEach allUnits;
 
 // array to hold interface update commands
 _updateInterface = [];

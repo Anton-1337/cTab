@@ -22,21 +22,16 @@
 	[["greetings",["Hello!","Hi!"]],["rudewords",""]] = [[["greetings","Hello!"],["rudewords",""]],"greetings","Hi!"] call BIS_fnc_addToPairs;
 */
 
-#define SCALAR		(typeName 123)
-#define ARRAY		(typeName [])
+private ["_pairs","_key","_add","_copy","_index","_value","_tValue","_tAdd","_return"];
 
-// private ["_pairs","_key","_add","_copy","_index","_value","_tValue","_tAdd","_return"];
-
-// _pairs	= [_this,0,[],[[]]] call bis_fnc_param;
-// _key 	= [_this,1,"",[""]] call bis_fnc_param;
-// _add	= [_this,2,1] call bis_fnc_param;
-// _index  = -1;
-// _return = "";
-
-params ["_pairs","_key","_add","_copy","_index","_value","_tValue","_tAdd","_return"];
+_pairs	= [_this,0,[],[[]]] call bis_fnc_param;
+_key 	= [_this,1,"",[""]] call bis_fnc_param;
+_add	= [_this,2,1] call bis_fnc_param;
+_index  = -1;
+_return = "";
 
 {
-	if (typeName _x != typeName []) exitWith
+	if (typeName _x != "ARRAY") exitWith
 	{
 		["Every item in the pair array must be an array!"] call BIS_fnc_error;
 		_index = -2;
@@ -51,7 +46,7 @@ params ["_pairs","_key","_add","_copy","_index","_value","_tValue","_tAdd","_ret
 		["Key cannot be nil!"] call BIS_fnc_error;
 		_index = -2;
 	};
-	if (typeName(_x select 0) != typeName "") exitWith
+	if (typeName(_x select 0) != "STRING") exitWith
 	{
 		["Key must be a string!"] call BIS_fnc_error;
 		_index = -2;
@@ -86,19 +81,19 @@ else
 
 	switch (true) do
 	{
-		case (_tValue == SCALAR && _tAdd == SCALAR):
+		case (_tValue == "SCALAR" && _tAdd == "SCALAR"):
 		{
 			_return = _value + _add;
 		};
-		case (_tValue == ARRAY && _tAdd == ARRAY):
+		case (_tValue == "ARRAY" && _tAdd == "ARRAY"):
 		{
 			_return = _value + _add;
 		};
-		case (_tValue == ARRAY):
+		case (_tValue == "ARRAY"):
 		{
 			_return = _value + [_add];
 		};
-		case (_tAdd == ARRAY):
+		case (_tAdd == "ARRAY"):
 		{
 			_return = _add + [_value];
 		};

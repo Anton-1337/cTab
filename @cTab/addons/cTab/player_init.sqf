@@ -264,7 +264,7 @@ _classNames = [];
 	if (isClass (configfile >> "CfgVehicles" >> _x) && _classNames find _x == -1) then {
 		_classNames pushBack _x;
 	};
-} count cTab_vehicleClass_has_FBCB2;
+} forEach cTab_vehicleClass_has_FBCB2;
 cTab_vehicleClass_has_FBCB2 = [] + _classNames;
 
 // define vehicles that have TAD
@@ -281,7 +281,7 @@ _classNames = [];
 	if (isClass (configfile >> "CfgVehicles" >> _x) && _classNames find _x == -1) then {
 		_classNames pushBack _x;
 	};
-} count cTab_vehicleClass_has_TAD;
+} forEach cTab_vehicleClass_has_TAD;
 cTab_vehicleClass_has_TAD = [] + _classNames;
 
 // define items that enable head cam
@@ -298,7 +298,7 @@ _classNames = [];
 	if (isClass (configfile >> "CfgWeapons" >> _x) && _classNames find _x == -1) then {
 		_classNames pushBack _x;
 	};
-} count cTab_helmetClass_has_HCam;
+} forEach cTab_helmetClass_has_HCam;
 // iterate through all class names and add child classes, so we end up with a list of helmet classes that have the defined helmet classes as parents
 {
 	_childClasses = "inheritsFrom _x == (configfile >> 'CfgWeapons' >> '" + _x + "')" configClasses (configfile >> "CfgWeapons");
@@ -307,7 +307,7 @@ _classNames = [];
 		if (_classNames find _childClassName == -1) then {
 			_classNames pushBack configName _x;
 		};
-	} count _childClasses;
+	} forEach _childClasses;
 } forEach _classNames;
 cTab_helmetClass_has_HCam = [] + _classNames;
 
@@ -1017,14 +1017,14 @@ cTab_msg_gui_load = {
 		_index = _msgControl lbAdd _title;
 		_msgControl lbSetPicture [_index,_img];
 		_msgControl lbSetTooltip [_index,_title];
-	} count _msgArray;
+	} forEach _msgArray;
 	
 	{
 		if ((side _x in _validSides) && {isPlayer _x} && {[_x,["ItemcTab","ItemAndroid"]] call cTab_fnc_checkGear}) then {
 			_index = _plrlistControl lbAdd format ["%1:%2 (%3)",groupId group _x,[_x] call CBA_fnc_getGroupIndex,name _x];
 			_plrlistControl lbSetData [_index,str _x];
 		};
-	} count _plrList;
+	} forEach _plrList;
 	
 	lbSort [_plrlistControl, "ASC"];
 	
@@ -1081,7 +1081,7 @@ cTab_msg_Send = {
 		_recip = objNull;
 		{
 			if (_data == str _x) exitWith {_recip = _x;};
-		} count _plrList;
+		} forEach _plrList;
 		
 		if !(IsNull _recip) then {
 			if (_recipientNames isEqualTo "") then {
