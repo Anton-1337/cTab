@@ -722,7 +722,7 @@ cTabOnDrawbft = {
 	cTabMapWorldPos = [_cntrlScreen] call cTab_fnc_ctrlMapCenter;
 	cTabMapScale = ctrlMapScale _cntrlScreen;
 
-	[_cntrlScreen,true] call cTab_fnc_drawUserMarkers;
+	// [_cntrlScreen,true] call cTab_fnc_drawUserMarkers;
 	[_cntrlScreen,0] call cTab_fnc_drawBftMarkers;
 	
 	// draw directional arrow at own location
@@ -747,7 +747,7 @@ cTabOnDrawbftVeh = {
 	cTabMapWorldPos = [_cntrlScreen] call cTab_fnc_ctrlMapCenter;
 	cTabMapScale = ctrlMapScale _cntrlScreen;
 	
-	[_cntrlScreen,true] call cTab_fnc_drawUserMarkers;
+	// [_cntrlScreen,true] call cTab_fnc_drawUserMarkers;
 	[_cntrlScreen,0] call cTab_fnc_drawBftMarkers;
 	
 	// draw directional arrow at own location
@@ -780,7 +780,7 @@ cTabOnDrawbftTAD = {
 	_cntrlScreen ctrlMapAnimAdd [0, cTabMapScale, _playerPos];
 	ctrlMapAnimCommit _cntrlScreen;
 	
-	[_cntrlScreen,false] call cTab_fnc_drawUserMarkers;
+	// [_cntrlScreen,false] call cTab_fnc_drawUserMarkers;
 	[_cntrlScreen,1] call cTab_fnc_drawBftMarkers;
 	
 	// draw vehicle icon at own location
@@ -803,7 +803,7 @@ cTabOnDrawbftTADdialog = {
 	cTabMapWorldPos = [_cntrlScreen] call cTab_fnc_ctrlMapCenter;
 	cTabMapScale = ctrlMapScale _cntrlScreen;
 	
-	[_cntrlScreen,true] call cTab_fnc_drawUserMarkers;
+	// [_cntrlScreen,true] call cTab_fnc_drawUserMarkers;
 	[_cntrlScreen,1] call cTab_fnc_drawBftMarkers;
 	
 	// draw vehicle icon at own location
@@ -830,7 +830,7 @@ cTabOnDrawbftAndroid = {
 	cTabMapWorldPos = [_cntrlScreen] call cTab_fnc_ctrlMapCenter;
 	cTabMapScale = ctrlMapScale _cntrlScreen;
 
-	[_cntrlScreen,true] call cTab_fnc_drawUserMarkers;
+	// [_cntrlScreen,true] call cTab_fnc_drawUserMarkers;
 	[_cntrlScreen,0] call cTab_fnc_drawBftMarkers;
 	
 	// draw directional arrow at own location
@@ -860,7 +860,7 @@ cTabOnDrawbftAndroidDsp = {
 	_cntrlScreen ctrlMapAnimAdd [0, cTabMapScale, _playerPos];
 	ctrlMapAnimCommit _cntrlScreen;
 	
-	[_cntrlScreen,false] call cTab_fnc_drawUserMarkers;
+	// [_cntrlScreen,false] call cTab_fnc_drawUserMarkers;
 	[_cntrlScreen,0] call cTab_fnc_drawBftMarkers;
 	
 	// draw directional arrow at own location
@@ -882,7 +882,7 @@ cTabOnDrawbftmicroDAGRdsp = {
 	_cntrlScreen ctrlMapAnimAdd [0, cTabMapScale, _playerPos];
 	ctrlMapAnimCommit _cntrlScreen;
 	
-	[_cntrlScreen,false] call cTab_fnc_drawUserMarkers;
+	// [_cntrlScreen,false] call cTab_fnc_drawUserMarkers;
 	[_cntrlScreen,cTabMicroDAGRmode] call cTab_fnc_drawBftMarkers;
 	
 	// draw directional arrow at own location
@@ -904,7 +904,7 @@ cTabOnDrawbftMicroDAGRdlg = {
 	_playerPos = getPosASL _veh;
 	_heading = direction _veh;
 	
-	[_cntrlScreen,false] call cTab_fnc_drawUserMarkers;
+	// [_cntrlScreen,false] call cTab_fnc_drawUserMarkers;
 	[_cntrlScreen,cTabMicroDAGRmode] call cTab_fnc_drawBftMarkers;
 	
 	// draw directional arrow at own location
@@ -927,7 +927,7 @@ cTabOnDrawUAV = {
 	_display = ctrlParent _cntrlScreen;
 	_pos = getPosASL cTabActUav;
 	
-	[_cntrlScreen,false] call cTab_fnc_drawUserMarkers;
+	// [_cntrlScreen,false] call cTab_fnc_drawUserMarkers;
 	[_cntrlScreen,0] call cTab_fnc_drawBftMarkers;
 	
 	// draw icon at own location
@@ -951,7 +951,7 @@ cTabOnDrawHCam = {
 	_display = ctrlParent _cntrlScreen;
 	_pos = getPosASL _camHost;
 	
-	[_cntrlScreen,false] call cTab_fnc_drawUserMarkers;
+	// [_cntrlScreen,false] call cTab_fnc_drawUserMarkers;
 	[_cntrlScreen,0] call cTab_fnc_drawBftMarkers;
 	
 	// draw icon at own location
