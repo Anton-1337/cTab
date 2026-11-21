@@ -35,7 +35,7 @@ if !(isNil "cTabIfOpen") then {
 	_aceUnconciousEhId = cTabIfOpen select 7;
 	_acePlayerInventoryChangedEhId = cTabIfOpen select 8;
 	
-	if (!isNil "_playerKilledEhId") then {_player removeEventHandler ["killed",_playerKilledEhId]};
+	if (!isNil "_playerKilledEhId") then {_player removeEventHandler ["Killed",_playerKilledEhId]};
 	if (!isNil "_vehicleGetOutEhId") then {_vehicle removeEventHandler ["GetOut",_vehicleGetOutEhId]};
 	if (!isNil "_draw3dEhId") then {removeMissionEventHandler ["Draw3D",_draw3dEhId]};
 	if (!isNil "_aceUnconciousEhId") then {["medical_onUnconscious",_aceUnconciousEhId] call ace_common_fnc_removeEventHandler};

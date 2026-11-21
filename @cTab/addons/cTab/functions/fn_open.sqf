@@ -47,7 +47,7 @@ _vehicle = _this select 3;
 _isDialog = [_displayName] call cTab_fnc_isDialog;
 
 cTabIfOpen = [_interfaceType,_displayName,_player,
-	_player addEventHandler ["killed",{[] call cTab_fnc_close}],
+	_player addEventHandler ["Killed",{[] call cTab_fnc_close}],
 	_vehicle,nil,nil,nil,nil];
 
 if (_vehicle != _player && (_isDialog || _displayName in ["cTab_TAD_dsp"])) then {

@@ -91,6 +91,7 @@ _dir = call {
 };
 
 _text = _this select 4;
-_align = if ((_dir > 0) && (_dir < 180)) then {"left"} else {"right"};
+// _align = if ((_dir > 0) && (_dir < 180)) then {"left"} else {"right"};
+_align = ["right", "left"] select ((_dir > 0) && (_dir < 180));
 
 [_pos,_texture1,_texture2,_dir,_color,_text,_align]

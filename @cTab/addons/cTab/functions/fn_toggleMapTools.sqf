@@ -22,6 +22,7 @@ private ["_displayName","_currentMapTools","_newMapTools"];
 
 _displayName = _this select 0;
 _currentMapTools = [_displayName,"mapTools"] call cTab_fnc_getSettings;
-_newMapTools = if (_currentMapTools) then {false} else {true};
+// _newMapTools = if (_currentMapTools) then {false} else {true};
+_newMapTools = !(_currentMapTools);
 [_displayName,[["mapTools",_newMapTools]]] call cTab_fnc_setSettings;
 _newMapTools

@@ -12,12 +12,14 @@
 	[["apple",3],["pear",10]] = [[["apple",3],["pear",2]],"pear",10] call BIS_fnc_setToPairs;
 */
 
-private ["_pairs","_key","_value","_index"];
+// private ["_pairs","_key","_value","_index"];
 
-_pairs	= [_this,0,[],[[]]] call bis_fnc_param;
-_key 	= [_this,1,"",[""]] call bis_fnc_param;
-_value	= [_this,2,1] call bis_fnc_param;
-_index  = -1;
+// _pairs	= [_this,0,[],[[]]] call bis_fnc_param;
+// _key 	= [_this,1,"",[""]] call bis_fnc_param;
+// _value	= [_this,2,1] call bis_fnc_param;
+// _index  = -1;
+
+params ["_pairs","_key","_value","_index"];
 
 {
 	if (typeName _x != typeName []) exitWith

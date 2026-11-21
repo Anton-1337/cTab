@@ -328,15 +328,15 @@ cTab_fnc_update_txt_size = {
 // Beginning text and icon size
 cTabTxtFctr = 12;
 call cTab_fnc_update_txt_size;
-cTabBFTtxt = 1;
+cTabBFTtxt = true;
 
 // Draw Map Tolls (Hook)
-cTabDrawMapTools = 0;
+cTabDrawMapTools = false;
 
 // Base defines.
-cTabUavViewActive = 0;
+cTabUavViewActive = false;
 cTabUAVcams = [];
-cTabCursorOnMap = 0;
+cTabCursorOnMap = false;
 cTabMapCursorPos = [0,0];
 cTabMapWorldPos = [];
 cTabMapScale = 0.5;
@@ -355,7 +355,7 @@ uiNamespace setVariable ["cTab_microDAGR_dlg", displayNull];
 player setVariable ["ctab_messages",[]];
 
 // cTabIfOpenStart will be set to true while interface is starting and prevent further open attempts
-cTabIfOpenStart = 0;
+cTabIfOpenStart = false;
 
 /*
 Function handling IF_Main keydown event
@@ -370,7 +370,7 @@ cTab_fnc_onIfMainPressed = {
 	if (cTabUavViewActive) exitWith {
 		objNull remoteControl (gunner cTabActUav);
 		vehicle cTab_player switchCamera 'internal';
-		cTabUavViewActive = 0;
+		cTabUavViewActive = false;
 		call cTab_fnc_onIfTertiaryPressed;
 		true
 	};
@@ -394,7 +394,8 @@ cTab_fnc_onIfMainPressed = {
 		};
 		if ([_player,["ItemAndroid"]] call cTab_fnc_checkGear) exitWith {"cTab_Android_dsp"};
 		if ([_player,["ItemMicroDAGR"]] call cTab_fnc_checkGear) exitWith {
-			cTabMicroDAGRmode = if ([_player,["ItemcTab"]] call cTab_fnc_checkGear) then {0} else {2};
+			// cTabMicroDAGRmode = if ([_player,["ItemcTab"]] call cTab_fnc_checkGear) then {0} else {2};
+			cTabMicroDAGRmode = [2, 0] select ([_player,["ItemcTab"]] call cTab_fnc_checkGear);
 			"cTab_microDAGR_dsp"
 		};
 		if ([_player,_vehicle,"FBCB2"] call cTab_fnc_unitInEnabledVehicleSeat) exitWith {"cTab_FBCB2_dlg"};
@@ -455,7 +456,8 @@ cTab_fnc_onIfSecondaryPressed = {
 		if ([_player,_vehicle,"FBCB2"] call cTab_fnc_unitInEnabledVehicleSeat) exitWith {"cTab_FBCB2_dlg"};
 		if ([_player,["ItemAndroid"]] call cTab_fnc_checkGear) exitWith {"cTab_Android_dlg"};
 		if ([_player,["ItemMicroDAGR"]] call cTab_fnc_checkGear) exitWith {
-			cTabMicroDAGRmode = if ([_player,["ItemcTab"]] call cTab_fnc_checkGear) then {0} else {2};
+			// cTabMicroDAGRmode = if ([_player,["ItemcTab"]] call cTab_fnc_checkGear) then {0} else {2};
+			cTabMicroDAGRmode = [2, 0] select ([_player,["ItemcTab"]] call cTab_fnc_checkGear);
 			"cTab_microDAGR_dlg"
 		};
 		if ([_player,["ItemcTab"]] call cTab_fnc_checkGear) exitWith {"cTab_Tablet_dlg"};
@@ -510,7 +512,8 @@ cTab_fnc_onIfTertiaryPressed = {
 		if ([_player,["ItemcTab"]] call cTab_fnc_checkGear) exitWith {"cTab_Tablet_dlg"};
 		if ([_player,["ItemAndroid"]] call cTab_fnc_checkGear) exitWith {"cTab_Android_dlg"};
 		if ([_player,["ItemMicroDAGR"]] call cTab_fnc_checkGear) exitWith {
-			cTabMicroDAGRmode = if ([_player,["ItemcTab"]] call cTab_fnc_checkGear) then {0} else {2};
+			// cTabMicroDAGRmode = if ([_player,["ItemcTab"]] call cTab_fnc_checkGear) then {0} else {2};
+			cTabMicroDAGRmode = [2, 0] select ([_player,["ItemcTab"]] call cTab_fnc_checkGear);
 			"cTab_microDAGR_dlg"
 		};
 		if ([_player,_vehicle,"TAD"] call cTab_fnc_unitInEnabledVehicleSeat) exitWith {
@@ -1047,7 +1050,8 @@ cTab_msg_get_mailTxt = {
 	
 	_txtControl = _display displayCtrl IDC_CTAB_MSG_CONTENT;
 
-	_nul = _txtControl ctrlSetText  _msgtxt;
+	// _nul = _txtControl ctrlSetText  _msgtxt;
+	_txtControl ctrlSetText _msgtxt;
 	
 	_return;
 };

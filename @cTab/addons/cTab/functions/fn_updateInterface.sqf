@@ -121,19 +121,24 @@ if (isNil "_mode") then {
 		if (_x select 0 == "nightMode") exitWith {
 			_nightMode = _x select 1;
 			// transform nightMode into boolean
-			_nightMode = if (_nightMode == 1 || {_nightMode == 2 && (sunOrMoon < 0.2)}) then {true} else {false};
+			// _nightMode = if (_nightMode == 1 || {_nightMode == 2 && (sunOrMoon < 0.2)}) then {true} else {false};
+			_nightMode = (_nightMode == 1) || {_nightMode == 2 && (sunOrMoon < 0.2)};
 			_background = call {
 				if (_displayName in ["cTab_TAD_dsp","cTab_TAD_dlg"]) exitWith {
-					if (_nightMode) then {"\cTab\img\TAD_background_night_ca.paa"} else {"\cTab\img\TAD_background_ca.paa"};
+					// if (_nightMode) then {"\cTab\img\TAD_background_night_ca.paa"} else {"\cTab\img\TAD_background_ca.paa"};
+					["\cTab\img\TAD_background_ca.paa", "\cTab\img\TAD_background_night_ca.paa"] select (_nightMode);
 				};
 				if (_displayName in ["cTab_Android_dsp","cTab_Android_dlg"]) exitWith {
-					if (_nightMode) then {"\cTab\img\android_background_night_ca.paa"} else {"\cTab\img\android_background_ca.paa"};
+					// if (_nightMode) then {"\cTab\img\android_background_night_ca.paa"} else {"\cTab\img\android_background_ca.paa"};
+					["\cTab\img\android_background_ca.paa", "\cTab\img\android_background_night_ca.paa"] select (_nightMode);
 				};
 				if (_displayName in ["cTab_microDAGR_dsp","cTab_microDAGR_dlg"]) exitWith {
-					if (_nightMode) then {"\cTab\img\microDAGR_background_night_ca.paa"} else {"\cTab\img\microDAGR_background_ca.paa"};
+					// if (_nightMode) then {"\cTab\img\microDAGR_background_night_ca.paa"} else {"\cTab\img\microDAGR_background_ca.paa"};
+					["\cTab\img\microDAGR_background_ca.paa", "\cTab\img\microDAGR_background_night_ca.paa"] select (_nightMode);
 				};
 				if (_displayName in ["cTab_Tablet_dlg"]) exitWith {
-					if (_nightMode) then {"\cTab\img\tablet_background_night_ca.paa"} else {"\cTab\img\tablet_background_ca.paa"};
+					// if (_nightMode) then {"\cTab\img\tablet_background_night_ca.paa"} else {"\cTab\img\tablet_background_ca.paa"};
+					["\cTab\img\tablet_background_ca.paa", "\cTab\img\tablet_background_night_ca.paa"] select (_nightMode);
 				};
 				""
 			};
@@ -302,7 +307,8 @@ if (isNil "_mode") then {
 		if (_x select 0 == "showIconText") exitWith {
 			_osdCtrl = _display displayCtrl IDC_CTAB_OSD_TXT_TGGL;
 			if (!isNull _osdCtrl) then {
-				_text = if (_x select 1) then {"ON"} else {"OFF"};
+				// _text = if (_x select 1) then {"ON"} else {"OFF"};
+				_text = ["OFF", "ON"] select (_x select 1);
 				_osdCtrl ctrlSetText _text;
 			};
 		};
@@ -437,12 +443,14 @@ if (isNil "_mode") then {
 				};
 				_osdCtrl = _display displayCtrl IDC_CTAB_OSD_HOOK_TGGL1;
 				if (!isNull _osdCtrl) then {
-					_text = if (_x select 1) then {"OWN"} else {"CURS"};
+					// _text = if (_x select 1) then {"OWN"} else {"CURS"};
+					_text = ["OWN", "CURS"] select (_x select 1);
 					_osdCtrl ctrlSetText _text;
 				};
 				_osdCtrl = _display displayCtrl IDC_CTAB_OSD_HOOK_TGGL2;
 				if (!isNull _osdCtrl) then {
-					_text = if (_x select 1) then {"CURS"} else {"OWN"};
+					// _text = if (_x select 1) then {"CURS"} else {"OWN"};
+					_text = ["OWN", "CURS"] select (_x select 1);
 					_osdCtrl ctrlSetText _text;
 				};
 			};

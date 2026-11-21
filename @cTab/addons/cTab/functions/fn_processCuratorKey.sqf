@@ -38,6 +38,7 @@ _processKeys = {
 	};
 };
 
-[if ((_this select 1) isEqualTo "keyup") then {CBA_events_keyhandlers_up} else {CBA_events_keyhandlers_down}, _processKeys] call CBA_fnc_hashEachPair;
+// [if ((_this select 1) isEqualTo "keyup") then {CBA_events_keyhandlers_up} else {CBA_events_keyhandlers_down}, _processKeys] call CBA_fnc_hashEachPair;
+[[CBA_events_keyhandlers_down, CBA_events_keyhandlers_up] select ((_this select 1) isEqualTo "keyup"), _processKeys] call CBA_fnc_hashEachPair;
 
 _result;
