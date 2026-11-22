@@ -101,13 +101,13 @@
 #define MB_BUTTON_USER    4
 
 // Fonts
-#define GUI_FONT_NORMAL			PuristaMedium
-#define GUI_FONT_BOLD			PuristaSemibold
-#define GUI_FONT_THIN			PuristaLight
-#define GUI_FONT_MONO			EtelkaMonospacePro
-#define GUI_FONT_NARROW			EtelkaNarrowMediumPro
-#define GUI_FONT_CODE			LucidaConsoleB
-#define GUI_FONT_SYSTEM			TahomaB
+#define GUI_FONT_NORMAL			"PuristaMedium"
+#define GUI_FONT_BOLD			"PuristaSemibold"
+#define GUI_FONT_THIN			"PuristaLight"
+#define GUI_FONT_MONO			"EtelkaMonospacePro"
+#define GUI_FONT_NARROW			"EtelkaNarrowMediumPro"
+#define GUI_FONT_CODE			"LucidaConsoleB"
+#define GUI_FONT_SYSTEM			"TahomaB"
 
 // Colors
 #define COLOR_NEON_GREEN {57/255,255/255,20/255,1}
@@ -287,7 +287,7 @@ class cTab_RscCombo
 		0,
 		1
 	};
-	colorScrollbar[] =
+	colorScrollBar[] =
 	{
 		1,
 		0,
@@ -403,7 +403,7 @@ class cTab_RscListBox
 		1,
 		0.25
 	};
-	colorScrollbar[] =
+	colorScrollBar[] =
 	{
 		1,
 		0,
@@ -1387,7 +1387,7 @@ class cTab_RscButtonMenuCancel
 };
 class cTab_RscControlsGroup
 {
-	class VScrollbar
+	class VScrollBar
 	{
 		color[] =
 		{
@@ -1402,7 +1402,7 @@ class cTab_RscControlsGroup
 		autoScrollRewind = 0;
 		shadow = 0;
 	};
-	class HScrollbar
+	class HScrollBar
 	{
 		color[] =
 		{

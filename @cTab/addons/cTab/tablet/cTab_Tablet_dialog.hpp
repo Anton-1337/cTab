@@ -22,7 +22,7 @@
 
 class cTab_Tablet_dlg {
 	idd = 1775154;
-	movingEnable = true;
+	movingEnable = 1;
 	onLoad = "_this call cTab_fnc_onIfOpen;";
 	onUnload = "[] call cTab_fnc_onIfclose;";
 	onKeyDown = "_this call cTab_fnc_onIfKeyDown;";
@@ -32,19 +32,19 @@ class cTab_Tablet_dlg {
 		{
 			idc = IDC_CTAB_WIN_BACK;
 			text = "#(argb,8,8,3)color(0.2,0.431,0.647,1)";
-			x = pxToScreen_X(cTab_GUI_tablet_MAP_X);
-			y = pxToScreen_Y(cTab_GUI_tablet_MAP_Y);
-			w = pxToScreen_W(cTab_GUI_tablet_MAP_W);
-			h = pxToScreen_H(cTab_GUI_tablet_MAP_H);
+			x = QUOTE(pxToScreen_X(cTab_GUI_tablet_MAP_X));
+			y = QUOTE(pxToScreen_Y(cTab_GUI_tablet_MAP_Y));
+			w = QUOTE(pxToScreen_W(cTab_GUI_tablet_MAP_W));
+			h = QUOTE(pxToScreen_H(cTab_GUI_tablet_MAP_H));
 		};
 		class windowsBar: cTab_RscPicture
 		{
 			idc = IDC_CTAB_WIN_TASKBAR;
 			text = "\cTab\img\Desktop_bar.jpg";
-			x = pxToScreen_X(cTab_GUI_tablet_TASKBAR_X);
-			y = pxToScreen_Y(cTab_GUI_tablet_TASKBAR_Y);
-			w = pxToScreen_W(cTab_GUI_tablet_TASKBAR_W);
-			h = pxToScreen_H(cTab_GUI_tablet_TASKBAR_H);
+			x = QUOTE(pxToScreen_X(cTab_GUI_tablet_TASKBAR_X));
+			y = QUOTE(pxToScreen_Y(cTab_GUI_tablet_TASKBAR_Y));
+			w = QUOTE(pxToScreen_W(cTab_GUI_tablet_TASKBAR_W));
+			h = QUOTE(pxToScreen_H(cTab_GUI_tablet_TASKBAR_H));
 		};
 		class MiniMapBG: cTab_Tablet_window_back_BL
 		{
@@ -53,10 +53,10 @@ class cTab_Tablet_dlg {
 		class cTabUavMap: cTab_Tablet_RscMapControl
 		{
 			idc = IDC_CTAB_CTABUAVMAP;
-			x = pxToScreen_X(cTab_GUI_tablet_WINDOW_CONTENT_L_X);
-			y = pxToScreen_Y(cTab_GUI_tablet_WINDOW_CONTENT_B_Y);
-			w = pxToScreen_W(cTab_GUI_tablet_WINDOW_CONTENT_W);
-			h = pxToScreen_H(cTab_GUI_tablet_WINDOW_CONTENT_H);
+			x = QUOTE(pxToScreen_X(cTab_GUI_tablet_WINDOW_CONTENT_L_X));
+			y = QUOTE(pxToScreen_Y(cTab_GUI_tablet_WINDOW_CONTENT_B_Y));
+			w = QUOTE(pxToScreen_W(cTab_GUI_tablet_WINDOW_CONTENT_W));
+			h = QUOTE(pxToScreen_H(cTab_GUI_tablet_WINDOW_CONTENT_H));
 			onDraw = "nop = _this call cTabOnDrawUAV;";
 			onMouseButtonDblClick = "";
 		};
@@ -95,13 +95,13 @@ class cTab_Tablet_dlg {
 		class Desktop: cTab_RscControlsGroup
 		{
 			idc = IDC_CTAB_GROUP_DESKTOP;
-			x = pxToScreen_X(cTab_GUI_tablet_SCREEN_CONTENT_X);
-			y = pxToScreen_Y(cTab_GUI_tablet_SCREEN_CONTENT_Y);
-			w = pxToScreen_W(cTab_GUI_tablet_SCREEN_CONTENT_W);
-			h = pxToScreen_H(cTab_GUI_tablet_SCREEN_CONTENT_H);
-			class VScrollbar {};
-			class HScrollbar {};
-			class Scrollbar {};
+			x = QUOTE(pxToScreen_X(cTab_GUI_tablet_SCREEN_CONTENT_X));
+			y = QUOTE(pxToScreen_Y(cTab_GUI_tablet_SCREEN_CONTENT_Y));
+			w = QUOTE(pxToScreen_W(cTab_GUI_tablet_SCREEN_CONTENT_W));
+			h = QUOTE(pxToScreen_H(cTab_GUI_tablet_SCREEN_CONTENT_H));
+			class VScrollBar {};
+			class HScrollBar {};
+			class ScrollBar {};
 			class controls
 			{
 				class actBFTtxt: cTab_ActiveText
@@ -109,10 +109,10 @@ class cTab_Tablet_dlg {
 					style = ST_PICTURE;
 					idc = IDC_CTAB_ACTBFTTXT;
 					text = "\cTab\img\cTab_BFT_ico.paa" ;//"Blue Force Tracker"; //--- ToDo: Localize;
-					x = pxToGroup_X(cTab_GUI_tablet_SCREEN_CONTENT_X + cTab_GUI_tablet_DESKTOP_ICON_OFFSET_X);
-					y = pxToGroup_Y(cTab_GUI_tablet_SCREEN_CONTENT_Y + cTab_GUI_tablet_DESKTOP_ICON_OFFSET_Y);
-					w = pxToScreen_W(cTab_GUI_tablet_DESKTOP_ICON_W);
-					h = pxToScreen_H(cTab_GUI_tablet_DESKTOP_ICON_H);
+					x = QUOTE(pxToGroup_X(cTab_GUI_tablet_SCREEN_CONTENT_X + cTab_GUI_tablet_DESKTOP_ICON_OFFSET_X));
+					y = QUOTE(pxToGroup_Y(cTab_GUI_tablet_SCREEN_CONTENT_Y + cTab_GUI_tablet_DESKTOP_ICON_OFFSET_Y));
+					w = QUOTE(pxToScreen_W(cTab_GUI_tablet_DESKTOP_ICON_W));
+					h = QUOTE(pxToScreen_H(cTab_GUI_tablet_DESKTOP_ICON_H));
 					action = "['cTab_Tablet_dlg',[['mode','BFT']]] call cTab_fnc_setSettings;";
 					toolTip = "FBCB2 - Blue Force Tracker";
 				};
@@ -120,7 +120,7 @@ class cTab_Tablet_dlg {
 				{
 					idc = IDC_CTAB_ACTUAVTXT;
 					text = "\cTab\img\cTab_UAV_ico.paa" ;//"UAV Intelligence"; //--- ToDo: Localize;
-					y = pxToGroup_Y(cTab_GUI_tablet_SCREEN_CONTENT_Y + cTab_GUI_tablet_DESKTOP_ICON_OFFSET_Y * 2 + cTab_GUI_tablet_DESKTOP_ICON_H);
+					y = QUOTE(pxToGroup_Y(cTab_GUI_tablet_SCREEN_CONTENT_Y + cTab_GUI_tablet_DESKTOP_ICON_OFFSET_Y * 2 + cTab_GUI_tablet_DESKTOP_ICON_H));
 					action = "['cTab_Tablet_dlg',[['mode','UAV']]] call cTab_fnc_setSettings;";
 					toolTip = "UAV Video Feeds";
 				};
@@ -128,7 +128,7 @@ class cTab_Tablet_dlg {
 				{
 					idc = IDC_CTAB_ACTVIDTXT;
 					text = "\cTab\img\cTab_HMC_ico.paa" ;//"Live Video Feeds"; //--- ToDo: Localize;
-					y = pxToGroup_Y(cTab_GUI_tablet_SCREEN_CONTENT_Y + cTab_GUI_tablet_DESKTOP_ICON_OFFSET_Y * 3 + cTab_GUI_tablet_DESKTOP_ICON_H * 2);
+					y = QUOTE(pxToGroup_Y(cTab_GUI_tablet_SCREEN_CONTENT_Y + cTab_GUI_tablet_DESKTOP_ICON_OFFSET_Y * 3 + cTab_GUI_tablet_DESKTOP_ICON_H * 2));
 					action = "['cTab_Tablet_dlg',[['mode','HCAM']]] call cTab_fnc_setSettings;";
 					toolTip = "Live Helmet Cam Video Feeds";
 				};
@@ -136,7 +136,7 @@ class cTab_Tablet_dlg {
 				{
 					idc = IDC_CTAB_ACTMSGTXT;
 					text = "\cTab\img\Mail_Main_Icon_ico.paa" ;
-					y = pxToGroup_Y(cTab_GUI_tablet_SCREEN_CONTENT_Y + cTab_GUI_tablet_DESKTOP_ICON_OFFSET_Y * 4 + cTab_GUI_tablet_DESKTOP_ICON_H * 3);
+					y = QUOTE(pxToGroup_Y(cTab_GUI_tablet_SCREEN_CONTENT_Y + cTab_GUI_tablet_DESKTOP_ICON_OFFSET_Y * 4 + cTab_GUI_tablet_DESKTOP_ICON_H * 3));
 					action = "['cTab_Tablet_dlg',[['mode','MESSAGE']]] call cTab_fnc_setSettings;";
 					toolTip = "Text Messaging System";
 				};
@@ -146,59 +146,59 @@ class cTab_Tablet_dlg {
 		class UAV: cTab_RscControlsGroup
 		{
 			idc = IDC_CTAB_GROUP_UAV;
-			x = pxToScreen_X(cTab_GUI_tablet_SCREEN_CONTENT_X);
-			y = pxToScreen_Y(cTab_GUI_tablet_SCREEN_CONTENT_Y);
-			w = pxToScreen_W(cTab_GUI_tablet_SCREEN_CONTENT_W);
-			h = pxToScreen_H(cTab_GUI_tablet_SCREEN_CONTENT_H);
-			class VScrollbar {};
-			class HScrollbar {};
-			class Scrollbar {};
+			x = QUOTE(pxToScreen_X(cTab_GUI_tablet_SCREEN_CONTENT_X));
+			y = QUOTE(pxToScreen_Y(cTab_GUI_tablet_SCREEN_CONTENT_Y));
+			w = QUOTE(pxToScreen_W(cTab_GUI_tablet_SCREEN_CONTENT_W));
+			h = QUOTE(pxToScreen_H(cTab_GUI_tablet_SCREEN_CONTENT_H));
+			class VScrollBar {};
+			class HScrollBar {};
+			class ScrollBar {};
 			class controls
 			{
 				class UAVListBG: cTab_Tablet_window_back_TL
 				{
 					IDC_COUNTER
-					x = pxToGroup_X(cTab_GUI_tablet_WINDOW_BACK_L_X);
-					y = pxToGroup_Y(cTab_GUI_tablet_WINDOW_BACK_T_Y);
+					x = QUOTE(pxToGroup_X(cTab_GUI_tablet_WINDOW_BACK_L_X));
+					y = QUOTE(pxToGroup_Y(cTab_GUI_tablet_WINDOW_BACK_T_Y));
 				};
 				class UAVVidBG1: cTab_Tablet_window_back_TR
 				{
 					IDC_COUNTER
-					x = pxToGroup_X(cTab_GUI_tablet_WINDOW_BACK_R_X);
-					y = pxToGroup_Y(cTab_GUI_tablet_WINDOW_BACK_T_Y);
+					x = QUOTE(pxToGroup_X(cTab_GUI_tablet_WINDOW_BACK_R_X));
+					y = QUOTE(pxToGroup_Y(cTab_GUI_tablet_WINDOW_BACK_T_Y));
 				};
 				class UAVVidBG2: cTab_Tablet_window_back_BR
 				{
 					IDC_COUNTER
-					x = pxToGroup_X(cTab_GUI_tablet_WINDOW_BACK_R_X);
-					y = pxToGroup_Y(cTab_GUI_tablet_WINDOW_BACK_B_Y);
+					x = QUOTE(pxToGroup_X(cTab_GUI_tablet_WINDOW_BACK_R_X));
+					y = QUOTE(pxToGroup_Y(cTab_GUI_tablet_WINDOW_BACK_B_Y));
 				};
-				class cTabUAVlist: cTab_RscListbox_Tablet
+				class cTabUAVlist: cTab_RscListBox_Tablet
 				{
 					idc = IDC_CTAB_CTABUAVLIST;
-					x = pxToGroup_X(cTab_GUI_tablet_WINDOW_CONTENT_L_X);
-					y = pxToGroup_Y(cTab_GUI_tablet_WINDOW_CONTENT_T_Y);
-					w = pxToScreen_W(cTab_GUI_tablet_WINDOW_CONTENT_W);
-					h = pxToScreen_H(cTab_GUI_tablet_WINDOW_CONTENT_H);
+					x = QUOTE(pxToGroup_X(cTab_GUI_tablet_WINDOW_CONTENT_L_X));
+					y = QUOTE(pxToGroup_Y(cTab_GUI_tablet_WINDOW_CONTENT_T_Y));
+					w = QUOTE(pxToScreen_W(cTab_GUI_tablet_WINDOW_CONTENT_W));
+					h = QUOTE(pxToScreen_H(cTab_GUI_tablet_WINDOW_CONTENT_H));
 					onLBSelChanged = "if (!cTabIfOpenStart && (_this select 1 != -1)) then {['cTab_Tablet_dlg',[['uavCam',(_this select 0) lbData (_this select 1)]]] call cTab_fnc_setSettings;};";
 				};
 				class cTabUAVdisplay: cTab_RscPicture
 				{
 					idc = IDC_CTAB_CTABUAVDISPLAY;
 					text = "#(argb,512,512,1)r2t(rendertarget8,1.1896551724)";
-					x = pxToGroup_X(cTab_GUI_tablet_WINDOW_CONTENT_R_X);
-					y = pxToGroup_Y(cTab_GUI_tablet_WINDOW_CONTENT_T_Y);
-					w = pxToScreen_W(cTab_GUI_tablet_WINDOW_CONTENT_W);
-					h = pxToScreen_H(cTab_GUI_tablet_WINDOW_CONTENT_H);
+					x = QUOTE(pxToGroup_X(cTab_GUI_tablet_WINDOW_CONTENT_R_X));
+					y = QUOTE(pxToGroup_Y(cTab_GUI_tablet_WINDOW_CONTENT_T_Y));
+					w = QUOTE(pxToScreen_W(cTab_GUI_tablet_WINDOW_CONTENT_W));
+					h = QUOTE(pxToScreen_H(cTab_GUI_tablet_WINDOW_CONTENT_H));
 				};
 				class cTabUAV2nddisplay: cTab_RscPicture
 				{
 					idc = IDC_CTAB_CTABUAV2NDDISPLAY;
 					text = "#(argb,512,512,1)r2t(rendertarget9,1.1896551724)";
-					x = pxToGroup_X(cTab_GUI_tablet_WINDOW_CONTENT_R_X);
-					y = pxToGroup_Y(cTab_GUI_tablet_WINDOW_CONTENT_B_Y);
-					w = pxToScreen_W(cTab_GUI_tablet_WINDOW_CONTENT_W);
-					h = pxToScreen_H(cTab_GUI_tablet_WINDOW_CONTENT_H);
+					x = QUOTE(pxToGroup_X(cTab_GUI_tablet_WINDOW_CONTENT_R_X));
+					y = QUOTE(pxToGroup_Y(cTab_GUI_tablet_WINDOW_CONTENT_B_Y));
+					w = QUOTE(pxToScreen_W(cTab_GUI_tablet_WINDOW_CONTENT_W));
+					h = QUOTE(pxToScreen_H(cTab_GUI_tablet_WINDOW_CONTENT_H));
 				};
 			};
 		};
@@ -206,44 +206,44 @@ class cTab_Tablet_dlg {
 		class HCAM: cTab_RscControlsGroup
 		{
 			idc = IDC_CTAB_GROUP_HCAM;
-			x = pxToScreen_X(cTab_GUI_tablet_SCREEN_CONTENT_X);
-			y = pxToScreen_Y(cTab_GUI_tablet_SCREEN_CONTENT_Y);
-			w = pxToScreen_W(cTab_GUI_tablet_SCREEN_CONTENT_W);
-			h = pxToScreen_H(cTab_GUI_tablet_SCREEN_CONTENT_H);
-			class VScrollbar {};
-			class HScrollbar {};
-			class Scrollbar {};
+			x = QUOTE(pxToScreen_X(cTab_GUI_tablet_SCREEN_CONTENT_X));
+			y = QUOTE(pxToScreen_Y(cTab_GUI_tablet_SCREEN_CONTENT_Y));
+			w = QUOTE(pxToScreen_W(cTab_GUI_tablet_SCREEN_CONTENT_W));
+			h = QUOTE(pxToScreen_H(cTab_GUI_tablet_SCREEN_CONTENT_H));
+			class VScrollBar {};
+			class HScrollBar {};
+			class ScrollBar {};
 			class controls
 			{
 				class HcamListBG: cTab_Tablet_window_back_TL
 				{
 					IDC_COUNTER
-					x = pxToGroup_X(cTab_GUI_tablet_WINDOW_BACK_L_X);
-					y = pxToGroup_Y(cTab_GUI_tablet_WINDOW_BACK_T_Y);
+					x = QUOTE(pxToGroup_X(cTab_GUI_tablet_WINDOW_BACK_L_X));
+					y = QUOTE(pxToGroup_Y(cTab_GUI_tablet_WINDOW_BACK_T_Y));
 				};
 				class HcamVidBG: cTab_Tablet_window_back_TR
 				{
 					IDC_COUNTER
-					x = pxToGroup_X(cTab_GUI_tablet_WINDOW_BACK_R_X);
-					y = pxToGroup_Y(cTab_GUI_tablet_WINDOW_BACK_T_Y);
+					x = QUOTE(pxToGroup_X(cTab_GUI_tablet_WINDOW_BACK_R_X));
+					y = QUOTE(pxToGroup_Y(cTab_GUI_tablet_WINDOW_BACK_T_Y));
 				};
-				class cTabHcamList: cTab_RscListbox_Tablet
+				class cTabHcamList: cTab_RscListBox_Tablet
 				{
 					idc = IDC_CTAB_CTABHCAMLIST;
-					x = pxToGroup_X(cTab_GUI_tablet_WINDOW_CONTENT_L_X);
-					y = pxToGroup_Y(cTab_GUI_tablet_WINDOW_CONTENT_T_Y);
-					w = pxToScreen_W(cTab_GUI_tablet_WINDOW_CONTENT_W);
-					h = pxToScreen_H(cTab_GUI_tablet_WINDOW_CONTENT_H);
+					x = QUOTE(pxToGroup_X(cTab_GUI_tablet_WINDOW_CONTENT_L_X));
+					y = QUOTE(pxToGroup_Y(cTab_GUI_tablet_WINDOW_CONTENT_T_Y));
+					w = QUOTE(pxToScreen_W(cTab_GUI_tablet_WINDOW_CONTENT_W));
+					h = QUOTE(pxToScreen_H(cTab_GUI_tablet_WINDOW_CONTENT_H));
 					onLBSelChanged = "if (!cTabIfOpenStart && (_this select 1 != -1)) then {['cTab_Tablet_dlg',[['hCam',(_this select 0) lbData (_this select 1)]]] call cTab_fnc_setSettings;};";
 				};
 				class cTabHcamDisplay: cTab_RscPicture
 				{
 					idc = IDC_CTAB_CTABHCAMDISPLAY;
 					text = "#(argb,512,512,1)r2t(rendertarget12,1.1896551724)";
-					x = pxToGroup_X(cTab_GUI_tablet_WINDOW_CONTENT_R_X);
-					y = pxToGroup_Y(cTab_GUI_tablet_WINDOW_CONTENT_T_Y);
-					w = pxToScreen_W(cTab_GUI_tablet_WINDOW_CONTENT_W);
-					h = pxToScreen_H(cTab_GUI_tablet_WINDOW_CONTENT_H);
+					x = QUOTE(pxToGroup_X(cTab_GUI_tablet_WINDOW_CONTENT_R_X));
+					y = QUOTE(pxToGroup_Y(cTab_GUI_tablet_WINDOW_CONTENT_T_Y));
+					w = QUOTE(pxToScreen_W(cTab_GUI_tablet_WINDOW_CONTENT_W));
+					h = QUOTE(pxToScreen_H(cTab_GUI_tablet_WINDOW_CONTENT_H));
 				};
 			};
 		};
@@ -251,97 +251,97 @@ class cTab_Tablet_dlg {
 		class MESSAGE: cTab_RscControlsGroup
 		{
 			idc = IDC_CTAB_GROUP_MESSAGE;
-			x = pxToScreen_X(cTab_GUI_tablet_SCREEN_CONTENT_X);
-			y = pxToScreen_Y(cTab_GUI_tablet_SCREEN_CONTENT_Y);
-			w = pxToScreen_W(cTab_GUI_tablet_SCREEN_CONTENT_W);
-			h = pxToScreen_H(cTab_GUI_tablet_SCREEN_CONTENT_H);
-			class VScrollbar {};
-			class HScrollbar {};
-			class Scrollbar {};
+			x = QUOTE(pxToScreen_X(cTab_GUI_tablet_SCREEN_CONTENT_X));
+			y = QUOTE(pxToScreen_Y(cTab_GUI_tablet_SCREEN_CONTENT_Y));
+			w = QUOTE(pxToScreen_W(cTab_GUI_tablet_SCREEN_CONTENT_W));
+			h = QUOTE(pxToScreen_H(cTab_GUI_tablet_SCREEN_CONTENT_H));
+			class VScrollBar {};
+			class HScrollBar {};
+			class ScrollBar {};
 			class controls
 			{
 				class msgframe: cTab_RscFrame
 				{
 					IDC_COUNTER
 					text = "Read Message"; //--- ToDo: Localize;
-					x = pxToGroup_X(cTab_GUI_tablet_MESSAGE_MESSAGETEXT_FRAME_X);
-					y = pxToGroup_Y(cTab_GUI_tablet_MESSAGE_MESSAGETEXT_FRAME_Y);
-					w = pxToScreen_W(cTab_GUI_tablet_MESSAGE_MESSAGETEXT_FRAME_W);
-					h = pxToScreen_H(cTab_GUI_tablet_MESSAGE_MESSAGETEXT_FRAME_H);
+					x = QUOTE(pxToGroup_X(cTab_GUI_tablet_MESSAGE_MESSAGETEXT_FRAME_X));
+					y = QUOTE(pxToGroup_Y(cTab_GUI_tablet_MESSAGE_MESSAGETEXT_FRAME_Y));
+					w = QUOTE(pxToScreen_W(cTab_GUI_tablet_MESSAGE_MESSAGETEXT_FRAME_W));
+					h = QUOTE(pxToScreen_H(cTab_GUI_tablet_MESSAGE_MESSAGETEXT_FRAME_H));
 				};
-				class msgListbox: cTab_RscListbox_Tablet
+				class msgListbox: cTab_RscListBox_Tablet
 				{
 					idc = IDC_CTAB_MSG_LIST;
 					style = LB_MULTI;
-					x = pxToGroup_X(cTab_GUI_tablet_MESSAGE_MESSAGELIST_X);
-					y = pxToGroup_Y(cTab_GUI_tablet_MESSAGE_MESSAGELIST_Y);
-					w = pxToScreen_W(cTab_GUI_tablet_MESSAGE_MESSAGELIST_W);
-					h = pxToScreen_H(cTab_GUI_tablet_MESSAGE_MESSAGELIST_H);
+					x = QUOTE(pxToGroup_X(cTab_GUI_tablet_MESSAGE_MESSAGELIST_X));
+					y = QUOTE(pxToGroup_Y(cTab_GUI_tablet_MESSAGE_MESSAGELIST_Y));
+					w = QUOTE(pxToScreen_W(cTab_GUI_tablet_MESSAGE_MESSAGELIST_W));
+					h = QUOTE(pxToScreen_H(cTab_GUI_tablet_MESSAGE_MESSAGELIST_H));
 					onLBSelChanged = "_this call cTab_msg_get_mailTxt;";
 				};
 				class msgTxt: cTab_RscEdit_Tablet
 				{
 					idc = IDC_CTAB_MSG_CONTENT;
-					htmlControl = true;
+					htmlControl = 1;
 					style = ST_MULTI;
 					lineSpacing = 0.2;
 					text = "No Message Selected"; //--- ToDo: Localize;
-					x = pxToGroup_X(cTab_GUI_tablet_MESSAGE_MESSAGETEXT_X);
-					y = pxToGroup_Y(cTab_GUI_tablet_MESSAGE_MESSAGETEXT_Y);
-					w = pxToScreen_W(cTab_GUI_tablet_MESSAGE_MESSAGETEXT_W);
-					h = pxToScreen_H(cTab_GUI_tablet_MESSAGE_MESSAGETEXT_H);
+					x = QUOTE(pxToGroup_X(cTab_GUI_tablet_MESSAGE_MESSAGETEXT_X));
+					y = QUOTE(pxToGroup_Y(cTab_GUI_tablet_MESSAGE_MESSAGETEXT_Y));
+					w = QUOTE(pxToScreen_W(cTab_GUI_tablet_MESSAGE_MESSAGETEXT_W));
+					h = QUOTE(pxToScreen_H(cTab_GUI_tablet_MESSAGE_MESSAGETEXT_H));
 					canModify = 0;
 				};
 				class composeFrame: cTab_RscFrame
 				{
 					IDC_COUNTER
 					text = "Compose Message"; //--- ToDo: Localize;
-					x = pxToGroup_X(cTab_GUI_tablet_MESSAGE_COMPOSE_FRAME_X);
-					y = pxToGroup_Y(cTab_GUI_tablet_MESSAGE_COMPOSE_FRAME_Y);
-					w = pxToScreen_W(cTab_GUI_tablet_MESSAGE_COMPOSE_FRAME_W);
-					h = pxToScreen_H(cTab_GUI_tablet_MESSAGE_COMPOSE_FRAME_H);
+					x = QUOTE(pxToGroup_X(cTab_GUI_tablet_MESSAGE_COMPOSE_FRAME_X));
+					y = QUOTE(pxToGroup_Y(cTab_GUI_tablet_MESSAGE_COMPOSE_FRAME_Y));
+					w = QUOTE(pxToScreen_W(cTab_GUI_tablet_MESSAGE_COMPOSE_FRAME_W));
+					h = QUOTE(pxToScreen_H(cTab_GUI_tablet_MESSAGE_COMPOSE_FRAME_H));
 				};
-				class playerlistbox: cTab_RscListbox_Tablet
+				class playerlistbox: cTab_RscListBox_Tablet
 				{
 					idc = IDC_CTAB_MSG_RECIPIENTS;
 					style = LB_MULTI;
-					x = pxToGroup_X(cTab_GUI_tablet_MESSAGE_PLAYERLIST_X);
-					y = pxToGroup_Y(cTab_GUI_tablet_MESSAGE_PLAYERLIST_Y);
-					w = pxToScreen_W(cTab_GUI_tablet_MESSAGE_PLAYERLIST_W);
-					h = pxToScreen_H(cTab_GUI_tablet_MESSAGE_PLAYERLIST_H);
+					x = QUOTE(pxToGroup_X(cTab_GUI_tablet_MESSAGE_PLAYERLIST_X));
+					y = QUOTE(pxToGroup_Y(cTab_GUI_tablet_MESSAGE_PLAYERLIST_Y));
+					w = QUOTE(pxToScreen_W(cTab_GUI_tablet_MESSAGE_PLAYERLIST_W));
+					h = QUOTE(pxToScreen_H(cTab_GUI_tablet_MESSAGE_PLAYERLIST_H));
 				};
 				class deletebtn: cTab_RscButton_Tablet
 				{
 					idc = IDC_CTAB_MSG_BTNDELETE;
 					text = "Delete"; //--- ToDo: Localize;
 					tooltip = "Delete Selected Message(s)";
-					x = pxToGroup_X(cTab_GUI_tablet_MESSAGE_BUTTON_DELETE_X);
-					y = pxToGroup_Y(cTab_GUI_tablet_MESSAGE_BUTTON_DELETE_Y);
-					w = pxToScreen_W(cTab_GUI_tablet_MESSAGE_BUTTON_W);
-					h = pxToScreen_H(cTab_GUI_tablet_MESSAGE_BUTTON_H);
+					x = QUOTE(pxToGroup_X(cTab_GUI_tablet_MESSAGE_BUTTON_DELETE_X));
+					y = QUOTE(pxToGroup_Y(cTab_GUI_tablet_MESSAGE_BUTTON_DELETE_Y));
+					w = QUOTE(pxToScreen_W(cTab_GUI_tablet_MESSAGE_BUTTON_W));
+					h = QUOTE(pxToScreen_H(cTab_GUI_tablet_MESSAGE_BUTTON_H));
 					action = "['cTab_Tablet_dlg'] call cTab_fnc_onMsgBtnDelete;";
 				};
 				class sendbtn: cTab_RscButton_Tablet
 				{
 					idc = IDC_CTAB_MSG_BTNSEND;
 					text = "Send"; //--- ToDo: Localize;
-					x = pxToGroup_X(cTab_GUI_tablet_MESSAGE_BUTTON_SEND_X);
-					y = pxToGroup_Y(cTab_GUI_tablet_MESSAGE_BUTTON_SEND_Y);
-					w = pxToScreen_W(cTab_GUI_tablet_MESSAGE_BUTTON_W);
-					h = pxToScreen_H(cTab_GUI_tablet_MESSAGE_BUTTON_H);
+					x = QUOTE(pxToGroup_X(cTab_GUI_tablet_MESSAGE_BUTTON_SEND_X));
+					y = QUOTE(pxToGroup_Y(cTab_GUI_tablet_MESSAGE_BUTTON_SEND_Y));
+					w = QUOTE(pxToScreen_W(cTab_GUI_tablet_MESSAGE_BUTTON_W));
+					h = QUOTE(pxToScreen_H(cTab_GUI_tablet_MESSAGE_BUTTON_H));
 					action = "call cTab_msg_Send;";
 				};
 				class edittxtbox: cTab_RscEdit_Tablet
 				{
 					idc = IDC_CTAB_MSG_COMPOSE;
-					htmlControl = true;
+					htmlControl = 1;
 					style = ST_MULTI;
 					lineSpacing = 0.2;
 					text = ""; //--- ToDo: Localize;
-					x = pxToGroup_X(cTab_GUI_tablet_MESSAGE_COMPOSE_TEXT_X);
-					y = pxToGroup_Y(cTab_GUI_tablet_MESSAGE_COMPOSE_TEXT_Y);
-					w = pxToScreen_W(cTab_GUI_tablet_MESSAGE_COMPOSE_TEXT_W);
-					h = pxToScreen_H(cTab_GUI_tablet_MESSAGE_COMPOSE_TEXT_H);
+					x = QUOTE(pxToGroup_X(cTab_GUI_tablet_MESSAGE_COMPOSE_TEXT_X));
+					y = QUOTE(pxToGroup_Y(cTab_GUI_tablet_MESSAGE_COMPOSE_TEXT_Y));
+					w = QUOTE(pxToScreen_W(cTab_GUI_tablet_MESSAGE_COMPOSE_TEXT_W));
+					h = QUOTE(pxToScreen_H(cTab_GUI_tablet_MESSAGE_COMPOSE_TEXT_H));
 				};
 			};
 		};
@@ -350,10 +350,10 @@ class cTab_Tablet_dlg {
 		{
 			idc = IDC_CTAB_HCAM_FULL;
 			text = "#(argb,512,512,1)r2t(rendertarget13,1.3096153846)";
-			x = pxToScreen_X(cTab_GUI_tablet_SCREEN_CONTENT_X);
-			y = pxToScreen_Y(cTab_GUI_tablet_SCREEN_CONTENT_Y);
-			w = pxToScreen_W(cTab_GUI_tablet_SCREEN_CONTENT_W);
-			h = pxToScreen_H(cTab_GUI_tablet_SCREEN_CONTENT_H);
+			x = QUOTE(pxToScreen_X(cTab_GUI_tablet_SCREEN_CONTENT_X));
+			y = QUOTE(pxToScreen_Y(cTab_GUI_tablet_SCREEN_CONTENT_Y));
+			w = QUOTE(pxToScreen_W(cTab_GUI_tablet_SCREEN_CONTENT_W));
+			h = QUOTE(pxToScreen_H(cTab_GUI_tablet_SCREEN_CONTENT_H));
 		};
 
 		/*

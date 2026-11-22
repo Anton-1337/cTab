@@ -45,12 +45,15 @@ call {
 			
 			// if the marker could be found, remove it
 			if (_removeIndex != -1) then {
-				0 = _userMarkerList deleteAt _removeIndex;
+				_userMarkerList deleteAt _removeIndex;
 				[cTab_userMarkerLists,_encryptionKey,_userMarkerList] call cTab_fnc_setToPairs;
 				
 				// Send deleteUserMarker command to all clients
 				cTab_userMarkerTransactionId = cTab_userMarkerTransactionId + 1;
 				[[_encryptionKey,_markerIndex,cTab_userMarkerTransactionId],"cTab_fnc_deleteUserMarker",true,false,true] call bis_fnc_MP;
+
+				// Remove marker from regular map
+				[_markerIndex] call cTab_fnc_regularMapRemove;
 				
 				// If this was run on a client-server (i.e. in single player or locally hosted), update the marker list
 				if (hasInterface && {_encryptionKey == call cTab_fnc_getPlayerEncryptionKey}) then {
@@ -82,7 +85,7 @@ call {
 			
 			// if the marker could be found, remove it
 			if (_removeIndex != -1) then {
-				0 = _userMarkerList deleteAt _removeIndex;
+				_userMarkerList deleteAt _removeIndex;
 				[cTab_userMarkerLists,_encryptionKey,_userMarkerList] call cTab_fnc_setToPairs;
 				// only update the user marker list if the marker was deleted from the player's side
 				if (_encryptionKey == call cTab_fnc_getPlayerEncryptionKey) then {

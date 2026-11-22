@@ -79,7 +79,7 @@ _cam = "camera" camCreate getPosATL _newHost;
 _cam camPrepareFov 0.700;
 _cam camPrepareTarget _target;
 _cam camCommitPrepared 0;
-if (vehicle _newHost == _newHost) then {
+if (isNull objectParent _newHost) then {
 	_cam attachTo [_newHost,_camOffSet,"Head"];
 } else {
 	_cam attachTo [_newHost,_camOffSet];

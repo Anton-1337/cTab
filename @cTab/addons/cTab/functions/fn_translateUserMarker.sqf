@@ -63,6 +63,12 @@ _texture1 = call {
 	_color = cTabColorBlue;
 	if (_markerIcon == 30) exitWith {"\A3\ui_f\data\map\markers\nato\b_hq.paa"};
 	if (_markerIcon == 31) exitWith {"\A3\ui_f\data\map\markers\military\end_CA.paa"};
+	if (_markerIcon == 32) exitWith {"\A3\ui_f\data\map\markers\military\join_CA.paa"}; // Rally point
+	if (_markerIcon == 33) exitWith {"\A3\ui_f\data\map\markers\military\flag_CA.paa"}; // Waypoint
+	if (_markerIcon == 34) exitWith {"\A3\ui_f\data\map\markers\military\objective_CA.paa"}; // Objective
+	_color = cTabColorGolRed;
+	if (_markerIcon == 35) exitWith {"\a3\Ui_F_Curator\Data\CfgMarkers\minefield_ca.paa"}; // Minefield
+
 	""
 };
 

@@ -15,7 +15,7 @@
 class cTab_TAD_dsp
 {
 	idd = 1775134;
-	movingEnable = true;
+	movingEnable = 1;
 	duration = 10e10;
 	fadeIn = 0;
 	fadeOut = 0;
@@ -57,8 +57,8 @@ class cTab_TAD_dsp
 		*/
 		class navModeOrScale: cTab_TAD_OSD_navModeOrScale
 		{
-			x = pxToScreen_X(cTab_GUI_TAD_OSD_EDGE_R - cTab_GUI_TAD_OSD_ELEMENT_MODE_W * 2);
-			w = pxToScreen_W(cTab_GUI_TAD_OSD_ELEMENT_MODE_W * 2);
+			x = QUOTE(pxToScreen_X(cTab_GUI_TAD_OSD_EDGE_R - cTab_GUI_TAD_OSD_ELEMENT_MODE_W * 2));
+			w = QUOTE(pxToScreen_W(cTab_GUI_TAD_OSD_ELEMENT_MODE_W * 2));
 		};
 		class modeTAD: cTab_TAD_OSD_modeTAD {};
 		class txtToggleIconBg: cTab_TAD_OSD_txtToggleIconBg {};

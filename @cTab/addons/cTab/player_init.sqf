@@ -250,6 +250,14 @@ cTabColorGreen = [_r,_g,_b,_a];
 // MAIN,RED,GREEN,BLUE,YELLOW
 cTabColorTeam = [cTabColorBlue,[200/255,0,0,0.8],[0,199/255,0,0.8],[0,0,200/255,0.8],[225/255,225/255,0,0.8]];
 
+// GOL colors
+cTabColorGolRed = [0.9, 0.0, 0.0, 0.8];
+cTabColorGolWhite = [1.0, 1.0, 1.0, 0.8];
+cTabColorGolCiv = [0.4, 0.0, 0.5, 0.8];
+cTabColorGolOrange = [0.85, 0.4, 0.0, 0.8];
+cTabColorGolGreen = [0.0, 0.8, 0.0, 0.8];
+cTabColorGolYellow = [0.85, 0.85, 0.0, 0.8];
+
 // define vehicles that have FBCB2 monitor
 if (isNil "cTab_vehicleClass_has_FBCB2") then {
 	if (!isNil "cTab_vehicleClass_has_FBCB2_server") then {
@@ -262,9 +270,9 @@ if (isNil "cTab_vehicleClass_has_FBCB2") then {
 _classNames = [];
 {
 	if (isClass (configfile >> "CfgVehicles" >> _x) && _classNames find _x == -1) then {
-		0 = _classNames pushBack _x;
+		_classNames pushBack _x;
 	};
-} count cTab_vehicleClass_has_FBCB2;
+} forEach cTab_vehicleClass_has_FBCB2;
 cTab_vehicleClass_has_FBCB2 = [] + _classNames;
 
 // define vehicles that have TAD
@@ -279,9 +287,9 @@ if (isNil "cTab_vehicleClass_has_TAD") then {
 _classNames = [];
 {
 	if (isClass (configfile >> "CfgVehicles" >> _x) && _classNames find _x == -1) then {
-		0 = _classNames pushBack _x;
+		_classNames pushBack _x;
 	};
-} count cTab_vehicleClass_has_TAD;
+} forEach cTab_vehicleClass_has_TAD;
 cTab_vehicleClass_has_TAD = [] + _classNames;
 
 // define items that enable head cam
@@ -296,18 +304,18 @@ if (isNil "cTab_helmetClass_has_HCam") then {
 _classNames = [];
 {
 	if (isClass (configfile >> "CfgWeapons" >> _x) && _classNames find _x == -1) then {
-		0 = _classNames pushBack _x;
+		_classNames pushBack _x;
 	};
-} count cTab_helmetClass_has_HCam;
+} forEach cTab_helmetClass_has_HCam;
 // iterate through all class names and add child classes, so we end up with a list of helmet classes that have the defined helmet classes as parents
 {
 	_childClasses = "inheritsFrom _x == (configfile >> 'CfgWeapons' >> '" + _x + "')" configClasses (configfile >> "CfgWeapons");
 	{
 		_childClassName = configName _x;
 		if (_classNames find _childClassName == -1) then {
-			0 = _classNames pushBack configName _x;
+			_classNames pushBack configName _x;
 		};
-	} count _childClasses;
+	} forEach _childClasses;
 } forEach _classNames;
 cTab_helmetClass_has_HCam = [] + _classNames;
 
@@ -394,7 +402,8 @@ cTab_fnc_onIfMainPressed = {
 		};
 		if ([_player,["ItemAndroid"]] call cTab_fnc_checkGear) exitWith {"cTab_Android_dsp"};
 		if ([_player,["ItemMicroDAGR"]] call cTab_fnc_checkGear) exitWith {
-			cTabMicroDAGRmode = if ([_player,["ItemcTab"]] call cTab_fnc_checkGear) then {0} else {2};
+			// cTabMicroDAGRmode = if ([_player,["ItemcTab"]] call cTab_fnc_checkGear) then {0} else {2};
+			cTabMicroDAGRmode = [2, 0] select ([_player,["ItemcTab"]] call cTab_fnc_checkGear);
 			"cTab_microDAGR_dsp"
 		};
 		if ([_player,_vehicle,"FBCB2"] call cTab_fnc_unitInEnabledVehicleSeat) exitWith {"cTab_FBCB2_dlg"};
@@ -430,7 +439,7 @@ cTab_fnc_onIfSecondaryPressed = {
 	if (cTabUavViewActive) exitWith {
 		objNull remoteControl (gunner cTabActUav);
 		vehicle cTab_player switchCamera 'internal';
-		cTabUavViewActive = false;
+		cTabUavViewActive = 0;
 		call cTab_fnc_onIfTertiaryPressed;
 		true
 	};
@@ -455,7 +464,8 @@ cTab_fnc_onIfSecondaryPressed = {
 		if ([_player,_vehicle,"FBCB2"] call cTab_fnc_unitInEnabledVehicleSeat) exitWith {"cTab_FBCB2_dlg"};
 		if ([_player,["ItemAndroid"]] call cTab_fnc_checkGear) exitWith {"cTab_Android_dlg"};
 		if ([_player,["ItemMicroDAGR"]] call cTab_fnc_checkGear) exitWith {
-			cTabMicroDAGRmode = if ([_player,["ItemcTab"]] call cTab_fnc_checkGear) then {0} else {2};
+			// cTabMicroDAGRmode = if ([_player,["ItemcTab"]] call cTab_fnc_checkGear) then {0} else {2};
+			cTabMicroDAGRmode = [2, 0] select ([_player,["ItemcTab"]] call cTab_fnc_checkGear);
 			"cTab_microDAGR_dlg"
 		};
 		if ([_player,["ItemcTab"]] call cTab_fnc_checkGear) exitWith {"cTab_Tablet_dlg"};
@@ -490,7 +500,7 @@ cTab_fnc_onIfTertiaryPressed = {
 	if (cTabUavViewActive) then {
 		objNull remoteControl (gunner cTabActUav);
 		vehicle cTab_player switchCamera 'internal';
-		cTabUavViewActive = false;
+		cTabUavViewActive = 0;
 		true
 	};
 	if (!isNil "cTabIfOpen" && {cTabIfOpen select 0 == 2}) exitWith {
@@ -510,7 +520,8 @@ cTab_fnc_onIfTertiaryPressed = {
 		if ([_player,["ItemcTab"]] call cTab_fnc_checkGear) exitWith {"cTab_Tablet_dlg"};
 		if ([_player,["ItemAndroid"]] call cTab_fnc_checkGear) exitWith {"cTab_Android_dlg"};
 		if ([_player,["ItemMicroDAGR"]] call cTab_fnc_checkGear) exitWith {
-			cTabMicroDAGRmode = if ([_player,["ItemcTab"]] call cTab_fnc_checkGear) then {0} else {2};
+			// cTabMicroDAGRmode = if ([_player,["ItemcTab"]] call cTab_fnc_checkGear) then {0} else {2};
+			cTabMicroDAGRmode = [2, 0] select ([_player,["ItemcTab"]] call cTab_fnc_checkGear);
 			"cTab_microDAGR_dlg"
 		};
 		if ([_player,_vehicle,"TAD"] call cTab_fnc_unitInEnabledVehicleSeat) exitWith {
@@ -711,7 +722,7 @@ cTabOnDrawbft = {
 	cTabMapWorldPos = [_cntrlScreen] call cTab_fnc_ctrlMapCenter;
 	cTabMapScale = ctrlMapScale _cntrlScreen;
 
-	[_cntrlScreen,true] call cTab_fnc_drawUserMarkers;
+	// [_cntrlScreen,true] call cTab_fnc_drawUserMarkers;
 	[_cntrlScreen,0] call cTab_fnc_drawBftMarkers;
 	
 	// draw directional arrow at own location
@@ -736,7 +747,7 @@ cTabOnDrawbftVeh = {
 	cTabMapWorldPos = [_cntrlScreen] call cTab_fnc_ctrlMapCenter;
 	cTabMapScale = ctrlMapScale _cntrlScreen;
 	
-	[_cntrlScreen,true] call cTab_fnc_drawUserMarkers;
+	// [_cntrlScreen,true] call cTab_fnc_drawUserMarkers;
 	[_cntrlScreen,0] call cTab_fnc_drawBftMarkers;
 	
 	// draw directional arrow at own location
@@ -769,7 +780,7 @@ cTabOnDrawbftTAD = {
 	_cntrlScreen ctrlMapAnimAdd [0, cTabMapScale, _playerPos];
 	ctrlMapAnimCommit _cntrlScreen;
 	
-	[_cntrlScreen,false] call cTab_fnc_drawUserMarkers;
+	// [_cntrlScreen,false] call cTab_fnc_drawUserMarkers;
 	[_cntrlScreen,1] call cTab_fnc_drawBftMarkers;
 	
 	// draw vehicle icon at own location
@@ -792,7 +803,7 @@ cTabOnDrawbftTADdialog = {
 	cTabMapWorldPos = [_cntrlScreen] call cTab_fnc_ctrlMapCenter;
 	cTabMapScale = ctrlMapScale _cntrlScreen;
 	
-	[_cntrlScreen,true] call cTab_fnc_drawUserMarkers;
+	// [_cntrlScreen,true] call cTab_fnc_drawUserMarkers;
 	[_cntrlScreen,1] call cTab_fnc_drawBftMarkers;
 	
 	// draw vehicle icon at own location
@@ -819,7 +830,7 @@ cTabOnDrawbftAndroid = {
 	cTabMapWorldPos = [_cntrlScreen] call cTab_fnc_ctrlMapCenter;
 	cTabMapScale = ctrlMapScale _cntrlScreen;
 
-	[_cntrlScreen,true] call cTab_fnc_drawUserMarkers;
+	// [_cntrlScreen,true] call cTab_fnc_drawUserMarkers;
 	[_cntrlScreen,0] call cTab_fnc_drawBftMarkers;
 	
 	// draw directional arrow at own location
@@ -849,7 +860,7 @@ cTabOnDrawbftAndroidDsp = {
 	_cntrlScreen ctrlMapAnimAdd [0, cTabMapScale, _playerPos];
 	ctrlMapAnimCommit _cntrlScreen;
 	
-	[_cntrlScreen,false] call cTab_fnc_drawUserMarkers;
+	// [_cntrlScreen,false] call cTab_fnc_drawUserMarkers;
 	[_cntrlScreen,0] call cTab_fnc_drawBftMarkers;
 	
 	// draw directional arrow at own location
@@ -871,7 +882,7 @@ cTabOnDrawbftmicroDAGRdsp = {
 	_cntrlScreen ctrlMapAnimAdd [0, cTabMapScale, _playerPos];
 	ctrlMapAnimCommit _cntrlScreen;
 	
-	[_cntrlScreen,false] call cTab_fnc_drawUserMarkers;
+	// [_cntrlScreen,false] call cTab_fnc_drawUserMarkers;
 	[_cntrlScreen,cTabMicroDAGRmode] call cTab_fnc_drawBftMarkers;
 	
 	// draw directional arrow at own location
@@ -893,7 +904,7 @@ cTabOnDrawbftMicroDAGRdlg = {
 	_playerPos = getPosASL _veh;
 	_heading = direction _veh;
 	
-	[_cntrlScreen,false] call cTab_fnc_drawUserMarkers;
+	// [_cntrlScreen,false] call cTab_fnc_drawUserMarkers;
 	[_cntrlScreen,cTabMicroDAGRmode] call cTab_fnc_drawBftMarkers;
 	
 	// draw directional arrow at own location
@@ -916,7 +927,7 @@ cTabOnDrawUAV = {
 	_display = ctrlParent _cntrlScreen;
 	_pos = getPosASL cTabActUav;
 	
-	[_cntrlScreen,false] call cTab_fnc_drawUserMarkers;
+	// [_cntrlScreen,false] call cTab_fnc_drawUserMarkers;
 	[_cntrlScreen,0] call cTab_fnc_drawBftMarkers;
 	
 	// draw icon at own location
@@ -940,7 +951,7 @@ cTabOnDrawHCam = {
 	_display = ctrlParent _cntrlScreen;
 	_pos = getPosASL _camHost;
 	
-	[_cntrlScreen,false] call cTab_fnc_drawUserMarkers;
+	// [_cntrlScreen,false] call cTab_fnc_drawUserMarkers;
 	[_cntrlScreen,0] call cTab_fnc_drawBftMarkers;
 	
 	// draw icon at own location
@@ -985,7 +996,7 @@ cTabOnDrawHCam = {
 
 cTab_msg_gui_load = {
 	disableSerialization;
-	_return = true;
+	_return = 1;
 	_display = uiNamespace getVariable (cTabIfOpen select 1);
 	_playerEncryptionKey = call cTab_fnc_getPlayerEncryptionKey;
 	_msgArray = cTab_player getVariable [format ["cTab_messages_%1",_playerEncryptionKey],[]];
@@ -1014,14 +1025,14 @@ cTab_msg_gui_load = {
 		_index = _msgControl lbAdd _title;
 		_msgControl lbSetPicture [_index,_img];
 		_msgControl lbSetTooltip [_index,_title];
-	} count _msgArray;
+	} forEach _msgArray;
 	
 	{
 		if ((side _x in _validSides) && {isPlayer _x} && {[_x,["ItemcTab","ItemAndroid"]] call cTab_fnc_checkGear}) then {
 			_index = _plrlistControl lbAdd format ["%1:%2 (%3)",groupId group _x,[_x] call CBA_fnc_getGroupIndex,name _x];
 			_plrlistControl lbSetData [_index,str _x];
 		};
-	} count _plrList;
+	} forEach _plrList;
 	
 	lbSort [_plrlistControl, "ASC"];
 	
@@ -1030,7 +1041,7 @@ cTab_msg_gui_load = {
 
 cTab_msg_get_mailTxt = {
 	disableSerialization;
-	_return = true;
+	_return = 1;
 	_index = _this select 1;
 	_display = uiNamespace getVariable (cTabIfOpen select 1);
 	_playerEncryptionKey = call cTab_fnc_getPlayerEncryptionKey;
@@ -1047,7 +1058,8 @@ cTab_msg_get_mailTxt = {
 	
 	_txtControl = _display displayCtrl IDC_CTAB_MSG_CONTENT;
 
-	_nul = _txtControl ctrlSetText  _msgtxt;
+	// _nul = _txtControl ctrlSetText  _msgtxt;
+	_txtControl ctrlSetText _msgtxt;
 	
 	_return;
 };
@@ -1055,7 +1067,7 @@ cTab_msg_get_mailTxt = {
 cTab_msg_Send = {
 	private ["_return","_display","_plrLBctrl","_msgBodyctrl","_plrList","_indices","_time","_msgTitle","_msgBody","_recip","_recipientNames","_msgArray","_playerEncryptionKey"];
 	disableSerialization;
-	_return = true;
+	_return = 1;
 	_display = uiNamespace getVariable (cTabIfOpen select 1);
 	_playerEncryptionKey = call cTab_fnc_getPlayerEncryptionKey;
 	_plrLBctrl = _display displayCtrl IDC_CTAB_MSG_RECIPIENTS;
@@ -1077,7 +1089,7 @@ cTab_msg_Send = {
 		_recip = objNull;
 		{
 			if (_data == str _x) exitWith {_recip = _x;};
-		} count _plrList;
+		} forEach _plrList;
 		
 		if !(IsNull _recip) then {
 			if (_recipientNames isEqualTo "") then {

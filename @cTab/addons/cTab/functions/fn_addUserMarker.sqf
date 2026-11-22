@@ -43,10 +43,14 @@ call {
 			
 			// Send addUserMarker command to all clients
 			[[_encryptionKey,[_transactionId,_markerData],_transactionId],"cTab_fnc_addUserMarker",true,false,true] call bis_fnc_MP;
+
+			// Add marker to regular map
+			[_transactionId, (_markerData select 0), (_markerData select 1), (_markerData select 4)] call cTab_fnc_regularMapAdd;
 			
 			// If this was run on a client-server (i.e. in single player or locally hosted), update the marker list
 			if (hasInterface && {_encryptionKey == call cTab_fnc_getPlayerEncryptionKey}) then {
 				call cTab_fnc_updateUserMarkerList;
+
 				if ((_markerData select 5) != cTab_player) then {
 					["BFT",format ["New marker at #%1",mapGridPosition (_markerData select 0)],20] call cTab_fnc_addNotification;
 				} else {

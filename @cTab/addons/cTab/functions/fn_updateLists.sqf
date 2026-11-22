@@ -48,9 +48,9 @@ cTabBFTmembers --- GROUP MEMBERS
 */
 {
 	if ((_x != cTab_player) && {[_x,["ItemcTab","ItemAndroid","ItemMicroDAGR"]] call cTab_fnc_checkGear}) then {
-		0 = _cTabBFTmembers pushBack [_x,_x call cTab_fnc_getInfMarkerIcon,"",name _x,str([_x] call CBA_fnc_getGroupIndex)];
+		_cTabBFTmembers pushBack [_x,_x call cTab_fnc_getInfMarkerIcon,"",name _x,str([_x] call CBA_fnc_getGroupIndex)];
 	};
-} count units cTab_player;
+} forEach units cTab_player;
 
 /*
 cTabBFTgroups --- GROUPS
@@ -73,10 +73,10 @@ Else, search through the group and use the first member we find equipped with a 
 				if (_groupSize <= 9) exitWith {"\A3\ui_f\data\map\markers\nato\group_1.paa"};
 				"\A3\ui_f\data\map\markers\nato\group_2.paa"
 			};
-			0 = _cTabBFTgroups pushBack [_leader,"\A3\ui_f\data\map\markers\nato\b_inf.paa",_sizeIcon,groupID _x,""];
+			_cTabBFTgroups pushBack [_leader,"\A3\ui_f\data\map\markers\nato\b_inf.paa",_sizeIcon,groupID _x,""];
 		};
 	};
-} count allGroups;
+} forEach allGroups;
 
 /*
 cTabBFTvehicles --- VEHICLES
@@ -120,19 +120,19 @@ Vehciles on our side, that are not empty and that player is not sitting in.
 		call {
 			if (_iconA isEqualTo "" && {!(_x isKindOf "Static")} && {!(_x isKindOf "StaticWeapon")}) then {_iconA = "\A3\ui_f\data\map\markers\nato\b_unknown.paa";};
 			if (_iconA isEqualTo "") exitWith {};
-			0 = _cTabBFTvehicles pushBack [_x,_iconA,_iconB,_name,_groupID];
+			_cTabBFTvehicles pushBack [_x,_iconA,_iconB,_name,_groupID];
 		};
 	};
-} count vehicles;
+} forEach vehicles;
 
 /*
 cTabUAVlist --- UAVs
 */
 {
 	if (side _x in _validSides) then {
-		0 = _cTabUAVlist pushBack _x;
+		_cTabUAVlist pushBack _x;
 	};
-} count allUnitsUav;
+} forEach allUnitsUav;
 
 /*
 cTabHcamlist --- HELMET CAMS
@@ -141,10 +141,10 @@ Units on our side, that have either helmets that have been specified to include 
 {
 	if (side _x in _validSides) then {
 		if (headgear _x in cTab_helmetClass_has_HCam || {[_x,["ItemcTabHCam"]] call cTab_fnc_checkGear}) then {
-			0 = _cTabHcamlist pushBack _x;
+			_cTabHcamlist pushBack _x;
 		};
 	};
-} count allUnits;
+} forEach allUnits;
 
 // array to hold interface update commands
 _updateInterface = [];

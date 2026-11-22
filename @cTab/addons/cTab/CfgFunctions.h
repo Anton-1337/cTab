@@ -35,7 +35,9 @@ class CfgFunctions
 			class getSettings{};
 			class getUserMarkerList{};
 			class isDialog{};
-			class lockUavCamTo{}
+			class lockUavCamTo{};
+      class dialogMarkerNameClickOK{};
+      class dialogMarkerNameClickCancel{};
 			class onIfKeyDown{};
 			class onIfClose{};
 			class onIfOpen{};
@@ -43,6 +45,9 @@ class CfgFunctions
 			class onPlayerInventoryChanged{};
 			class processCuratorKey{};
 			class processNotifications{};
+      class regularMapAdd{};
+      class regularMapMarkerName{};
+      class regularMapRemove{};
 			class remoteControlUav{};
 			class setInterfacePosition{};
 			class setSettings{};
