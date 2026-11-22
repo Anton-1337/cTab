@@ -45,8 +45,6 @@ call {
 			[[_encryptionKey,[_transactionId,_markerData],_transactionId],"cTab_fnc_addUserMarker",true,false,true] call bis_fnc_MP;
 
 			// Add marker to regular map
-			diag_log format ["[cTab_fnc_addUserMarker] Adding marker to map. _transactionId: %1; _markerData: %2;", _transactionId, _markerData];
-			diag_log format ["[cTab_fnc_addUserMarker] Adding marker to map. _pos: %1; _type: %2; _text: %3", (_markerData select 0), (_markerData select 1), (_markerData select 4)];
 			[_transactionId, (_markerData select 0), (_markerData select 1), (_markerData select 4)] call cTab_fnc_regularMapAdd;
 			
 			// If this was run on a client-server (i.e. in single player or locally hosted), update the marker list
