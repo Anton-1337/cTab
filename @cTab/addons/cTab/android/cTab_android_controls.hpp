@@ -11,7 +11,7 @@
 // Map position within background, pixel based
 #define cTab_GUI_android_MAP_X (452)
 #define cTab_GUI_android_MAP_Y (713)
-#define cTab_GUI_android_MAP_W (1067)
+#define cTab_GUI_android_MAP_W (1097)
 #define cTab_GUI_android_MAP_H (622)
 
 // Height of header and footer OSD elements

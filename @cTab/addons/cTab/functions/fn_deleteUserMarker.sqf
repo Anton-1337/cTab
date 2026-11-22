@@ -40,7 +40,6 @@ call {
 			// try to find the marker to be removed
 			_removeIndex = -1;
 			{
-				diag_log format ["[cTab_fnc_deleteUserMarker] Checking marker. _x: %1; _transactionId: %2", _x, _transactionId];
 				if (_x select 0 == _markerIndex) exitWith {_removeIndex = _forEachIndex};
 			} forEach _userMarkerList;
 			
@@ -54,7 +53,6 @@ call {
 				[[_encryptionKey,_markerIndex,cTab_userMarkerTransactionId],"cTab_fnc_deleteUserMarker",true,false,true] call bis_fnc_MP;
 
 				// Remove marker from regular map
-				diag_log format ["[cTab_fnc_deleteUserMarker] Removing marker from map. _markerIndex: %1", _markerIndex];
 				[_markerIndex] call cTab_fnc_regularMapRemove;
 				
 				// If this was run on a client-server (i.e. in single player or locally hosted), update the marker list
