@@ -97,7 +97,7 @@ class CfgWeapons
 		descriptionshort = "DK10 Rugged Tablet PC";
 		descriptionuse = "<t color='#9cf953'>Use: </t>Show Commander's Tablet";
 		displayname = "Rugged Tablet";
-		picture = "\addons\cTab\img\icon_dk10.paa";
+		picture = "\cTab\img\icon_dk10.paa";
 		model = "\ctab\data\itemDK10.p3d";
 		scope = 2;
 		simulation = "ItemGPS";
@@ -111,7 +111,7 @@ class CfgWeapons
 		descriptionshort = "GD300 Rugged Wearable Computer";
 		descriptionuse = "<t color='#9cf953'>Use: </t>Show Android Based BFT";
 		displayname = "GD300 Android";
-		picture = "\addons\cTab\img\icon_Android.paa";
+		picture = "\cTab\img\icon_Android.paa";
 		model = "\ctab\data\itemAndroid.p3d";
 		class ItemInfo {
 			mass = 5;
@@ -123,7 +123,7 @@ class CfgWeapons
 		descriptionshort = "HNV-2930 Micro Defense Advanced GPS Receiver";
 		descriptionuse = "<t color='#9cf953'>Use: </t>Show Android Based BFT";
 		displayname = "MicroDAGR";
-		picture = "\addons\cTab\img\icon_MicroDAGR.paa";
+		picture = "\cTab\img\icon_MicroDAGR.paa";
 		model = "\ctab\data\itemMicroDAGR.p3d";
 		class ItemInfo {
 			mass = 6;
@@ -135,7 +135,7 @@ class CfgWeapons
 		descriptionshort = "HD Helmet Mounted Camera";
 		descriptionuse = "<t color='#9cf953'>Use: </t>Used to record and stream video";
 		displayname = "Helmet Camera";
-		picture = "\addons\cTab\img\cTab_helmetCam_ico.paa";
+		picture = "\cTab\img\cTab_helmetCam_ico.paa";
 		scope = 2;
 		simulation = "ItemMineDetector";
 		detectRange = -1;
@@ -153,7 +153,7 @@ class CfgNotifications
 	class cTabUavNotAval
 	{
 		title = "cTab";
-		iconPicture = "\addons\cTab\img\15th_rugged_tab_ico.paa";
+		iconPicture = "\cTab\img\15th_rugged_tab_ico.paa";
 		iconText = "";
 		color[] = {1,1,1,1};
 		description = "%1";
@@ -165,7 +165,7 @@ class CfgNotifications
 	class cTabNewMsg
 	{
 		title = "cTab";
-		iconPicture = "\addons\cTab\img\icoUnopenedmail.paa";
+		iconPicture = "\cTab\img\icoUnopenedmail.paa";
 		iconText = "";
 		color[] = {1,1,1,1};
 		description = "%1";
@@ -177,7 +177,7 @@ class CfgNotifications
 	class cTabMsgSent
 	{
 		title = "cTab";
-		iconPicture = "\addons\cTab\img\icoUnopenedmail.paa";
+		iconPicture = "\cTab\img\icoUnopenedmail.paa";
 		iconText = "";
 		color[] = {1,1,1,1};
 		description = "Your message has been sent.";
