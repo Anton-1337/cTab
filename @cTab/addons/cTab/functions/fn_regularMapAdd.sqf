@@ -31,25 +31,11 @@ if (_type > -1) then {
 		_markerColor = cTabColorBlue;
 		if (_type == 30) exitWith {"b_hq"};
 		if (_type == 31) exitWith {"mil_end"};
-
-		// GOL icons
-		_markerColor = cTabColorRed;
-		if (_type == 246) exitWith {"mil_destroy"};
-		_markerColor = cTabColorBlue;
-		if (_type == 248) exitWith {"mil_dot"};
-		if (_type == 250) exitWith {"mil_end"};
-		if (_type == 252) exitWith {"mil_flag"};
-		if (_type == 254) exitWith {"mil_join"};
-		if (_type == 256) exitWith {"mil_marker"};
-		if (_type == 258) exitWith {"mil_objective"};
-		if (_type == 260) exitWith {"mil_pickup"};
-		if (_type == 262) exitWith {"mil_start"};
-		if (_type == 264) exitWith {"mil_triangle"};
-		_markerColor = cTabColorRed;
-		if (_type == 266) exitWith {"mil_unknown"};
-		if (_type == 268) exitWith {"mil_warning"};
+		if (_type == 32) exitWith {"mil_join"};
+		if (_type == 33) exitWith {"mil_flag"};
+		if (_type == 34) exitWith {"mil_objective"};
 		_markerColor = cTabColorGolRed;
-		if (_type == 270) exitWith {"Minefield"};
+		if (_type == 35) exitWith {"Minefield"};
 
 		""
 	};
@@ -59,5 +45,6 @@ if (_type > -1) then {
 	_markerName setMarkerColorLocal format ["#(%1,%2,%3,%4)", (_markerColor select 0), (_markerColor select 1), (_markerColor select 2), (_markerColor select 3)];
 	_markerName setMarkerShapeLocal "ICON";
 	_markerName setMarkerTypeLocal _markerType;
+	_markerName setMarkerSizeLocal [0.5, 0.5];
 	_markerName setMarkerText _text; // Using any global marker function will make the marker global
 };

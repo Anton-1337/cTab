@@ -82,6 +82,7 @@ class Extended_PostInit_EventHandlers
 
 #include "\cTab\shared\cTab_gui_macros.hpp"
 #include "\cTab\shared\cTab_base_gui_classes.hpp"
+#include "\cTab\shared\cTab_dialog_TextMarker.hpp"
 
 #include <\cTab\tablet\cTab_Tablet_dialog.hpp>
 #include <\cTab\android\cTab_android_dialog.hpp>

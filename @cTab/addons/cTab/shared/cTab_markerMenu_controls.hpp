@@ -1,9 +1,9 @@
 class MainSubmenu: cTab_RscControlsGroup
 {
 	#ifndef cTab_IS_TABLET
-		#define cTab_MENU_MAX_ELEMENTS 5
+		#define cTab_MENU_MAX_ELEMENTS 4
 	#else
-		#define cTab_MENU_MAX_ELEMENTS 6
+		#define cTab_MENU_MAX_ELEMENTS 5
 	#endif
 	idc = 3300;
 	x = QUOTE(MENU_X);
@@ -53,17 +53,6 @@ class MainSubmenu: cTab_RscControlsGroup
 			sizeEx = QUOTE(MENU_sizeEx);
 			action = "[31] call cTab_fnc_userMenuSelect;";
 		};
-		class golbtn: cTab_MenuItem
-		{
-			idc = IDC_USRMN_GOLBTN;
-			text = "GOL"; //--- ToDo: Localize;
-			x = 0;
-			y = QUOTE(MENU_elementY(4));
-			w = QUOTE(MENU_W);
-			h = QUOTE(MENU_elementH);
-			sizeEx = QUOTE(MENU_sizeEx);
-			action = "[41] call cTab_fnc_userMenuSelect;";
-		};
 		#ifdef cTab_IS_TABLET
 			class lockUavCam: cTab_MenuItem
 			{
@@ -71,7 +60,7 @@ class MainSubmenu: cTab_RscControlsGroup
 				text = "Lock UAV Cam"; //--- ToDo: Localize;
 				toolTip = "Lock UAV Cam to this position, a UAV has to be previously selected";
 				x = 0;
-				y = QUOTE(MENU_elementY(5));
+				y = QUOTE(MENU_elementY(4));
 				w = QUOTE(MENU_W);
 				h = QUOTE(MENU_elementH);
 				sizeEx = QUOTE(MENU_sizeEx);
@@ -613,7 +602,7 @@ class CasulSub1: cTab_RscControlsGroup
 
 class GenSub1: cTab_RscControlsGroup
 {
-	#define cTab_MENU_MAX_ELEMENTS 3
+	#define cTab_MENU_MAX_ELEMENTS 7
 	idc = 3306;
 	x = QUOTE(MENU_X);
 	y = QUOTE(MENU_Y);
@@ -653,200 +642,60 @@ class GenSub1: cTab_RscControlsGroup
 			sizeEx = QUOTE(MENU_sizeEx);
 			action = "cTabUserSelIcon set [1,31];[1] call cTab_fnc_userMenuSelect;";
 		};
-		class exit: cTab_MenuExit
+		class rpbtn: cTab_MenuItem
 		{
-			idc = -1;
-			text = "Exit"; //--- ToDo: Localize;
-			x = 0;
-			y = QUOTE(MENU_elementY(cTab_MENU_MAX_ELEMENTS));
-			w = QUOTE(MENU_W);
-			h = QUOTE(MENU_elementH);
-			sizeEx = QUOTE(MENU_sizeEx);
-			action = "[0] call cTab_fnc_userMenuSelect;";
-		};
-	};
-};
-
-class GolSub1: cTab_RscControlsGroup
-{
-	#define cTab_MENU_MAX_ELEMENTS 13
-	idc = 3340;
-	x = QUOTE(MENU_X);
-	y = QUOTE(MENU_Y);
-	w = QUOTE(MENU_W);
-	h = QUOTE(MENU_H(cTab_MENU_MAX_ELEMENTS));
-	class controls
-	{
-		class IGUIBack_2206: cTab_IGUIBack
-		{
-			idc = IDC_USRMN_IGUIBACK_2206;
-			x = 0;
-			y = 0;
-			w = QUOTE(MENU_W);
-			h = QUOTE(MENU_H(cTab_MENU_MAX_ELEMENTS));
-		};
-		class goldestroybtn: cTab_MenuItem
-		{
-			idc = IDC_USRMN_GOLDESTROYBTN;
-			text = "Destroy"; //--- ToDo: Localize;
-			toolTip = "Destroy";
-			x = 0;
-			y = QUOTE(MENU_elementY(1));
-			w = QUOTE(MENU_W);
-			h = QUOTE(MENU_elementH);
-			sizeEx = QUOTE(MENU_sizeEx);
-			action = "cTabUserSelIcon set [1,246];[1] call cTab_fnc_userMenuSelect;";
-		};
-		class goldotbtn: cTab_MenuItem
-		{
-			idc = IDC_USRMN_GOLDOTBTN;
-			text = "Dot"; //--- ToDo: Localize;
-			toolTip = "Dot";
-			x = 0;
-			y = QUOTE(MENU_elementY(2));
-			w = QUOTE(MENU_W);
-			h = QUOTE(MENU_elementH);
-			sizeEx = QUOTE(MENU_sizeEx);
-			action = "cTabUserSelIcon set [1,248];[1] call cTab_fnc_userMenuSelect;";
-		};
-		class golendbtn: cTab_MenuItem
-		{
-			idc = IDC_USRMN_GOLENDBTN;
-			text = "End"; //--- ToDo: Localize;
-			toolTip = "End";
+			idc = IDC_USRMN_RPBTN;
+			text = "RP"; //--- ToDo: Localize;
+			toolTip = "Rally point";
 			x = 0;
 			y = QUOTE(MENU_elementY(3));
 			w = QUOTE(MENU_W);
 			h = QUOTE(MENU_elementH);
 			sizeEx = QUOTE(MENU_sizeEx);
-			action = "cTabUserSelIcon set [1,250];[1] call cTab_fnc_userMenuSelect;";
+			action = "cTabUserSelIcon set [1,32];[1] call cTab_fnc_userMenuSelect;";
 		};
-		class golflagbtn: cTab_MenuItem
+		class wpbtn: cTab_MenuItem
 		{
-			idc = IDC_USRMN_GOLFLAGBTN;
-			text = "Flag"; //--- ToDo: Localize;
-			toolTip = "Flag";
+			idc = IDC_USRMN_WPBTN;
+			text = "WP"; //--- ToDo: Localize;
+			toolTip = "Waypoint";
 			x = 0;
 			y = QUOTE(MENU_elementY(4));
 			w = QUOTE(MENU_W);
 			h = QUOTE(MENU_elementH);
 			sizeEx = QUOTE(MENU_sizeEx);
-			action = "cTabUserSelIcon set [1,252];[1] call cTab_fnc_userMenuSelect;";
+			action = "cTabUserSelIcon set [1,33];[1] call cTab_fnc_userMenuSelect;";
 		};
-		class goljoinbtn: cTab_MenuItem
+		class objbtn: cTab_MenuItem
 		{
-			idc = IDC_USRMN_GOLJOINBTN;
-			text = "Join"; //--- ToDo: Localize;
-			toolTip = "Join";
+			idc = IDC_USRMN_OBJBTN;
+			text = "Objective"; //--- ToDo: Localize;
+			toolTip = "Objective";
 			x = 0;
 			y = QUOTE(MENU_elementY(5));
 			w = QUOTE(MENU_W);
 			h = QUOTE(MENU_elementH);
 			sizeEx = QUOTE(MENU_sizeEx);
-			action = "cTabUserSelIcon set [1,254];[1] call cTab_fnc_userMenuSelect;";
+			action = "cTabUserSelIcon set [1,34];[1] call cTab_fnc_userMenuSelect;";
 		};
-		class golmarkerbtn: cTab_MenuItem
+		class minefieldbtn: cTab_MenuItem
 		{
-			idc = IDC_USRMN_GOLMARKERBTN;
-			text = "Marker"; //--- ToDo: Localize;
-			toolTip = "Marker";
+			idc = IDC_USRMN_MINEBTN;
+			text = "Minefield"; //--- ToDo: Localize;
+			toolTip = "Minefield";
 			x = 0;
 			y = QUOTE(MENU_elementY(6));
 			w = QUOTE(MENU_W);
 			h = QUOTE(MENU_elementH);
 			sizeEx = QUOTE(MENU_sizeEx);
-			action = "cTabUserSelIcon set [1,256];[1] call cTab_fnc_userMenuSelect;";
-		};
-		class golobjectivebtn: cTab_MenuItem
-		{
-			idc = IDC_USRMN_GOLOBJECTIVEBTN;
-			text = "Objective"; //--- ToDo: Localize;
-			toolTip = "Objective";
-			x = 0;
-			y = QUOTE(MENU_elementY(7));
-			w = QUOTE(MENU_W);
-			h = QUOTE(MENU_elementH);
-			sizeEx = QUOTE(MENU_sizeEx);
-			action = "cTabUserSelIcon set [1,258];[1] call cTab_fnc_userMenuSelect;";
-		};
-		class golpickupbtn: cTab_MenuItem
-		{
-			idc = IDC_USRMN_GOLPICKUPBTN;
-			text = "Pickup"; //--- ToDo: Localize;
-			toolTip = "Pickup";
-			x = 0;
-			y = QUOTE(MENU_elementY(8));
-			w = QUOTE(MENU_W);
-			h = QUOTE(MENU_elementH);
-			sizeEx = QUOTE(MENU_sizeEx);
-			action = "cTabUserSelIcon set [1,260];[1] call cTab_fnc_userMenuSelect;";
-		};
-		class golstartbtn: cTab_MenuItem
-		{
-			idc = IDC_USRMN_GOLSTARTBTN;
-			text = "Start"; //--- ToDo: Localize;
-			toolTip = "Start";
-			x = 0;
-			y = QUOTE(MENU_elementY(9));
-			w = QUOTE(MENU_W);
-			h = QUOTE(MENU_elementH);
-			sizeEx = QUOTE(MENU_sizeEx);
-			action = "cTabUserSelIcon set [1,262];[1] call cTab_fnc_userMenuSelect;";
-		};
-		class goltrianglebtn: cTab_MenuItem
-		{
-			idc = IDC_USRMN_GOLTRIANGLEBTN;
-			text = "Triangle"; //--- ToDo: Localize;
-			toolTip = "Triangle";
-			x = 0;
-			y = QUOTE(MENU_elementY(10));
-			w = QUOTE(MENU_W);
-			h = QUOTE(MENU_elementH);
-			sizeEx = QUOTE(MENU_sizeEx);
-			action = "cTabUserSelIcon set [1,264];[1] call cTab_fnc_userMenuSelect;";
-		};
-		class golunknownbtn: cTab_MenuItem
-		{
-			idc = IDC_USRMN_GOLUNKNOWNBTN;
-			text = "Unknown"; //--- ToDo: Localize;
-			toolTip = "Unknown";
-			x = 0;
-			y = QUOTE(MENU_elementY(11));
-			w = QUOTE(MENU_W);
-			h = QUOTE(MENU_elementH);
-			sizeEx = QUOTE(MENU_sizeEx);
-			action = "cTabUserSelIcon set [1,266];[1] call cTab_fnc_userMenuSelect;";
-		};
-		class golwarningbtn: cTab_MenuItem
-		{
-			idc = IDC_USRMN_GOLWARNINGBTN;
-			text = "Warning"; //--- ToDo: Localize;
-			toolTip = "Warning";
-			x = 0;
-			y = QUOTE(MENU_elementY(12));
-			w = QUOTE(MENU_W);
-			h = QUOTE(MENU_elementH);
-			sizeEx = QUOTE(MENU_sizeEx);
-			action = "cTabUserSelIcon set [1,268];[1] call cTab_fnc_userMenuSelect;";
-		};
-		class golminefieldbtn: cTab_MenuItem
-		{
-			idc = IDC_USRMN_GOLMINEFIELDBTN;
-			text = "Minefield"; //--- ToDo: Localize;
-			toolTip = "Minefield";
-			x = 0;
-			y = QUOTE(MENU_elementY(13));
-			w = QUOTE(MENU_W);
-			h = QUOTE(MENU_elementH);
-			sizeEx = QUOTE(MENU_sizeEx);
-			action = "cTabUserSelIcon set [1,270];[1] call cTab_fnc_userMenuSelect;";
+			action = "cTabUserSelIcon set [1,35];[1] call cTab_fnc_userMenuSelect;";
 		};
 		class exit: cTab_MenuExit
 		{
 			idc = -1;
 			text = "Exit"; //--- ToDo: Localize;
 			x = 0;
-			y = QUOTE(MENU_elementY(14));
+			y = QUOTE(MENU_elementY(7));
 			w = QUOTE(MENU_W);
 			h = QUOTE(MENU_elementH);
 			sizeEx = QUOTE(MENU_sizeEx);
