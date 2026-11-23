@@ -21,11 +21,12 @@
 #include "\cTab\shared\cTab_gui_macros.hpp"
 #include "\a3\ui_f\hpp\defineDIKCodes.inc"
 
-private ["_type","_displayName","_display","_idcToShow","_control","_controlPos","_screenPos","_screenEdgeX","_screenEdgeY","_controlEdgeX","_controlEdgeY"];
+private ["_type","_displayName","_display","_idcToShow","_control","_controlPos","_screenPos","_screenEdgeX","_screenEdgeY","_controlEdgeX","_controlEdgeY","_ctrlIsHeld"];
 
 disableSerialization;
 
 _type = _this select 0;
+_ctrlIsHeld = _this select 1;
 _displayName = cTabIfOpen select 1;
 _display = (uiNamespace getVariable _displayName);
 
@@ -35,17 +36,9 @@ call {
 	// send cTabUserSelIcon to server
 	if (_type == 1) exitWith {
 		cTabUserSelIcon pushBack cTab_player;
-
-		_ctrlIsHeld = uiNamespace getVariable [VAR_KEYCTRLISHELD, false];
 		
 		if (_ctrlIsHeld) then {
-			// Ctrl was held down, so we want to show the marker text pop-up for custom text input
-
-			// Reset UI variable
-			uiNamespace setVariable [VAR_KEYCTRLISHELD, false];
-
-			// // Hide all menu controls
-			// {ctrlShow [_x,false];} count [3300,3301,3302,3303,3304,3305,3306,3307];
+			// Ctrl is held down, so we want to show the marker text pop-up for custom text input
 
 			// Show the marker text pop-up (cTab_dialog_TextMarker)
 			private _popupDisplay = (findDisplay 46) createDisplay "cTab_dialog_TextMarker";
@@ -69,7 +62,7 @@ call {
 			// Automatically focus the text box so the player can start typing immediately
 			ctrlSetFocus _ctrlTextBox;
 		} else {
-			// Ctrl was not held down, so create the marker without any custom marker text
+			// Ctrl is not held down, so create the marker without any custom marker text
 			[call cTab_fnc_getPlayerEncryptionKey,cTabUserSelIcon] call cTab_fnc_addUserMarker;
 		};
 	};

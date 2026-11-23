@@ -29,7 +29,7 @@ class cTab_Android_dlg {
 		class screen: cTab_android_RscMapControl
 		{
 			onDraw = "nop = _this call cTabOnDrawbftAndroid;";
-			onMouseButtonDblClick = "[(_this select 5)] execVM '\cTab\shared\cTab_markerMenu_setCtrl.sqf'; _ok = [3300,_this] execVM '\cTab\shared\cTab_markerMenu_load.sqf';";
+			onMouseButtonDblClick = "_ok = [3300,_this] execVM '\cTab\shared\cTab_markerMenu_load.sqf';";
 			onMouseMoving = "cTabCursorOnMap = _this select 3;cTabMapCursorPos = _this select 0 ctrlMapScreenToWorld [_this select 1,_this select 2];";
 		};
 		class screenTopo: screen
