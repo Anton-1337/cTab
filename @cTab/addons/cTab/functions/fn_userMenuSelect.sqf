@@ -40,23 +40,45 @@ call {
 		if (_ctrlIsHeld) then {
 			// Ctrl is held down, so we want to show the marker text pop-up for custom text input
 
+			// Hide all menu controls
+			{ctrlShow [_x,false];} forEach [
+				IDC_USRMN_IGUI_MAIN,
+
+				IDC_USRMN_IGUI_FORCES,
+				IDC_USRMN_IGUI_SUPPORT,
+				IDC_USRMN_IGUISUB_MED,
+				IDC_USRMN_IGUISUB_GEN,
+
+				IDC_USRMN_IGUISUB_SIZE,
+				IDC_USRMN_IGUISUB_DIR,
+
+				IDC_USRMN_IGUISUB_DONE
+			];
+			
 			// Show the marker text pop-up (cTab_dialog_TextMarker)
-			private _popupDisplay = (findDisplay 46) createDisplay "cTab_dialog_TextMarker";
+			// private _popupDisplay = (findDisplay 46) createDisplay "cTab_dialog_TextMarker";
+
+			if !(createDialog "cTab_dialog_TextMarker") exitWith {};
+
+			private _popupDisplay = findDisplay 9900;
 			
 			// Trigger confirm when Enter or Numpad Enter is pressed
 			private _ctrlTextBox = _popupDisplay displayCtrl 9902;
+
 			_ctrlTextBox ctrlAddEventHandler ["KeyDown", {
 				params ["_control", "_key"];
 				
-				if (_key in [DIK_RETURN, DIK_NUMPADENTER]) then {
+				if (_key in [DIK_RETURN, DIK_NUMPADENTER]) exitWith {
 					[] call cTab_fnc_dialogMarkerNameClickOK;
 					true; // Consume the keypress
 				};
 
-				if (_key == DIK_ESCAPE) then {
+				if (_key == DIK_ESCAPE) exitWith {
 					[] call cTab_fnc_dialogMarkerNameClickCancel;
 					true; // Consume the keypress
 				};
+
+				false
 			}];
 			
 			// Automatically focus the text box so the player can start typing immediately
