@@ -21,11 +21,12 @@
 #include "\cTab\shared\cTab_gui_macros.hpp"
 #include "\a3\ui_f\hpp\defineDIKCodes.inc"
 
-private ["_type","_displayName","_display","_idcToShow","_control","_controlPos","_screenPos","_screenEdgeX","_screenEdgeY","_controlEdgeX","_controlEdgeY"];
+private ["_type","_displayName","_display","_idcToShow","_control","_controlPos","_screenPos","_screenEdgeX","_screenEdgeY","_controlEdgeX","_controlEdgeY","_ctrlIsHeld"];
 
 disableSerialization;
 
 _type = _this select 0;
+_ctrlIsHeld = _this select 1;
 _displayName = cTabIfOpen select 1;
 _display = (uiNamespace getVariable _displayName);
 
@@ -35,17 +36,9 @@ call {
 	// send cTabUserSelIcon to server
 	if (_type == 1) exitWith {
 		cTabUserSelIcon pushBack cTab_player;
-
-		_ctrlIsHeld = uiNamespace getVariable [VAR_KEYCTRLISHELD, false];
 		
 		if (_ctrlIsHeld) then {
-			// Ctrl was held down, so we want to show the marker text pop-up for custom text input
-
-			// Reset UI variable
-			uiNamespace setVariable [VAR_KEYCTRLISHELD, false];
-
-			// // Hide all menu controls
-			// {ctrlShow [_x,false];} count [3300,3301,3302,3303,3304,3305,3306,3307];
+			// Ctrl is held down, so we want to show the marker text pop-up for custom text input
 
 			// Show the marker text pop-up (cTab_dialog_TextMarker)
 			private _popupDisplay = (findDisplay 46) createDisplay "cTab_dialog_TextMarker";
@@ -69,7 +62,7 @@ call {
 			// Automatically focus the text box so the player can start typing immediately
 			ctrlSetFocus _ctrlTextBox;
 		} else {
-			// Ctrl was not held down, so create the marker without any custom marker text
+			// Ctrl is not held down, so create the marker without any custom marker text
 			[call cTab_fnc_getPlayerEncryptionKey,cTabUserSelIcon] call cTab_fnc_addUserMarker;
 		};
 	};
@@ -79,24 +72,23 @@ call {
 		[cTabUserSelIcon select 0] call cTab_fnc_lockUavCamTo;
 	};
 
-	_idcToShow = call {
-		if (_type == 11) exitWith {3301};
-		if (_type == 12) exitWith {3303};
-		if (_type == 13) exitWith {3304};
-		if (_type == 14) exitWith {
-			if (cTabUserSelIcon select 1 != 0) then {
-				cTabUserSelIcon set [2,0];
-				3304
-			} else {3307};
-		};
-		if (_type == 21) exitWith {3305};
-		if (_type == 31) exitWith {3306};
-		_type;
-	};
+	_idcToShow = _type;
 };
 
 // Hide all menu controls
-{ctrlShow [_x,false];} count [3300,3301,3302,3303,3304,3305,3306,3307];
+{ctrlShow [_x,false];} forEach [
+	IDC_USRMN_IGUI_MAIN,
+
+	IDC_USRMN_IGUI_FORCES,
+	IDC_USRMN_IGUI_SUPPORT,
+	IDC_USRMN_IGUISUB_MED,
+	IDC_USRMN_IGUISUB_GEN,
+
+	IDC_USRMN_IGUISUB_SIZE,
+	IDC_USRMN_IGUISUB_DIR,
+
+	IDC_USRMN_IGUISUB_DONE
+];
 
 // Bring the menu control we want to show into position and show it
 if (_idcToShow != 0) then {

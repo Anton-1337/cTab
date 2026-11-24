@@ -1,11 +1,11 @@
 class MainSubmenu: cTab_RscControlsGroup
 {
 	#ifndef cTab_IS_TABLET
-		#define cTab_MENU_MAX_ELEMENTS 4
-	#else
 		#define cTab_MENU_MAX_ELEMENTS 5
+	#else
+		#define cTab_MENU_MAX_ELEMENTS 6
 	#endif
-	idc = 3300;
+	idc = IDC_USRMN_IGUI_MAIN;
 	x = QUOTE(MENU_X);
 	y = QUOTE(MENU_Y);
 	w = QUOTE(MENU_W);
@@ -20,38 +20,49 @@ class MainSubmenu: cTab_RscControlsGroup
 			w = QUOTE(MENU_W);
 			h = QUOTE(MENU_H(cTab_MENU_MAX_ELEMENTS));
 		};
-		class op4btn: cTab_MenuItem
+		class op1btn: cTab_MenuItem
 		{
-			idc = IDC_USRMN_OP4BTN;
-			text = "Enemy SALUTE"; //--- ToDo: Localize;
+			idc = IDC_USRMN_OPF1BTN;
+			text = "Enemy forces"; //--- ToDo: Localize;
 			x = 0;
 			y = QUOTE(MENU_elementY(1));
 			w = QUOTE(MENU_W);
 			h = QUOTE(MENU_elementH);
 			sizeEx = QUOTE(MENU_sizeEx);
-			action = "[11] call cTab_fnc_userMenuSelect;";
+			onMouseButtonClick = "[3301,(_this select 5)] call cTab_fnc_userMenuSelect;";
+		};
+    class op2btn: cTab_MenuItem
+		{
+			idc = IDC_USRMN_OPF2BTN;
+			text = "Enemy support"; //--- ToDo: Localize;
+			x = 0;
+			y = QUOTE(MENU_elementY(2));
+			w = QUOTE(MENU_W);
+			h = QUOTE(MENU_elementH);
+			sizeEx = QUOTE(MENU_sizeEx);
+			onMouseButtonClick = "[3302,(_this select 5)] call cTab_fnc_userMenuSelect;";
 		};
 		class medbtn: cTab_MenuItem
 		{
 			idc = IDC_USRMN_MEDBTN;
 			text = "Medical"; //--- ToDo: Localize;
 			x = 0;
-			y = QUOTE(MENU_elementY(2));
+			y = QUOTE(MENU_elementY(3));
 			w = QUOTE(MENU_W);
 			h = QUOTE(MENU_elementH);
 			sizeEx = QUOTE(MENU_sizeEx);
-			action = "[21] call cTab_fnc_userMenuSelect;";
+			onMouseButtonClick = "[3303,(_this select 5)] call cTab_fnc_userMenuSelect;";
 		};
 		class genbtn: cTab_MenuItem
 		{
 			idc = IDC_USRMN_GENBTN;
 			text = "General"; //--- ToDo: Localize;
 			x = 0;
-			y = QUOTE(MENU_elementY(3));
+			y = QUOTE(MENU_elementY(4));
 			w = QUOTE(MENU_W);
 			h = QUOTE(MENU_elementH);
 			sizeEx = QUOTE(MENU_sizeEx);
-			action = "[31] call cTab_fnc_userMenuSelect;";
+			onMouseButtonClick = "[3304,(_this select 5)] call cTab_fnc_userMenuSelect;";
 		};
 		#ifdef cTab_IS_TABLET
 			class lockUavCam: cTab_MenuItem
@@ -60,11 +71,11 @@ class MainSubmenu: cTab_RscControlsGroup
 				text = "Lock UAV Cam"; //--- ToDo: Localize;
 				toolTip = "Lock UAV Cam to this position, a UAV has to be previously selected";
 				x = 0;
-				y = QUOTE(MENU_elementY(4));
+				y = QUOTE(MENU_elementY(5));
 				w = QUOTE(MENU_W);
 				h = QUOTE(MENU_elementH);
 				sizeEx = QUOTE(MENU_sizeEx);
-				action = "[2] call cTab_fnc_userMenuSelect;";
+				onMouseButtonClick = "[2,(_this select 5)] call cTab_fnc_userMenuSelect;";
 			};
 		#endif
 		class exit: cTab_MenuExit
@@ -76,15 +87,15 @@ class MainSubmenu: cTab_RscControlsGroup
 			w = QUOTE(MENU_W);
 			h = QUOTE(MENU_elementH);
 			sizeEx = QUOTE(MENU_sizeEx);
-			action = "[0] call cTab_fnc_userMenuSelect;";
+			onMouseButtonClick = "[0,(_this select 5)] call cTab_fnc_userMenuSelect;";
 		};
 	};
 };
 
-class EnemySub1: cTab_RscControlsGroup
+class EnemyForces: cTab_RscControlsGroup
 {
 	#define cTab_MENU_MAX_ELEMENTS 8
-	idc = 3301;
+	idc = IDC_USRMN_IGUI_FORCES;
 	x = QUOTE(MENU_X);
 	y = QUOTE(MENU_Y);
 	w = QUOTE(MENU_W);
@@ -108,7 +119,7 @@ class EnemySub1: cTab_RscControlsGroup
 			w = QUOTE(MENU_W);
 			h = QUOTE(MENU_elementH);
 			sizeEx = QUOTE(MENU_sizeEx);
-			action = "cTabUserSelIcon set [1,0];[12] call cTab_fnc_userMenuSelect;";
+			onMouseButtonClick = "cTabUserSelIcon set [1,0];[3311,(_this select 5)] call cTab_fnc_userMenuSelect;";
 		};
 		class mecinfbtn: cTab_MenuItem
 		{
@@ -120,7 +131,7 @@ class EnemySub1: cTab_RscControlsGroup
 			w = QUOTE(MENU_W);
 			h = QUOTE(MENU_elementH);
 			sizeEx = QUOTE(MENU_sizeEx);
-			action = "cTabUserSelIcon set [1,1];[12] call cTab_fnc_userMenuSelect;";
+			onMouseButtonClick = "cTabUserSelIcon set [1,1];[3311,(_this select 5)] call cTab_fnc_userMenuSelect;";
 		};
 
 		class motrinfbtn: cTab_MenuItem
@@ -133,7 +144,7 @@ class EnemySub1: cTab_RscControlsGroup
 			w = QUOTE(MENU_W);
 			h = QUOTE(MENU_elementH);
 			sizeEx = QUOTE(MENU_sizeEx);
-			action = "cTabUserSelIcon set [1,2];[12] call cTab_fnc_userMenuSelect;";
+			onMouseButtonClick = "cTabUserSelIcon set [1,2];[3311,(_this select 5)] call cTab_fnc_userMenuSelect;";
 		};
 		class amrbtn: cTab_MenuItem
 		{
@@ -144,7 +155,7 @@ class EnemySub1: cTab_RscControlsGroup
 			w = QUOTE(MENU_W);
 			h = QUOTE(MENU_elementH);
 			sizeEx = QUOTE(MENU_sizeEx);
-			action = "cTabUserSelIcon set [1,3];[12] call cTab_fnc_userMenuSelect;";
+			onMouseButtonClick = "cTabUserSelIcon set [1,3];[3311,(_this select 5)] call cTab_fnc_userMenuSelect;";
 		};
 		class helibtn: cTab_MenuItem
 		{
@@ -155,7 +166,7 @@ class EnemySub1: cTab_RscControlsGroup
 			w = QUOTE(MENU_W);
 			h = QUOTE(MENU_elementH);
 			sizeEx = QUOTE(MENU_sizeEx);
-			action = "cTabUserSelIcon set [1,4];[12] call cTab_fnc_userMenuSelect;";
+			onMouseButtonClick = "cTabUserSelIcon set [1,4];[3311,(_this select 5)] call cTab_fnc_userMenuSelect;";
 		};
 		class plnbtn: cTab_MenuItem
 		{
@@ -166,7 +177,7 @@ class EnemySub1: cTab_RscControlsGroup
 			w = QUOTE(MENU_W);
 			h = QUOTE(MENU_elementH);
 			sizeEx = QUOTE(MENU_sizeEx);
-			action = "cTabUserSelIcon set [1,5];[12] call cTab_fnc_userMenuSelect;";
+			onMouseButtonClick = "cTabUserSelIcon set [1,5];[3311,(_this select 5)] call cTab_fnc_userMenuSelect;";
 		};
 		class uknbtn: cTab_MenuItem
 		{
@@ -177,7 +188,7 @@ class EnemySub1: cTab_RscControlsGroup
 			w = QUOTE(MENU_W);
 			h = QUOTE(MENU_elementH);
 			sizeEx = QUOTE(MENU_sizeEx);
-			action = "cTabUserSelIcon set [1,6];[12] call cTab_fnc_userMenuSelect;";
+			onMouseButtonClick = "cTabUserSelIcon set [1,6];[3311,(_this select 5)] call cTab_fnc_userMenuSelect;";
 		};
 		class exit: cTab_MenuExit
 		{
@@ -188,15 +199,135 @@ class EnemySub1: cTab_RscControlsGroup
 			w = QUOTE(MENU_W);
 			h = QUOTE(MENU_elementH);
 			sizeEx = QUOTE(MENU_sizeEx);
-			action = "[0] call cTab_fnc_userMenuSelect;";
+			onMouseButtonClick = "[0,(_this select 5)] call cTab_fnc_userMenuSelect;";
 		};
 	};
 };
 
-class EnemySub2: cTab_RscControlsGroup
+class EnemySupport: cTab_RscControlsGroup
 {
 	#define cTab_MENU_MAX_ELEMENTS 6
-	idc = 3303;
+	idc = IDC_USRMN_IGUI_SUPPORT;
+	x = QUOTE(MENU_X);
+	y = QUOTE(MENU_Y);
+	w = QUOTE(MENU_W);
+	h = QUOTE(MENU_H(cTab_MENU_MAX_ELEMENTS));
+	class controls
+	{
+		class IGUIBack_2202: cTab_IGUIBack
+		{
+			idc = IDC_USRMN_IGUIBACK_2202;
+			x = 0;
+			y = 0;
+			w = QUOTE(MENU_W);
+			h = QUOTE(MENU_H(cTab_MENU_MAX_ELEMENTS));
+		};
+		// class rifle_btn: cTab_MenuItem
+		// {
+		// 	idc = -1;
+		// 	text = "Rifle"; //--- ToDo: Localize;
+		// 	x = 0;
+		// 	y = QUOTE(MENU_elementY(1));
+		// 	w = QUOTE(MENU_W);
+		// 	h = QUOTE(MENU_elementH);
+		// 	sizeEx = QUOTE(MENU_sizeEx);
+		// 	onMouseButtonClick = "cTabUserSelIcon set [1,7];[3312,(_this select 5)] call cTab_fnc_userMenuSelect;";
+		// };
+		// class lmg_btn: cTab_MenuItem
+		// {
+		// 	idc = -1;
+		// 	text = "MG"; //--- ToDo: Localize;
+		// 	x = 0;
+		// 	y = QUOTE(MENU_elementY(1));
+		// 	w = QUOTE(MENU_W);
+		// 	h = QUOTE(MENU_elementH);
+		// 	sizeEx = QUOTE(MENU_sizeEx);
+		// 	onMouseButtonClick = "cTabUserSelIcon set [1,8];[3312,(_this select 5)] call cTab_fnc_userMenuSelect;";
+		// };
+		// class at_btn: cTab_MenuItem
+		// {
+		// 	idc = -1;
+		// 	text = "AT"; //--- ToDo: Localize;
+		// 	x = 0;
+		// 	y = QUOTE(MENU_elementY(2));
+		// 	w = QUOTE(MENU_W);
+		// 	h = QUOTE(MENU_elementH);
+		// 	sizeEx = QUOTE(MENU_sizeEx);
+		// 	onMouseButtonClick = "cTabUserSelIcon set [1,9];[3312,(_this select 5)] call cTab_fnc_userMenuSelect;";
+		// };
+		class static_mg_btn: cTab_MenuItem
+		{
+			idc = -1;
+			text = "Static MG"; //--- ToDo: Localize;
+			x = 0;
+			y = QUOTE(MENU_elementY(1));
+			w = QUOTE(MENU_W);
+			h = QUOTE(MENU_elementH);
+			sizeEx = QUOTE(MENU_sizeEx);
+			onMouseButtonClick = "cTabUserSelIcon set [1,10];[1,(_this select 5)] call cTab_fnc_userMenuSelect;";
+		};
+		class static_at_btn: cTab_MenuItem
+		{
+			idc = -1;
+			text = "Static AT"; //--- ToDo: Localize;
+			x = 0;
+			y = QUOTE(MENU_elementY(2));
+			w = QUOTE(MENU_W);
+			h = QUOTE(MENU_elementH);
+			sizeEx = QUOTE(MENU_sizeEx);
+			onMouseButtonClick = "cTabUserSelIcon set [1,11];[1,(_this select 5)] call cTab_fnc_userMenuSelect;";
+		};
+		class static_aa_btn: cTab_MenuItem
+		{
+			idc = -1;
+			text = "Static AA"; //--- ToDo: Localize;
+			x = 0;
+			y = QUOTE(MENU_elementY(3));
+			w = QUOTE(MENU_W);
+			h = QUOTE(MENU_elementH);
+			sizeEx = QUOTE(MENU_sizeEx);
+			onMouseButtonClick = "cTabUserSelIcon set [1,13];[1,(_this select 5)] call cTab_fnc_userMenuSelect;";
+		};
+		class static_mortar_btn: cTab_MenuItem
+		{
+			idc = -1;
+			text = "Mortar"; //--- ToDo: Localize;
+			x = 0;
+			y = QUOTE(MENU_elementY(4));
+			w = QUOTE(MENU_W);
+			h = QUOTE(MENU_elementH);
+			sizeEx = QUOTE(MENU_sizeEx);
+			onMouseButtonClick = "cTabUserSelIcon set [1,12];[1,(_this select 5)] call cTab_fnc_userMenuSelect;";
+		};
+    class roadblock_btn: cTab_MenuItem
+		{
+			idc = -1;
+			text = "Roadblock"; //--- ToDo: Localize;
+			x = 0;
+			y = QUOTE(MENU_elementY(5));
+			w = QUOTE(MENU_W);
+			h = QUOTE(MENU_elementH);
+			sizeEx = QUOTE(MENU_sizeEx);
+			onMouseButtonClick = "cTabUserSelIcon set [1,14];[1,(_this select 5)] call cTab_fnc_userMenuSelect;";
+		};
+		class exit: cTab_MenuExit
+		{
+			idc = -1;
+			text = "Exit"; //--- ToDo: Localize;
+			x = 0;
+			y = QUOTE(MENU_elementY(cTab_MENU_MAX_ELEMENTS));
+			w = QUOTE(MENU_W);
+			h = QUOTE(MENU_elementH);
+			sizeEx = QUOTE(MENU_sizeEx);
+			onMouseButtonClick = "[0,(_this select 5)] call cTab_fnc_userMenuSelect;";
+		};
+	};
+};
+
+class EnemySubSize: cTab_RscControlsGroup
+{
+	#define cTab_MENU_MAX_ELEMENTS 6
+	idc = IDC_USRMN_IGUISUB_SIZE;
 	x = QUOTE(MENU_X);
 	y = QUOTE(MENU_Y);
 	w = QUOTE(MENU_W);
@@ -220,7 +351,7 @@ class EnemySub2: cTab_RscControlsGroup
 			w = QUOTE(MENU_W);
 			h = QUOTE(MENU_elementH);
 			sizeEx = QUOTE(MENU_sizeEx);
-			action = "[14] call cTab_fnc_userMenuSelect;";
+			onMouseButtonClick = "[3312,(_this select 5)] call cTab_fnc_userMenuSelect;";
 		};
 		class patbtn: cTab_MenuItem
 		{
@@ -231,7 +362,7 @@ class EnemySub2: cTab_RscControlsGroup
 			w = QUOTE(MENU_W);
 			h = QUOTE(MENU_elementH);
 			sizeEx = QUOTE(MENU_sizeEx);
-			action = "cTabUserSelIcon set [2,1];[13] call cTab_fnc_userMenuSelect;";
+			onMouseButtonClick = "cTabUserSelIcon set [2,1];[3312,(_this select 5)] call cTab_fnc_userMenuSelect;";
 		};
 		class sqdbtn: cTab_MenuItem
 		{
@@ -242,7 +373,7 @@ class EnemySub2: cTab_RscControlsGroup
 			w = QUOTE(MENU_W);
 			h = QUOTE(MENU_elementH);
 			sizeEx = QUOTE(MENU_sizeEx);
-			action = "cTabUserSelIcon set [2,2];[13] call cTab_fnc_userMenuSelect;";
+			onMouseButtonClick = "cTabUserSelIcon set [2,2];[3312,(_this select 5)] call cTab_fnc_userMenuSelect;";
 		};
 		class sctbtn: cTab_MenuItem
 		{
@@ -253,7 +384,7 @@ class EnemySub2: cTab_RscControlsGroup
 			w = QUOTE(MENU_W);
 			h = QUOTE(MENU_elementH);
 			sizeEx = QUOTE(MENU_sizeEx);
-			action = "cTabUserSelIcon set [2,3];[13] call cTab_fnc_userMenuSelect;";
+			onMouseButtonClick = "cTabUserSelIcon set [2,3];[3312,(_this select 5)] call cTab_fnc_userMenuSelect;";
 		};
 		class pltnbtn: cTab_MenuItem
 		{
@@ -264,7 +395,7 @@ class EnemySub2: cTab_RscControlsGroup
 			w = QUOTE(MENU_W);
 			h = QUOTE(MENU_elementH);
 			sizeEx = QUOTE(MENU_sizeEx);
-			action = "cTabUserSelIcon set [2,4];[13] call cTab_fnc_userMenuSelect;";
+			onMouseButtonClick = "cTabUserSelIcon set [2,4];[3312,(_this select 5)] call cTab_fnc_userMenuSelect;";
 		};
 		class exit: cTab_MenuExit
 		{
@@ -275,15 +406,15 @@ class EnemySub2: cTab_RscControlsGroup
 			w = QUOTE(MENU_W);
 			h = QUOTE(MENU_elementH);
 			sizeEx = QUOTE(MENU_sizeEx);
-			action = "[0] call cTab_fnc_userMenuSelect;";
+			onMouseButtonClick = "[0,(_this select 5)] call cTab_fnc_userMenuSelect;";
 		};
 	};
 };
 
-class EnemySub3: cTab_RscControlsGroup
+class EnemySubDirection: cTab_RscControlsGroup
 {
 	#define cTab_MENU_MAX_ELEMENTS 10
-	idc = 3304;
+	idc = IDC_USRMN_IGUISUB_DIR;
 	x = QUOTE(MENU_X);
 	y = QUOTE(MENU_Y);
 	w = QUOTE(MENU_W);
@@ -307,7 +438,7 @@ class EnemySub3: cTab_RscControlsGroup
 			w = QUOTE(MENU_W);
 			h = QUOTE(MENU_elementH);
 			sizeEx = QUOTE(MENU_sizeEx);
-			action = "[1] call cTab_fnc_userMenuSelect;";
+			onMouseButtonClick = "[1,(_this select 5)] call cTab_fnc_userMenuSelect;";
 		};
 		class nthbtn: cTab_MenuItem
 		{
@@ -318,7 +449,7 @@ class EnemySub3: cTab_RscControlsGroup
 			w = QUOTE(MENU_W);
 			h = QUOTE(MENU_elementH);
 			sizeEx = QUOTE(MENU_sizeEx);
-			action = "cTabUserSelIcon set [3,1];[1] call cTab_fnc_userMenuSelect;";
+			onMouseButtonClick = "cTabUserSelIcon set [3,1];[1,(_this select 5)] call cTab_fnc_userMenuSelect;";
 		};
 		class nebtn: cTab_MenuItem
 		{
@@ -329,7 +460,7 @@ class EnemySub3: cTab_RscControlsGroup
 			w = QUOTE(MENU_W);
 			h = QUOTE(MENU_elementH);
 			sizeEx = QUOTE(MENU_sizeEx);
-			action = "cTabUserSelIcon set [3,2];[1] call cTab_fnc_userMenuSelect;";
+			onMouseButtonClick = "cTabUserSelIcon set [3,2];[1,(_this select 5)] call cTab_fnc_userMenuSelect;";
 		};
 		class ebtn: cTab_MenuItem
 		{
@@ -340,7 +471,7 @@ class EnemySub3: cTab_RscControlsGroup
 			w = QUOTE(MENU_W);
 			h = QUOTE(MENU_elementH);
 			sizeEx = QUOTE(MENU_sizeEx);
-			action = "cTabUserSelIcon set [3,3];[1] call cTab_fnc_userMenuSelect;";
+			onMouseButtonClick = "cTabUserSelIcon set [3,3];[1,(_this select 5)] call cTab_fnc_userMenuSelect;";
 		};
 		class sebtn: cTab_MenuItem
 		{
@@ -351,7 +482,7 @@ class EnemySub3: cTab_RscControlsGroup
 			w = QUOTE(MENU_W);
 			h = QUOTE(MENU_elementH);
 			sizeEx = QUOTE(MENU_sizeEx);
-			action = "cTabUserSelIcon set [3,4];[1] call cTab_fnc_userMenuSelect;";
+			onMouseButtonClick = "cTabUserSelIcon set [3,4];[1,(_this select 5)] call cTab_fnc_userMenuSelect;";
 		};
 		class sbtn: cTab_MenuItem
 		{
@@ -362,7 +493,7 @@ class EnemySub3: cTab_RscControlsGroup
 			w = QUOTE(MENU_W);
 			h = QUOTE(MENU_elementH);
 			sizeEx = QUOTE(MENU_sizeEx);
-			action = "cTabUserSelIcon set [3,5];[1] call cTab_fnc_userMenuSelect;";
+			onMouseButtonClick = "cTabUserSelIcon set [3,5];[1,(_this select 5)] call cTab_fnc_userMenuSelect;";
 		};
 		class swbtn: cTab_MenuItem
 		{
@@ -373,7 +504,7 @@ class EnemySub3: cTab_RscControlsGroup
 			w = QUOTE(MENU_W);
 			h = QUOTE(MENU_elementH);
 			sizeEx = QUOTE(MENU_sizeEx);
-			action = "cTabUserSelIcon set [3,6];[1] call cTab_fnc_userMenuSelect;";
+			onMouseButtonClick = "cTabUserSelIcon set [3,6];[1,(_this select 5)] call cTab_fnc_userMenuSelect;";
 		};
 		class wbtn: cTab_MenuItem
 		{
@@ -384,7 +515,7 @@ class EnemySub3: cTab_RscControlsGroup
 			w = QUOTE(MENU_W);
 			h = QUOTE(MENU_elementH);
 			sizeEx = QUOTE(MENU_sizeEx);
-			action = "cTabUserSelIcon set [3,7];[1] call cTab_fnc_userMenuSelect;";
+			onMouseButtonClick = "cTabUserSelIcon set [3,7];[1,(_this select 5)] call cTab_fnc_userMenuSelect;";
 		};
 		class RscText_1022: cTab_MenuItem
 		{
@@ -395,7 +526,7 @@ class EnemySub3: cTab_RscControlsGroup
 			w = QUOTE(MENU_W);
 			h = QUOTE(MENU_elementH);
 			sizeEx = QUOTE(MENU_sizeEx);
-			action = "cTabUserSelIcon set [3,8];[1] call cTab_fnc_userMenuSelect;";
+			onMouseButtonClick = "cTabUserSelIcon set [3,8];[1,(_this select 5)] call cTab_fnc_userMenuSelect;";
 		};
 		class exit: cTab_MenuExit
 		{
@@ -406,116 +537,7 @@ class EnemySub3: cTab_RscControlsGroup
 			w = QUOTE(MENU_W);
 			h = QUOTE(MENU_elementH);
 			sizeEx = QUOTE(MENU_sizeEx);
-			action = "[0] call cTab_fnc_userMenuSelect;";
-		};
-	};
-};
-
-class EnemySub4: cTab_RscControlsGroup
-{
-	#define cTab_MENU_MAX_ELEMENTS 8
-	idc = 3307;
-	x = QUOTE(MENU_X);
-	y = QUOTE(MENU_Y);
-	w = QUOTE(MENU_W);
-	h = QUOTE(MENU_H(cTab_MENU_MAX_ELEMENTS));
-	class controls
-	{
-		class IGUIBack_2202: cTab_IGUIBack
-		{
-			idc = IDC_USRMN_IGUIBACK_2202;
-			x = 0;
-			y = 0;
-			w = QUOTE(MENU_W);
-			h = QUOTE(MENU_H(cTab_MENU_MAX_ELEMENTS));
-		};
-		class rifle_btn: cTab_MenuItem
-		{
-			idc = -1;
-			text = "Rifle"; //--- ToDo: Localize;
-			x = 0;
-			y = QUOTE(MENU_elementY(1));
-			w = QUOTE(MENU_W);
-			h = QUOTE(MENU_elementH);
-			sizeEx = QUOTE(MENU_sizeEx);
-			action = "cTabUserSelIcon set [1,7];[13] call cTab_fnc_userMenuSelect;";
-		};
-		class lmg_btn: cTab_MenuItem
-		{
-			idc = -1;
-			text = "MG"; //--- ToDo: Localize;
-			x = 0;
-			y = QUOTE(MENU_elementY(2));
-			w = QUOTE(MENU_W);
-			h = QUOTE(MENU_elementH);
-			sizeEx = QUOTE(MENU_sizeEx);
-			action = "cTabUserSelIcon set [1,8];[13] call cTab_fnc_userMenuSelect;";
-		};
-		class at_btn: cTab_MenuItem
-		{
-			idc = -1;
-			text = "AT"; //--- ToDo: Localize;
-			x = 0;
-			y = QUOTE(MENU_elementY(3));
-			w = QUOTE(MENU_W);
-			h = QUOTE(MENU_elementH);
-			sizeEx = QUOTE(MENU_sizeEx);
-			action = "cTabUserSelIcon set [1,9];[13] call cTab_fnc_userMenuSelect;";
-		};
-		class mmg_btn: cTab_MenuItem
-		{
-			idc = -1;
-			text = "Static MG"; //--- ToDo: Localize;
-			x = 0;
-			y = QUOTE(MENU_elementY(4));
-			w = QUOTE(MENU_W);
-			h = QUOTE(MENU_elementH);
-			sizeEx = QUOTE(MENU_sizeEx);
-			action = "cTabUserSelIcon set [1,10];[13] call cTab_fnc_userMenuSelect;";
-		};
-		class mat_btn: cTab_MenuItem
-		{
-			idc = -1;
-			text = "Static AT"; //--- ToDo: Localize;
-			x = 0;
-			y = QUOTE(MENU_elementY(5));
-			w = QUOTE(MENU_W);
-			h = QUOTE(MENU_elementH);
-			sizeEx = QUOTE(MENU_sizeEx);
-			action = "cTabUserSelIcon set [1,11];[13] call cTab_fnc_userMenuSelect;";
-		};
-		class aa_btn: cTab_MenuItem
-		{
-			idc = -1;
-			text = "Static AA"; //--- ToDo: Localize;
-			x = 0;
-			y = QUOTE(MENU_elementY(6));
-			w = QUOTE(MENU_W);
-			h = QUOTE(MENU_elementH);
-			sizeEx = QUOTE(MENU_sizeEx);
-			action = "cTabUserSelIcon set [1,13];[13] call cTab_fnc_userMenuSelect;";
-		};
-		class mmortar_btn: cTab_MenuItem
-		{
-			idc = -1;
-			text = "Mortar"; //--- ToDo: Localize;
-			x = 0;
-			y = QUOTE(MENU_elementY(7));
-			w = QUOTE(MENU_W);
-			h = QUOTE(MENU_elementH);
-			sizeEx = QUOTE(MENU_sizeEx);
-			action = "cTabUserSelIcon set [1,12];[13] call cTab_fnc_userMenuSelect;";
-		};
-		class exit: cTab_MenuExit
-		{
-			idc = -1;
-			text = "Exit"; //--- ToDo: Localize;
-			x = 0;
-			y = QUOTE(MENU_elementY(cTab_MENU_MAX_ELEMENTS));
-			w = QUOTE(MENU_W);
-			h = QUOTE(MENU_elementH);
-			sizeEx = QUOTE(MENU_sizeEx);
-			action = "[0] call cTab_fnc_userMenuSelect;";
+			onMouseButtonClick = "[0,(_this select 5)] call cTab_fnc_userMenuSelect;";
 		};
 	};
 };
@@ -523,7 +545,7 @@ class EnemySub4: cTab_RscControlsGroup
 class CasulSub1: cTab_RscControlsGroup
 {
 	#define cTab_MENU_MAX_ELEMENTS 5
-	idc = 3305;
+	idc = IDC_USRMN_IGUISUB_MED;
 	x = QUOTE(MENU_X);
 	y = QUOTE(MENU_Y);
 	w = QUOTE(MENU_W);
@@ -547,7 +569,7 @@ class CasulSub1: cTab_RscControlsGroup
 			w = QUOTE(MENU_W);
 			h = QUOTE(MENU_elementH);
 			sizeEx = QUOTE(MENU_sizeEx);
-			action = "cTabUserSelIcon set [1,20];[1] call cTab_fnc_userMenuSelect;";
+			onMouseButtonClick = "cTabUserSelIcon set [1,20];[1,(_this select 5)] call cTab_fnc_userMenuSelect;";
 		};
 		class ccpbtn: cTab_MenuItem
 		{
@@ -559,7 +581,7 @@ class CasulSub1: cTab_RscControlsGroup
 			w = QUOTE(MENU_W);
 			h = QUOTE(MENU_elementH);
 			sizeEx = QUOTE(MENU_sizeEx);
-			action = "cTabUserSelIcon set [1,21];[1] call cTab_fnc_userMenuSelect;";
+			onMouseButtonClick = "cTabUserSelIcon set [1,21];[1,(_this select 5)] call cTab_fnc_userMenuSelect;";
 		};
 		class basbtn: cTab_MenuItem
 		{
@@ -571,7 +593,7 @@ class CasulSub1: cTab_RscControlsGroup
 			w = QUOTE(MENU_W);
 			h = QUOTE(MENU_elementH);
 			sizeEx = QUOTE(MENU_sizeEx);
-			action = "cTabUserSelIcon set [1,22];[1] call cTab_fnc_userMenuSelect;";
+			onMouseButtonClick = "cTabUserSelIcon set [1,22];[1,(_this select 5)] call cTab_fnc_userMenuSelect;";
 		};
 		// Mass Casualty Incident
 		class mcibtn: cTab_MenuItem
@@ -584,7 +606,7 @@ class CasulSub1: cTab_RscControlsGroup
 			w = QUOTE(MENU_W);
 			h = QUOTE(MENU_elementH);
 			sizeEx = QUOTE(MENU_sizeEx);
-			action = "cTabUserSelIcon set [1,23];[1] call cTab_fnc_userMenuSelect;";
+			onMouseButtonClick = "cTabUserSelIcon set [1,23];[1,(_this select 5)] call cTab_fnc_userMenuSelect;";
 		};
 		class exit: cTab_MenuExit
 		{
@@ -595,7 +617,7 @@ class CasulSub1: cTab_RscControlsGroup
 			w = QUOTE(MENU_W);
 			h = QUOTE(MENU_elementH);
 			sizeEx = QUOTE(MENU_sizeEx);
-			action = "[0] call cTab_fnc_userMenuSelect;";
+			onMouseButtonClick = "[0,(_this select 5)] call cTab_fnc_userMenuSelect;";
 		};
 	};
 };
@@ -603,7 +625,7 @@ class CasulSub1: cTab_RscControlsGroup
 class GenSub1: cTab_RscControlsGroup
 {
 	#define cTab_MENU_MAX_ELEMENTS 7
-	idc = 3306;
+	idc = IDC_USRMN_IGUISUB_GEN;
 	x = QUOTE(MENU_X);
 	y = QUOTE(MENU_Y);
 	w = QUOTE(MENU_W);
@@ -628,7 +650,7 @@ class GenSub1: cTab_RscControlsGroup
 			w = QUOTE(MENU_W);
 			h = QUOTE(MENU_elementH);
 			sizeEx = QUOTE(MENU_sizeEx);
-			action = "cTabUserSelIcon set [1,30];[1] call cTab_fnc_userMenuSelect;";
+			onMouseButtonClick = "cTabUserSelIcon set [1,30];[1,(_this select 5)] call cTab_fnc_userMenuSelect;";
 		};
 		class lzbtn: cTab_MenuItem
 		{
@@ -640,7 +662,7 @@ class GenSub1: cTab_RscControlsGroup
 			w = QUOTE(MENU_W);
 			h = QUOTE(MENU_elementH);
 			sizeEx = QUOTE(MENU_sizeEx);
-			action = "cTabUserSelIcon set [1,31];[1] call cTab_fnc_userMenuSelect;";
+			onMouseButtonClick = "cTabUserSelIcon set [1,31];[1,(_this select 5)] call cTab_fnc_userMenuSelect;";
 		};
 		class rpbtn: cTab_MenuItem
 		{
@@ -652,7 +674,7 @@ class GenSub1: cTab_RscControlsGroup
 			w = QUOTE(MENU_W);
 			h = QUOTE(MENU_elementH);
 			sizeEx = QUOTE(MENU_sizeEx);
-			action = "cTabUserSelIcon set [1,32];[1] call cTab_fnc_userMenuSelect;";
+			onMouseButtonClick = "cTabUserSelIcon set [1,32];[1,(_this select 5)] call cTab_fnc_userMenuSelect;";
 		};
 		class wpbtn: cTab_MenuItem
 		{
@@ -664,7 +686,7 @@ class GenSub1: cTab_RscControlsGroup
 			w = QUOTE(MENU_W);
 			h = QUOTE(MENU_elementH);
 			sizeEx = QUOTE(MENU_sizeEx);
-			action = "cTabUserSelIcon set [1,33];[1] call cTab_fnc_userMenuSelect;";
+			onMouseButtonClick = "cTabUserSelIcon set [1,33];[1,(_this select 5)] call cTab_fnc_userMenuSelect;";
 		};
 		class objbtn: cTab_MenuItem
 		{
@@ -676,7 +698,7 @@ class GenSub1: cTab_RscControlsGroup
 			w = QUOTE(MENU_W);
 			h = QUOTE(MENU_elementH);
 			sizeEx = QUOTE(MENU_sizeEx);
-			action = "cTabUserSelIcon set [1,34];[1] call cTab_fnc_userMenuSelect;";
+			onMouseButtonClick = "cTabUserSelIcon set [1,34];[1,(_this select 5)] call cTab_fnc_userMenuSelect;";
 		};
 		class minefieldbtn: cTab_MenuItem
 		{
@@ -688,18 +710,18 @@ class GenSub1: cTab_RscControlsGroup
 			w = QUOTE(MENU_W);
 			h = QUOTE(MENU_elementH);
 			sizeEx = QUOTE(MENU_sizeEx);
-			action = "cTabUserSelIcon set [1,35];[1] call cTab_fnc_userMenuSelect;";
+      onMouseButtonClick = "cTabUserSelIcon set [1,35];[1,(_this select 5)] call cTab_fnc_userMenuSelect;";
 		};
 		class exit: cTab_MenuExit
 		{
 			idc = -1;
 			text = "Exit"; //--- ToDo: Localize;
 			x = 0;
-			y = QUOTE(MENU_elementY(7));
+			y = QUOTE(MENU_elementY(cTab_MENU_MAX_ELEMENTS));
 			w = QUOTE(MENU_W);
 			h = QUOTE(MENU_elementH);
 			sizeEx = QUOTE(MENU_sizeEx);
-			action = "[0] call cTab_fnc_userMenuSelect;";
+			onMouseButtonClick = "[0,(_this select 5)] call cTab_fnc_userMenuSelect;";
 		};
 	};
 };
