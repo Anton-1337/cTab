@@ -23,6 +23,9 @@ cTab_userMarkerLists = [];
 if (isNil "cTab_queue_Markers") then {
     cTab_queue_Markers = [];
 };
+if (isNil "cTab_queue_Lines") then {
+    cTab_queue_Lines = [];
+};
 
 // Wait until the main map display (ID 12) is created
 [] spawn {
@@ -79,6 +82,19 @@ if (isNil "cTab_queue_Markers") then {
 				_control drawArrow [_translatedPos, _secondPos, _translatedColor];
 			};
         } forEach (missionNamespace getVariable ["cTab_queue_Markers", []]);
+
+		private _lineColor = _control getVariable ["cTab_MapDrawing_drawColor", [0, 1, 0, 1]];
+
+		{
+			_x params ["_encryptionKey", "_data"];
+
+			_data params ["_transactionId", "_strokes"];
+			// [0,[[2386.91,1458.14],[2388.51,1460.53],[2390.9,1462.91],[2394.88,1466.1],[2398.86,1468.89],[2404.43,1472.07],[2410.01,1475.26],[2416.77,1478.04],[2425.14,1481.23],[2430.71,1483.22],[2437.48,1484.81],[2443.85,1486.01],[2449.02,1486.8],[2453.01,1486.8],[2456.19,1486.8],[2458.18,1486.41],[2459.38,1485.61],[2461.37,1484.02],[2463.76,1481.23],[2465.75,1478.04],[2468.13,1473.67],[2470.13,1469.28],[2472.51,1464.51],[2474.5,1459.33],[2475.7,1454.95],[2477.29,1450.57],[2478.09,1447.39],[2478.88,1444.2],[2479.28,1442.61]]]
+
+			for "_i" from 0 to (count _strokes - 2) do {
+				_control drawLine [_strokes select _i, _strokes select (_i + 1), _lineColor, 16];
+			};
+		} forEach (missionNamespace getVariable ["cTab_queue_Lines", []]);
     }];
 };
 
@@ -326,6 +342,7 @@ cTabColorGreen = [_r,_g,_b,_a];
 cTabColorTeam = [cTabColorBlue,[200/255,0,0,0.8],[0,199/255,0,0.8],[0,0,200/255,0.8],[225/255,225/255,0,0.8]];
 
 // GOL colors
+cTabColorGolBlack = [0.0, 0.0, 0.0, 0.8];
 cTabColorGolRed = [0.9, 0.0, 0.0, 0.8];
 cTabColorGolWhite = [1.0, 1.0, 1.0, 0.8];
 cTabColorGolCiv = [0.4, 0.0, 0.5, 0.8];
@@ -415,6 +432,8 @@ cTabBFTtxt = true;
 
 // Draw Map Tolls (Hook)
 cTabDrawMapTools = false;
+
+cTabUserLineThickness = 16;
 
 // Base defines.
 cTabUavViewActive = false;

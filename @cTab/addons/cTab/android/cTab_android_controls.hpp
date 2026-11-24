@@ -157,6 +157,8 @@ class cTab_android_RscMapControl: cTab_RscMapControl
 	ptsPerSquareRoad = QUOTE(1.5 / cTab_android_DLGtoDSP_fctr);		// roads
 	ptsPerSquareObj = QUOTE(4 / cTab_android_DLGtoDSP_fctr);		// other objects
 
+	onLoad = "_this call cTab_fnc_mapDrawing_OnLoad;";
+
 	/*
 	// replace CustomMark with wedding cake icon
 	class CustomMark

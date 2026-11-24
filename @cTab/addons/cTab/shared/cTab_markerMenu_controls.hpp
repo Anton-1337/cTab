@@ -1,9 +1,9 @@
 class MainSubmenu: cTab_RscControlsGroup
 {
 	#ifndef cTab_IS_TABLET
-		#define cTab_MENU_MAX_ELEMENTS 5
-	#else
 		#define cTab_MENU_MAX_ELEMENTS 6
+	#else
+		#define cTab_MENU_MAX_ELEMENTS 7
 	#endif
 	idc = IDC_USRMN_IGUI_MAIN;
 	x = QUOTE(MENU_X);
@@ -64,6 +64,17 @@ class MainSubmenu: cTab_RscControlsGroup
 			sizeEx = QUOTE(MENU_sizeEx);
 			onMouseButtonClick = "[3304,(_this select 5)] call cTab_fnc_userMenuSelect;";
 		};
+		class dotbtn: cTab_MenuItem
+		{
+			idc = IDC_USRMN_DOTBTN;
+			text = "Text (dot)"; //--- ToDo: Localize;
+			x = 0;
+			y = QUOTE(MENU_elementY(5));
+			w = QUOTE(MENU_W);
+			h = QUOTE(MENU_elementH);
+			sizeEx = QUOTE(MENU_sizeEx);
+			onMouseButtonClick = "cTabUserSelIcon set [1,40];[1,true] call cTab_fnc_userMenuSelect;";
+		};
 		#ifdef cTab_IS_TABLET
 			class lockUavCam: cTab_MenuItem
 			{
@@ -71,7 +82,7 @@ class MainSubmenu: cTab_RscControlsGroup
 				text = "Lock UAV Cam"; //--- ToDo: Localize;
 				toolTip = "Lock UAV Cam to this position, a UAV has to be previously selected";
 				x = 0;
-				y = QUOTE(MENU_elementY(5));
+				y = QUOTE(MENU_elementY(6));
 				w = QUOTE(MENU_W);
 				h = QUOTE(MENU_elementH);
 				sizeEx = QUOTE(MENU_sizeEx);

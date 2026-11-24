@@ -32,7 +32,12 @@ publicVariable "cTab_helmetClass_has_HCam_server";
 cTab_queue_Markers = [];
 publicVariable "cTab_queue_Markers";
 
+// define queue for drawn lines to be processed and broadcast it
+cTab_queue_Lines = [];
+publicVariable "cTab_queue_Lines";
+
 cTab_userMarkerLists = [];
+cTab_userLinesTransactionId = -1;
 cTab_userMarkerTransactionId = -1;
 
 [] spawn {

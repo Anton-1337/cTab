@@ -7,6 +7,7 @@ class CfgFunctions
 			file="cTab\functions";
 			class addNotification{};
 			class addToPairs{};
+      class addUserLine{};
 			class addUserMarker{};
 			class centerMapOnPlayerPosition{};
 			class checkGear{};
@@ -18,6 +19,7 @@ class CfgFunctions
 			class degreeToOctant{};
 			class deleteHelmetCam{};
 			class deleteUAVcam{};
+      class deleteUserLine{};
 			class deleteUserMarker{};
 			class dirTo{};
 			class distance2D{};
@@ -38,6 +40,8 @@ class CfgFunctions
 			class lockUavCamTo{};
       class dialogMarkerNameClickOK{};
       class dialogMarkerNameClickCancel{};
+      class mapDrawing_DeleteNearest{};
+      class mapDrawing_OnLoad{};
 			class onIfKeyDown{};
 			class onIfClose{};
 			class onIfOpen{};

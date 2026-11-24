@@ -68,6 +68,8 @@ _texture1 = call {
 	if (_markerIcon == 34) exitWith {"\A3\ui_f\data\map\markers\military\objective_CA.paa"}; // Objective
 	if (_markerIcon == 35) exitWith {"\a3\Ui_F_Curator\Data\CfgMarkers\minefield_ca.paa"}; // Minefield
 
+	if (_markerIcon == 40) exitWith {"\A3\ui_f\data\map\markers\handdrawn\dot_CA.paa"}; // Dot
+
 	""
 };
 
@@ -75,6 +77,7 @@ _color = call {
 	if (_markerIcon < 20) exitWith {cTabColorRed};
 	if (_markerIcon < 30) exitWith {cTabColorGreen};
 	if (_markerIcon == 35) exitWith {cTabColorGolRed};
+	if (_markerIcon == 40) exitWith {cTabColorGolBlack};
 
 	cTabColorBlue
 };

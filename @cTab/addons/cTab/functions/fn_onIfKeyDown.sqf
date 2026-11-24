@@ -70,6 +70,8 @@ if (_dikCode == DIK_DELETE && {cTabCursorOnMap}) exitWith {
 	_markerIndex = [_ctrlScreen,cTabMapCursorPos] call cTab_fnc_findUserMarker;
 	if (_markerIndex != -1) then {
 		[call cTab_fnc_getPlayerEncryptionKey,_markerIndex] call cTab_fnc_deleteUserMarker;
+	} else {
+		[_ctrlScreen] call cTab_fnc_mapDrawing_DeleteNearest;
 	};
 	true
 };
