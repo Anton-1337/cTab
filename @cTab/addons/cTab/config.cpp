@@ -20,18 +20,18 @@
 class CfgPatches
 {
 	class PREFIX  // cTab
-		{
-			units[] = {"Box_cTab_items"};
-			weapons[] = {"ItemcTab","ItemAndroid","ItemMicroDAGR","ItemcTabHCam"};
-			requiredVersion = REQUIRED_VERSION;
-			requiredAddons[] = {"CBA_MAIN"};
-			versionDesc = "cTab";
-			version = QUOTE(VERSION);
-			versionStr = QUOTE(VERSION);
-			versionAr[] = {VERSION_AR};
-			author[] = {"Gundy","Riouken","Raspu"};
-			authorUrl = "https://github.com/Riouken/cTab";
-		};
+	{
+		units[] = {"Box_cTab_items"};
+		weapons[] = {"ItemcTab","ItemAndroid","ItemMicroDAGR","ItemcTabHCam"};
+		requiredVersion = REQUIRED_VERSION;
+		requiredAddons[] = {"CBA_MAIN"};
+		versionDesc = "cTab";
+		version = QUOTE(VERSION);
+		versionStr = QUOTE(VERSION);
+		versionAr[] = {VERSION_AR};
+		author[] = {"Gundy","Riouken","Raspu"};
+		authorUrl = "https://github.com/Riouken/cTab";
+	};
 };
 
 class CfgSettings 
@@ -253,5 +253,93 @@ class CfgSounds
 	{
 		sound[] = {"\cTab\sounds\mailSent.wss",1,1};
 		titles[] = {};
+	};
+};
+
+class CfgMarkers
+{
+	class o_inf_rifle
+	{
+		name="Infantry rifleman";
+		icon="\cTab\img\o_inf_rifle.paa";
+		color[] = {"(profilenamespace getvariable ['Map_OPFOR_R',0])","(profilenamespace getvariable ['Map_OPFOR_G',1])","(profilenamespace getvariable ['Map_OPFOR_B',1])","(profilenamespace getvariable ['Map_OPFOR_A',0.8])"};
+		scope = 2;
+		shadow = 0;
+		size=29;
+		showEditorMarkerColor = 1;
+		side = 0;
+		markerClass = "NATO_OPFOR";
+	};
+	class o_inf_mg
+	{
+		name="Infantry MG";
+		icon="\cTab\img\o_inf_mg.paa";
+		color[] = {"(profilenamespace getvariable ['Map_OPFOR_R',0])","(profilenamespace getvariable ['Map_OPFOR_G',1])","(profilenamespace getvariable ['Map_OPFOR_B',1])","(profilenamespace getvariable ['Map_OPFOR_A',0.8])"};
+		scope = 2;
+		shadow = 0;
+		size=29;
+		showEditorMarkerColor = 1;
+		side = 0;
+		markerClass = "NATO_OPFOR";
+	};
+	class o_inf_at
+	{
+		name="Infantry AT";
+		icon="\cTab\img\o_inf_at.paa";
+		color[] = {"(profilenamespace getvariable ['Map_OPFOR_R',0])","(profilenamespace getvariable ['Map_OPFOR_G',1])","(profilenamespace getvariable ['Map_OPFOR_B',1])","(profilenamespace getvariable ['Map_OPFOR_A',0.8])"};
+		scope = 2;
+		shadow = 0;
+		size=29;
+		showEditorMarkerColor = 1;
+		side = 0;
+		markerClass = "NATO_OPFOR";
+	};
+	class o_inf_aa
+	{
+		name="Infantry AA";
+		icon="\cTab\img\o_inf_aa.paa";
+		color[] = {"(profilenamespace getvariable ['Map_OPFOR_R',0])","(profilenamespace getvariable ['Map_OPFOR_G',1])","(profilenamespace getvariable ['Map_OPFOR_B',1])","(profilenamespace getvariable ['Map_OPFOR_A',0.8])"};
+		scope = 2;
+		shadow = 0;
+		size=29;
+		showEditorMarkerColor = 1;
+		side = 0;
+		markerClass = "NATO_OPFOR";
+	};
+	class o_inf_mmg
+	{
+		name="Infantry Static MG";
+		icon="\cTab\img\o_inf_mmg.paa";
+		color[] = {"(profilenamespace getvariable ['Map_OPFOR_R',0])","(profilenamespace getvariable ['Map_OPFOR_G',1])","(profilenamespace getvariable ['Map_OPFOR_B',1])","(profilenamespace getvariable ['Map_OPFOR_A',0.8])"};
+		scope = 2;
+		shadow = 0;
+		size=29;
+		showEditorMarkerColor = 1;
+		side = 0;
+		markerClass = "NATO_OPFOR";
+	};
+	class o_inf_mat
+	{
+		name="Infantry Static AT";
+		icon="\cTab\img\o_inf_mat.paa";
+		color[] = {"(profilenamespace getvariable ['Map_OPFOR_R',0])","(profilenamespace getvariable ['Map_OPFOR_G',1])","(profilenamespace getvariable ['Map_OPFOR_B',1])","(profilenamespace getvariable ['Map_OPFOR_A',0.8])"};
+		scope = 2;
+		shadow = 0;
+		size=29;
+		showEditorMarkerColor = 1;
+		side = 0;
+		markerClass = "NATO_OPFOR";
+	};
+	class o_inf_mmortar
+	{
+		name="Infantry Static Mortar";
+		icon="\cTab\img\o_inf_mmortar.paa";
+		color[] = {"(profilenamespace getvariable ['Map_OPFOR_R',0])","(profilenamespace getvariable ['Map_OPFOR_G',1])","(profilenamespace getvariable ['Map_OPFOR_B',1])","(profilenamespace getvariable ['Map_OPFOR_A',0.8])"};
+		scope = 2;
+		shadow = 0;
+		size=29;
+		showEditorMarkerColor = 1;
+		side = 0;
+		markerClass = "NATO_OPFOR";
 	};
 };

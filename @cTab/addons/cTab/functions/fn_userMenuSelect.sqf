@@ -72,24 +72,23 @@ call {
 		[cTabUserSelIcon select 0] call cTab_fnc_lockUavCamTo;
 	};
 
-	_idcToShow = call {
-		if (_type == 11) exitWith {3301};
-		if (_type == 12) exitWith {3303};
-		if (_type == 13) exitWith {3304};
-		if (_type == 14) exitWith {
-			if (cTabUserSelIcon select 1 != 0) then {
-				cTabUserSelIcon set [2,0];
-				3304
-			} else {3307};
-		};
-		if (_type == 21) exitWith {3305};
-		if (_type == 31) exitWith {3306};
-		_type;
-	};
+	_idcToShow = _type;
 };
 
 // Hide all menu controls
-{ctrlShow [_x,false];} count [3300,3301,3302,3303,3304,3305,3306,3307];
+{ctrlShow [_x,false];} forEach [
+	IDC_USRMN_IGUI_MAIN,
+
+	IDC_USRMN_IGUI_FORCES,
+	IDC_USRMN_IGUI_SUPPORT,
+	IDC_USRMN_IGUISUB_MED,
+	IDC_USRMN_IGUISUB_GEN,
+
+	IDC_USRMN_IGUISUB_SIZE,
+	IDC_USRMN_IGUISUB_DIR,
+
+	IDC_USRMN_IGUISUB_DONE
+];
 
 // Bring the menu control we want to show into position and show it
 if (_idcToShow != 0) then {
