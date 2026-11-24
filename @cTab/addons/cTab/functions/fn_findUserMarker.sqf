@@ -27,13 +27,18 @@ _searchPos = _this select 1;
 _targetRadius = cTabIconSize * 2 * (ctrlMapScale (_this select 0)) * cTabMapScaleFactor;
 _maxDistance = _searchPos distanceSqr [(_searchPos select 0) + _targetRadius,(_searchPos select 1) + _targetRadius];
 
+_encryptionKey = call cTab_fnc_getPlayerEncryptionKey;
+
 // find closest user marker within _maxDistance
 {
-	_distance = _searchPos distanceSqr (_x select 1 select 0);
-	if (_distance <= _maxDistance) then {
-		_maxDistance = _distance;
-		_return = _x select 0;
+	// _x: ["c",[0,[[2431.9,1466.1],1,2,2,"12:00",wpl]]]
+	if ((_x select 0) == _encryptionKey) then {
+		_distance = _searchPos distanceSqr (_x select 1 select 1 select 0);
+		if (_distance <= _maxDistance) then {
+			_maxDistance = _distance;
+			_return = (_x select 1 select 0);
+		};
 	};
-} count cTabUserMarkerList;
+} forEach cTab_queue_Markers;
 
 _return

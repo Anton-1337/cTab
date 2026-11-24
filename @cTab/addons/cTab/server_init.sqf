@@ -28,6 +28,10 @@ if (isArray (ConfigFile >> "cTab_settings" >> "cTab_helmetClass_has_HCam")) then
 };
 publicVariable "cTab_helmetClass_has_HCam_server";
 
+// define queue for markers to be processed and broadcast it
+cTab_queue_Markers = [];
+publicVariable "cTab_queue_Markers";
+
 cTab_userMarkerLists = [];
 cTab_userMarkerTransactionId = -1;
 

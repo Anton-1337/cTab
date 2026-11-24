@@ -38,8 +38,8 @@ private ["_pos","_markerIcon","_texture1","_markerSize","_texture2","_markerDir"
 
 _pos = _this select 0;
 
-_color = cTabColorRed;
 _markerIcon = _this select 1;
+
 _texture1 = call {
 	if (_markerIcon == 0) exitWith {"\A3\ui_f\data\map\markers\nato\o_inf.paa"};
 	if (_markerIcon == 1) exitWith {"\A3\ui_f\data\map\markers\nato\o_mech_inf.paa"};
@@ -55,24 +55,32 @@ _texture1 = call {
 	if (_markerIcon == 11) exitWith {"\cTab\img\o_inf_mat.paa"};
 	if (_markerIcon == 12) exitWith {"\cTab\img\o_inf_mmortar.paa"};
 	if (_markerIcon == 13) exitWith {"\cTab\img\o_inf_aa.paa"};
-	_color = cTabColorGreen;
+
 	if (_markerIcon == 20) exitWith {"\A3\ui_f\data\map\markers\military\join_CA.paa"};
 	if (_markerIcon == 21) exitWith {"\A3\ui_f\data\map\markers\military\circle_CA.paa"};
 	if (_markerIcon == 22) exitWith {"\A3\ui_f\data\map\mapcontrol\Hospital_CA.paa"};
 	if (_markerIcon == 23) exitWith {"\A3\ui_f\data\map\markers\military\warning_CA.paa"};
-	_color = cTabColorBlue;
+
 	if (_markerIcon == 30) exitWith {"\A3\ui_f\data\map\markers\nato\b_hq.paa"};
 	if (_markerIcon == 31) exitWith {"\A3\ui_f\data\map\markers\military\end_CA.paa"};
 	if (_markerIcon == 32) exitWith {"\A3\ui_f\data\map\markers\military\join_CA.paa"}; // Rally point
 	if (_markerIcon == 33) exitWith {"\A3\ui_f\data\map\markers\military\flag_CA.paa"}; // Waypoint
 	if (_markerIcon == 34) exitWith {"\A3\ui_f\data\map\markers\military\objective_CA.paa"}; // Objective
-	_color = cTabColorGolRed;
 	if (_markerIcon == 35) exitWith {"\a3\Ui_F_Curator\Data\CfgMarkers\minefield_ca.paa"}; // Minefield
 
 	""
 };
 
+_color = call {
+	if (_markerIcon < 20) exitWith {cTabColorRed};
+	if (_markerIcon < 30) exitWith {cTabColorGreen};
+	if (_markerIcon == 35) exitWith {cTabColorGolRed};
+
+	cTabColorBlue
+};
+
 _markerSize = _this select 2;
+
 _texture2 = call {
 	if (_markerSize == 0) exitWith {""};
 	if (_markerSize == 1) exitWith {"\A3\ui_f\data\map\markers\nato\group_0.paa"};
@@ -83,6 +91,7 @@ _texture2 = call {
 };
 
 _markerDir = _this select 3;
+
 _dir = call {
 	if (_markerDir == 0) exitWith {400};
 	if (_markerDir == 1) exitWith {0};
@@ -97,6 +106,7 @@ _dir = call {
 };
 
 _text = _this select 4;
+
 _align = if ((_dir > 0) && (_dir < 180)) then {"left"} else {"right"};
 
 [_pos,_texture1,_texture2,_dir,_color,_text,_align]

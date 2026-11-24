@@ -20,6 +20,81 @@ cTab_userMarkerTransactionId = -1;
 cTab_userMarkerLists = [];
 [] call cTab_fnc_getUserMarkerList;
 
+if (isNil "cTab_queue_Markers") then {
+    cTab_queue_Markers = [];
+};
+
+// Wait until the main map display (ID 12) is created
+[] spawn {
+    waitUntil { !isNull (findDisplay 12) };
+    
+    private _regularMapCtrl = (findDisplay 12) displayCtrl 51;
+    
+    _regularMapCtrl ctrlAddEventHandler ["Draw", {
+        params ["_control"];
+        
+        // Read the latest synced array every frame the map is visible
+        {
+			// ["c",[0,[[2466.54,1482.82],2,3,2,"12:00",wpl]]]
+            _x params ["_transactionId", "_markerData"];
+
+			_pos = (_markerData select 1) select 0;
+			_icon = (_markerData select 1) select 1;
+			_color = (_markerData select 1) select 2;
+			_dir = (_markerData select 1) select 3;
+			_text = (_markerData select 1) select 4;
+
+			// [[0,[[2466.54,1482.82],2,3,2,"12:00",wpl]],"","",700,[0,0.3,0.6,1],"12:00","right"]
+			_translatedUserMarker = [_pos, _icon, _color, _dir, _text] call cTab_fnc_translateUserMarker;
+
+			/*
+				_translatedUserMarker: [_pos,_texture1,_texture2,_dir,_color,_text,_align]
+				Index 0: ARRAY  - marker position
+				Index 1: STRING - path to marker icon
+				Index 2: STRING - path to marker size icon
+				Index 3: STRING - direction of reported movement
+				Index 4: ARRAY  - marker color
+				Index 5: STRING - marker time
+				Index 6: STRING - text alignment
+			*/
+            
+            // Draw the custom icon
+			_translatedPos = _translatedUserMarker select 0;
+			_translatedTexture1 = _translatedUserMarker select 1;
+			_translatedTexture2 = _translatedUserMarker select 2;
+			_translatedDir = _translatedUserMarker select 3;
+			_translatedColor = _translatedUserMarker select 4;
+			_translatedText = _translatedUserMarker select 5;
+			_translatedAlign = _translatedUserMarker select 6;
+			
+			_control drawIcon [_translatedTexture1, _translatedColor, _translatedPos, cTabIconSize, cTabIconSize, 0, _translatedText, 0, cTabTxtSize, "TahomaB", _translatedAlign];
+			
+			if (_translatedTexture2 != "") then {
+				_control drawIcon [_translatedTexture2, _translatedColor, _translatedPos, cTabGroupOverlayIconSize, cTabGroupOverlayIconSize, 0, "", 0, cTabTxtSize, "TahomaB", "right"];
+			};
+
+			if (_translatedDir < 360) then {
+				_arrowLength = cTabUserMarkerArrowSize * ctrlMapScale _control;
+				_secondPos = [_translatedPos, _arrowLength, _translatedDir] call BIS_fnc_relPos;
+				_control drawArrow [_translatedPos, _secondPos, _translatedColor];
+			};
+        } forEach (missionNamespace getVariable ["cTab_queue_Markers", []]);
+    }];
+};
+
+// "cTab_queue_Markers" addPublicVariableEventHandler {
+//     params ["_varName", "_value"];
+//     // Update UI, markers, or local state on the client
+//     _cntrlScreen = _this select 0;
+// 	_display = ctrlParent _cntrlScreen;
+	
+// 	cTabMapWorldPos = [_cntrlScreen] call cTab_fnc_ctrlMapCenter;
+// 	cTabMapScale = ctrlMapScale _cntrlScreen;
+
+// 	[_cntrlScreen,true] call cTab_fnc_drawUserMarkers;
+// 	[_cntrlScreen,0] call cTab_fnc_drawBftMarkers;
+// };
+
 // Set up side specific encryption keys
 if (isNil "cTab_encryptionKey_west") then {
 	cTab_encryptionKey_west = "b";
@@ -722,7 +797,7 @@ cTabOnDrawbft = {
 	cTabMapWorldPos = [_cntrlScreen] call cTab_fnc_ctrlMapCenter;
 	cTabMapScale = ctrlMapScale _cntrlScreen;
 
-	// [_cntrlScreen,true] call cTab_fnc_drawUserMarkers;
+	[_cntrlScreen,true] call cTab_fnc_drawUserMarkers;
 	[_cntrlScreen,0] call cTab_fnc_drawBftMarkers;
 	
 	// draw directional arrow at own location
@@ -747,7 +822,7 @@ cTabOnDrawbftVeh = {
 	cTabMapWorldPos = [_cntrlScreen] call cTab_fnc_ctrlMapCenter;
 	cTabMapScale = ctrlMapScale _cntrlScreen;
 	
-	// [_cntrlScreen,true] call cTab_fnc_drawUserMarkers;
+	[_cntrlScreen,true] call cTab_fnc_drawUserMarkers;
 	[_cntrlScreen,0] call cTab_fnc_drawBftMarkers;
 	
 	// draw directional arrow at own location
@@ -780,7 +855,7 @@ cTabOnDrawbftTAD = {
 	_cntrlScreen ctrlMapAnimAdd [0, cTabMapScale, _playerPos];
 	ctrlMapAnimCommit _cntrlScreen;
 	
-	// [_cntrlScreen,false] call cTab_fnc_drawUserMarkers;
+	[_cntrlScreen,false] call cTab_fnc_drawUserMarkers;
 	[_cntrlScreen,1] call cTab_fnc_drawBftMarkers;
 	
 	// draw vehicle icon at own location
@@ -803,7 +878,7 @@ cTabOnDrawbftTADdialog = {
 	cTabMapWorldPos = [_cntrlScreen] call cTab_fnc_ctrlMapCenter;
 	cTabMapScale = ctrlMapScale _cntrlScreen;
 	
-	// [_cntrlScreen,true] call cTab_fnc_drawUserMarkers;
+	[_cntrlScreen,true] call cTab_fnc_drawUserMarkers;
 	[_cntrlScreen,1] call cTab_fnc_drawBftMarkers;
 	
 	// draw vehicle icon at own location
@@ -830,7 +905,7 @@ cTabOnDrawbftAndroid = {
 	cTabMapWorldPos = [_cntrlScreen] call cTab_fnc_ctrlMapCenter;
 	cTabMapScale = ctrlMapScale _cntrlScreen;
 
-	// [_cntrlScreen,true] call cTab_fnc_drawUserMarkers;
+	[_cntrlScreen,true] call cTab_fnc_drawUserMarkers;
 	[_cntrlScreen,0] call cTab_fnc_drawBftMarkers;
 	
 	// draw directional arrow at own location
@@ -860,7 +935,7 @@ cTabOnDrawbftAndroidDsp = {
 	_cntrlScreen ctrlMapAnimAdd [0, cTabMapScale, _playerPos];
 	ctrlMapAnimCommit _cntrlScreen;
 	
-	// [_cntrlScreen,false] call cTab_fnc_drawUserMarkers;
+	[_cntrlScreen,false] call cTab_fnc_drawUserMarkers;
 	[_cntrlScreen,0] call cTab_fnc_drawBftMarkers;
 	
 	// draw directional arrow at own location
@@ -882,7 +957,7 @@ cTabOnDrawbftmicroDAGRdsp = {
 	_cntrlScreen ctrlMapAnimAdd [0, cTabMapScale, _playerPos];
 	ctrlMapAnimCommit _cntrlScreen;
 	
-	// [_cntrlScreen,false] call cTab_fnc_drawUserMarkers;
+	[_cntrlScreen,false] call cTab_fnc_drawUserMarkers;
 	[_cntrlScreen,cTabMicroDAGRmode] call cTab_fnc_drawBftMarkers;
 	
 	// draw directional arrow at own location
@@ -904,7 +979,7 @@ cTabOnDrawbftMicroDAGRdlg = {
 	_playerPos = getPosASL _veh;
 	_heading = direction _veh;
 	
-	// [_cntrlScreen,false] call cTab_fnc_drawUserMarkers;
+	[_cntrlScreen,false] call cTab_fnc_drawUserMarkers;
 	[_cntrlScreen,cTabMicroDAGRmode] call cTab_fnc_drawBftMarkers;
 	
 	// draw directional arrow at own location
@@ -927,7 +1002,7 @@ cTabOnDrawUAV = {
 	_display = ctrlParent _cntrlScreen;
 	_pos = getPosASL cTabActUav;
 	
-	// [_cntrlScreen,false] call cTab_fnc_drawUserMarkers;
+	[_cntrlScreen,false] call cTab_fnc_drawUserMarkers;
 	[_cntrlScreen,0] call cTab_fnc_drawBftMarkers;
 	
 	// draw icon at own location
@@ -951,7 +1026,7 @@ cTabOnDrawHCam = {
 	_display = ctrlParent _cntrlScreen;
 	_pos = getPosASL _camHost;
 	
-	// [_cntrlScreen,false] call cTab_fnc_drawUserMarkers;
+	[_cntrlScreen,false] call cTab_fnc_drawUserMarkers;
 	[_cntrlScreen,0] call cTab_fnc_drawBftMarkers;
 	
 	// draw icon at own location
