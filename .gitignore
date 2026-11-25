@@ -1,4 +1,5 @@
 texHeaders.bin
 @cTab/.hemtt/
-@cTab/.hemttout
+@cTab/.hemttout/
+@cTab/releases/
 @cTab/hemtt.exe

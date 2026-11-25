@@ -26,4 +26,4 @@ cTabUserSelIcon set [0,[_tempWorldPos select 0,_tempWorldPos select 1]];
 _time = call cTab_fnc_currentTime;
 cTabUserSelIcon set [4,_time];
 
-[_mainPop] call cTab_fnc_userMenuSelect;
+[_mainPop,false] call cTab_fnc_userMenuSelect;
