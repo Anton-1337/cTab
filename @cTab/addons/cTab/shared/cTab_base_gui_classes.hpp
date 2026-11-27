@@ -382,6 +382,126 @@ class cTab_RscCombo
 	font = "PuristaMedium";
 	sizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 1)";
 };
+class cTab_RscComboBox
+{
+	access = 0;
+	type = 4;
+	colorSelect[] =
+	{
+		0,
+		0,
+		0,
+		1
+	};
+	colorText[] =
+	{
+		1,
+		1,
+		1,
+		1
+	};
+	colorBackground[] =
+	{
+		0,
+		0,
+		0,
+		1
+	};
+	colorScrollBar[] =
+	{
+		1,
+		0,
+		0,
+		1
+	};
+	soundSelect[] =
+	{
+		"\A3\ui_f\data\sound\RscCombo\soundSelect",
+		0.1,
+		1
+	};
+	soundExpand[] =
+	{
+		"\A3\ui_f\data\sound\RscCombo\soundExpand",
+		0.1,
+		1
+	};
+	soundCollapse[] =
+	{
+		"\A3\ui_f\data\sound\RscCombo\soundCollapse",
+		0.1,
+		1
+	};
+	maxHistoryDelay = 1;
+	class ComboScrollBar
+	{
+		color[] =
+		{
+			1,
+			1,
+			1,
+			0.6
+		};
+		colorActive[] =
+		{
+			1,
+			1,
+			1,
+			1
+		};
+		colorDisabled[] =
+		{
+			1,
+			1,
+			1,
+			0.3
+		};
+		shadow = 0;
+		thumb = "\A3\ui_f\data\gui\cfg\scrollbar\thumb_ca.paa";
+		arrowFull = "\A3\ui_f\data\gui\cfg\scrollbar\arrowFull_ca.paa";
+		arrowEmpty = "\A3\ui_f\data\gui\cfg\scrollbar\arrowEmpty_ca.paa";
+		border = "\A3\ui_f\data\gui\cfg\scrollbar\border_ca.paa";
+	};
+	style = 16;
+	x = 0;
+	y = 0;
+	w = 0.12;
+	h = 0.035;
+	shadow = 0;
+	colorSelectBackground[] =
+	{
+		1,
+		1,
+		1,
+		0.7
+	};
+	arrowEmpty = "\A3\ui_f\data\GUI\RscCommon\rsccombo\arrow_combo_ca.paa";
+	arrowFull = "\A3\ui_f\data\GUI\RscCommon\rsccombo\arrow_combo_active_ca.paa";
+	wholeHeight = 0.45;
+	color[] =
+	{
+		1,
+		1,
+		1,
+		1
+	};
+	colorActive[] =
+	{
+		1,
+		0,
+		0,
+		1
+	};
+	colorDisabled[] =
+	{
+		1,
+		1,
+		1,
+		0.25
+	};
+	font = "PuristaMedium";
+	sizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 1)";
+};
 class cTab_RscListBox
 {
 	access = 0;

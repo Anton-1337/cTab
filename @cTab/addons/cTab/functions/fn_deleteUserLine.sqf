@@ -26,13 +26,9 @@
 
 private ["_encryptionKey","_lineIndex","_transactionId"];
 
-diag_log format ["[cTab_fnc_deleteUserLine] - _this: %1", _this];
-
 _encryptionKey = _this select 0;
 _lineIndex = _this select 1;
 _transactionId = _this select 2; // not set when initiated from client
-
-diag_log format ["[cTab_fnc_deleteUserLine] - _encryptionKey: %1, _lineIndex: %2, _transactionId: %3", _encryptionKey, _lineIndex, _transactionId];
 
 call {
 	// If received on the server

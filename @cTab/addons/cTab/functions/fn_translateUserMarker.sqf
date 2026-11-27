@@ -14,6 +14,7 @@
 			Index 3: INTEGER - octant of reported movement
 			Index 4: STRING  - marker time
 			Index 5: OBJECT  - marker creator
+			Index 6: ARRAY   - marker color
 			
 		Translated marker data format:
 			Index 0: ARRAY  - marker position
@@ -34,11 +35,13 @@
 		[[1714.35,5716.82],0,0,0,"12:00"] call cTab_fnc_translateUserMarker;
 */
 
+params ["_markerData"];
+
 private ["_pos","_markerIcon","_texture1","_markerSize","_texture2","_markerDir","_dir","_text","_align"];
 
-_pos = _this select 0;
+_pos = _markerData select 0;
 
-_markerIcon = _this select 1;
+_markerIcon = _markerData select 1;
 
 _texture1 = call {
 	if (_markerIcon == 0) exitWith {"\A3\ui_f\data\map\markers\nato\o_inf.paa"};
@@ -74,6 +77,7 @@ _texture1 = call {
 };
 
 _color = call {
+	if ((count _markerData) > 6) exitWith {_markerData select 6};
 	if (_markerIcon < 20) exitWith {cTabColorRed};
 	if (_markerIcon < 30) exitWith {cTabColorGreen};
 	if (_markerIcon == 35) exitWith {cTabColorGolRed};
@@ -82,7 +86,7 @@ _color = call {
 	cTabColorBlue
 };
 
-_markerSize = _this select 2;
+_markerSize = _markerData select 2;
 
 _texture2 = call {
 	if (_markerSize == 0) exitWith {""};
@@ -93,7 +97,7 @@ _texture2 = call {
 	""
 };
 
-_markerDir = _this select 3;
+_markerDir = _markerData select 3;
 
 _dir = call {
 	if (_markerDir == 0) exitWith {400};
@@ -108,7 +112,7 @@ _dir = call {
 	700
 };
 
-_text = _this select 4;
+_text = _markerData select 4;
 
 _align = if ((_dir > 0) && (_dir < 180)) then {"left"} else {"right"};
 

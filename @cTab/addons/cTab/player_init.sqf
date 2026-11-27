@@ -15,6 +15,10 @@ if (!hasInterface) exitWith {};
 cTabRscLayer = ["cTab"] call BIS_fnc_rscLayer;
 cTabRscLayerMailNotification = ["cTab_mailNotification"] call BIS_fnc_rscLayer;
 
+// Set up dropdown variables
+cTabDropdownSelectedMapDrawingColor = [0, 0, 0, 1];
+cTabDropdownSelectedMapDrawingThickness = 16;
+
 // Set up user markers
 cTab_userMarkerTransactionId = -1;
 cTab_userMarkerLists = [];
@@ -342,13 +346,14 @@ cTabColorGreen = [_r,_g,_b,_a];
 cTabColorTeam = [cTabColorBlue,[200/255,0,0,0.8],[0,199/255,0,0.8],[0,0,200/255,0.8],[225/255,225/255,0,0.8]];
 
 // GOL colors
-cTabColorGolBlack = [0.0, 0.0, 0.0, 0.8];
-cTabColorGolRed = [0.9, 0.0, 0.0, 0.8];
-cTabColorGolWhite = [1.0, 1.0, 1.0, 0.8];
 cTabColorGolCiv = [0.4, 0.0, 0.5, 0.8];
-cTabColorGolOrange = [0.85, 0.4, 0.0, 0.8];
-cTabColorGolGreen = [0.0, 0.8, 0.0, 0.8];
-cTabColorGolYellow = [0.85, 0.85, 0.0, 0.8];
+cTabColorGolBlack = [0.0, 0.0, 0.0, 0.8];
+cTabColorGolWhite = [1.0, 1.0, 1.0, 0.8];
+cTabColorGolBlue = [0.0, 0.0, 1.0, 0.8];
+cTabColorGolGreen = [0.0, 1.0, 0.0, 0.8];
+cTabColorGolYellow = [1.0, 1.0, 0.0, 0.8];
+cTabColorGolOrange = [1.0, 0.5, 0.0, 0.8];
+cTabColorGolRed = [1.0, 0.0, 0.0, 0.8];
 
 // define vehicles that have FBCB2 monitor
 if (isNil "cTab_vehicleClass_has_FBCB2") then {
@@ -432,8 +437,6 @@ cTabBFTtxt = true;
 
 // Draw Map Tolls (Hook)
 cTabDrawMapTools = false;
-
-cTabUserLineThickness = 16;
 
 // Base defines.
 cTabUavViewActive = false;

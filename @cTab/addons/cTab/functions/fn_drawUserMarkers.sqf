@@ -75,9 +75,10 @@ _cursorMarkerIndex = if (_highlight) then {[_control, cTabMapCursorPos] call cTa
 		*/
 
 		_transactionId = _data select 0;
-		_markerData = _data select 1; // [[2441.46,1468.89],1,2,2,""12:00"",wpl]
+		_markerData = _data select 1; // [[2441.46,1468.89],1,2,2,""12:00"",wpl,[0,0,0,1]]
 
-		_translatedUserMarker = [(_markerData select 0), (_markerData select 1), (_markerData select 2), (_markerData select 3), (_markerData select 4)] call cTab_fnc_translateUserMarker;
+		// _translatedUserMarker = [(_markerData select 0), (_markerData select 1), (_markerData select 2), (_markerData select 3), (_markerData select 4)] call cTab_fnc_translateUserMarker;
+		_translatedUserMarker = [_markerData] call cTab_fnc_translateUserMarker;
 
 		// [[2451.02,1484.02],"\A3\ui_f\data\map\markers\nato\o_mech_inf.paa","\A3\ui_f\data\map\markers\nato\group_1.paa",45,[0.5,0,0,1],"12:00","left"]
 		_pos = _translatedUserMarker select 0;

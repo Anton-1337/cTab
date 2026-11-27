@@ -24,11 +24,13 @@
 		["bluefor",[21,[[1714.35,5716.82],[1713.12,5720.65]]],157] call cTab_fnc_addUserLine;
 */
 
-private ["_encryptionKey","_strokes","_transactionId"];
+private ["_encryptionKey","_strokes", "_color", "_thickness", "_transactionId"];
 
 _encryptionKey = _this select 0;
 _strokes = _this select 1;
-_transactionId = _this select 2; // not set when initiated from client
+_color = _this select 2;
+_thickness = _this select 3;
+_transactionId = _this select 4; // not set when initiated from client
 
 call {
 	// If received on the server
@@ -38,7 +40,7 @@ call {
 			cTab_userLinesTransactionId = cTab_userLinesTransactionId + 1;
 			_transactionId = cTab_userLinesTransactionId;
 
-			cTab_queue_Lines pushBack [_encryptionKey,[_transactionId,_strokes]];
+			cTab_queue_Lines pushBack [_encryptionKey,[_transactionId,_strokes,_color,_thickness]];
 			publicVariable "cTab_queue_Lines";
 		};
 	};

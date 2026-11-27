@@ -67,7 +67,7 @@ class MainSubmenu: cTab_RscControlsGroup
 		class dotbtn: cTab_MenuItem
 		{
 			idc = IDC_USRMN_DOTBTN;
-			text = "Text (dot)"; //--- ToDo: Localize;
+			text = "Dot (text)"; //--- ToDo: Localize;
 			x = 0;
 			y = QUOTE(MENU_elementY(5));
 			w = QUOTE(MENU_W);

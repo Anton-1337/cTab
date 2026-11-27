@@ -36,6 +36,10 @@ call {
 	// send cTabUserSelIcon to server
 	if (_type == 1) exitWith {
 		cTabUserSelIcon pushBack cTab_player;
+
+		if ((cTabUserSelIcon select 1) == 40) then {
+			cTabUserSelIcon pushBack cTabDropdownSelectedMapDrawingColor;
+		};
 		
 		if (_ctrlIsHeld) then {
 			// Ctrl is held down, so we want to show the marker text pop-up for custom text input

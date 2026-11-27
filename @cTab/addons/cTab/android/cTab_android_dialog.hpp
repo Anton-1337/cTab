@@ -275,6 +275,10 @@ class cTab_Android_dlg {
 		/*
 			### Overlays ###
 		*/
+		// ---------- COLOURS ------------
+		class colours: cTab_android_colorDropdown {};
+		// ---------- THICKNESS ------------
+		class thickness: cTab_android_colorThickness {};
 		// ---------- NOTIFICATION ------------
 		class notification: cTab_android_notification {};
 		// ---------- LOADING ------------
