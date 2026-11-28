@@ -49,9 +49,6 @@ class CfgFunctions
 			class onPlayerInventoryChanged{};
 			class processCuratorKey{};
 			class processNotifications{};
-      class regularMapAdd{};
-      class regularMapMarkerName{};
-      class regularMapRemove{};
 			class remoteControlUav{};
 			class setInterfacePosition{};
 			class setSettings{};
