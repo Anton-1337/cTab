@@ -40,54 +40,9 @@ call {
 
 			cTab_queue_Markers pushBack [_encryptionKey,[_transactionId,_markerData]];
 			publicVariable "cTab_queue_Markers";
-			
-			// // Add marker data to list
-			// [cTab_userMarkerLists,_encryptionKey,[[_transactionId,_markerData]]] call cTab_fnc_addToPairs;
-			
-			// // Send addUserMarker command to all clients
-			// [[_encryptionKey,[_transactionId,_markerData],_transactionId],"cTab_fnc_addUserMarker",true,false,true] call bis_fnc_MP;
-
-			// // Add marker to regular map
-			// [_transactionId, (_markerData select 0), (_markerData select 1), (_markerData select 4)] call cTab_fnc_regularMapAdd;
-			
-			// // If this was run on a client-server (i.e. in single player or locally hosted), update the marker list
-			// if (hasInterface && {_encryptionKey == call cTab_fnc_getPlayerEncryptionKey}) then {
-			// 	call cTab_fnc_updateUserMarkerList;
-
-			// 	if ((_markerData select 5) != cTab_player) then {
-			// 		["BFT",format ["New marker at #%1",mapGridPosition (_markerData select 0)],20] call cTab_fnc_addNotification;
-			// 	} else {
-			// 		["BFT","Marker added succesfully",3] call cTab_fnc_addNotification;
-			// 	};
-			// };
 		};
 	};
-
-	// // If received on a client, sent by the server
-	// if (hasInterface && !isNil "_transactionId") exitWith {
-	// 	call {
-	// 		if (cTab_userMarkerTransactionId == _transactionId) exitWith {};
-	// 		if (cTab_userMarkerTransactionId != (_transactionId -1)) exitWith {
-	// 			// get full list
-	// 			["Transaction ID check failed! Had %1, received %2. Requesting user marker list.",cTab_userMarkerTransactionId,_transactionId] call bis_fnc_error;
-	// 			[] call cTab_fnc_getUserMarkerList;
-	// 		};
-	// 		cTab_userMarkerTransactionId = _transactionId;
-	// 		[cTab_userMarkerLists,_encryptionKey,[_markerData]] call cTab_fnc_addToPairs;
-	// 		// only update the user marker list if the marker was added to the player's side
-	// 		if (_encryptionKey == call cTab_fnc_getPlayerEncryptionKey) then {
-	// 			call cTab_fnc_updateUserMarkerList;
-				
-	// 			// add notification if marker was issued by someone else
-	// 			if ((_markerData select 1 select 5) != cTab_player) then {
-	// 				["BFT",format ["New marker at #%1",mapGridPosition (_markerData select 1 select 0)],20] call cTab_fnc_addNotification;
-	// 			} else {
-	// 				["BFT","Marker added succesfully",3] call cTab_fnc_addNotification;
-	// 			};
-	// 		};
-	// 	};
-	// };
-
+	
 	// If received on a client, to be sent to the server
 	if (hasInterface) then {
 		[_this,"cTab_fnc_addUserMarker",false,false,true] call bis_fnc_MP;
