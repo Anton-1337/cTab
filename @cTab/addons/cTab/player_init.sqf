@@ -43,19 +43,14 @@ if (isNil "cTab_queue_Lines") then {
         // Read the latest synced array every frame the map is visible
         {
 			// ["c",[0,[[2466.54,1482.82],2,3,2,"12:00",wpl]]]
-            _x params ["_transactionId", "_markerData"];
-
-			_pos = (_markerData select 1) select 0;
-			_icon = (_markerData select 1) select 1;
-			_color = (_markerData select 1) select 2;
-			_dir = (_markerData select 1) select 3;
-			_text = (_markerData select 1) select 4;
-
-			// [[0,[[2466.54,1482.82],2,3,2,"12:00",wpl]],"","",700,[0,0.3,0.6,1],"12:00","right"]
-			_translatedUserMarker = [_pos, _icon, _color, _dir, _text] call cTab_fnc_translateUserMarker;
+            _x params ["_transactionId", "_data"];
+			
+			// [0,[[2466.54,1482.82],2,3,2,"12:00",wpl]]
+			_translatedUserMarker = [_data select 1] call cTab_fnc_translateUserMarker;
 
 			/*
-				_translatedUserMarker: [_pos,_texture1,_texture2,_dir,_color,_text,_align]
+				[_markerData] call cTab_fnc_translateUserMarker
+				---
 				Index 0: ARRAY  - marker position
 				Index 1: STRING - path to marker icon
 				Index 2: STRING - path to marker size icon
@@ -66,37 +61,37 @@ if (isNil "cTab_queue_Lines") then {
 			*/
             
             // Draw the custom icon
-			_translatedPos = _translatedUserMarker select 0;
-			_translatedTexture1 = _translatedUserMarker select 1;
-			_translatedTexture2 = _translatedUserMarker select 2;
-			_translatedDir = _translatedUserMarker select 3;
-			_translatedColor = _translatedUserMarker select 4;
-			_translatedText = _translatedUserMarker select 5;
-			_translatedAlign = _translatedUserMarker select 6;
+			_pos = _translatedUserMarker select 0;
+			_texture1 = _translatedUserMarker select 1;
+			_texture2 = _translatedUserMarker select 2;
+			_dir = _translatedUserMarker select 3;
+			_colour = _translatedUserMarker select 4;
+			_text = _translatedUserMarker select 5;
+			_align = _translatedUserMarker select 6;
 			
-			_control drawIcon [_translatedTexture1, _translatedColor, _translatedPos, cTabIconSize, cTabIconSize, 0, _translatedText, 0, cTabTxtSize, "TahomaB", _translatedAlign];
+			_control drawIcon [_texture1, _colour, _pos, cTabIconSize, cTabIconSize, 0, _text, 0, cTabTxtSize, "TahomaB", _align];
 			
-			if (_translatedTexture2 != "") then {
-				_control drawIcon [_translatedTexture2, _translatedColor, _translatedPos, cTabGroupOverlayIconSize, cTabGroupOverlayIconSize, 0, "", 0, cTabTxtSize, "TahomaB", "right"];
+			if (_texture2 != "") then {
+				_control drawIcon [_texture2, _colour, _pos, cTabGroupOverlayIconSize, cTabGroupOverlayIconSize, 0, "", 0, cTabTxtSize, "TahomaB", "right"];
 			};
 
-			if (_translatedDir < 360) then {
+			if (_dir < 360) then {
 				_arrowLength = cTabUserMarkerArrowSize * ctrlMapScale _control;
-				_secondPos = [_translatedPos, _arrowLength, _translatedDir] call BIS_fnc_relPos;
-				_control drawArrow [_translatedPos, _secondPos, _translatedColor];
+				_secondPos = [_pos, _arrowLength, _dir] call BIS_fnc_relPos;
+				_control drawArrow [_pos, _secondPos, _colour];
 			};
         } forEach (missionNamespace getVariable ["cTab_queue_Markers", []]);
 
 		private _lineColor = _control getVariable ["cTab_MapDrawing_drawColor", [0, 1, 0, 1]];
-
+		
 		{
+			// _x: ["c",[0,[[2431.51,1502.33],[2432.3,1500.74],[2434.69,1499.54],[2437.48,1497.95],[2440.66,1495.96],[2444.25,1494.77],[2449.02,1492.38],[2454.6,1490.39],[2460.97,1488.4],[2469.33,1484.41],[2478.09,1481.23],[2488.04,1477.25],[2500.38,1472.47],[2512.33,1467.29],[2525.87,1462.12],[2535.42,1457.34],[2548.56,1451.77],[2560.5,1445.79],[2569.66,1441.02],[2577.23,1436.64],[2583.6,1432.26],[2589.17,1428.28],[2593.15,1424.3],[2595.94,1421.91],[2598.73,1419.12],[2600.32,1416.73],[2601.91,1414.34],[2603.5,1412.75],[2604.3,1410.76],[2605.1,1409.56],[2605.89,1408.37],[2606.29,1407.97]],[0,0,1,1],32]]
 			_x params ["_encryptionKey", "_data"];
-
-			_data params ["_transactionId", "_strokes"];
-			// [0,[[2386.91,1458.14],[2388.51,1460.53],[2390.9,1462.91],[2394.88,1466.1],[2398.86,1468.89],[2404.43,1472.07],[2410.01,1475.26],[2416.77,1478.04],[2425.14,1481.23],[2430.71,1483.22],[2437.48,1484.81],[2443.85,1486.01],[2449.02,1486.8],[2453.01,1486.8],[2456.19,1486.8],[2458.18,1486.41],[2459.38,1485.61],[2461.37,1484.02],[2463.76,1481.23],[2465.75,1478.04],[2468.13,1473.67],[2470.13,1469.28],[2472.51,1464.51],[2474.5,1459.33],[2475.7,1454.95],[2477.29,1450.57],[2478.09,1447.39],[2478.88,1444.2],[2479.28,1442.61]]]
+			
+			_data params ["_transactionId", "_strokes", "_color", "_thickness"];
 
 			for "_i" from 0 to (count _strokes - 2) do {
-				_control drawLine [_strokes select _i, _strokes select (_i + 1), _lineColor, 16];
+				_control drawLine [_strokes select _i, _strokes select (_i + 1), _color, _thickness];
 			};
 		} forEach (missionNamespace getVariable ["cTab_queue_Lines", []]);
     }];
