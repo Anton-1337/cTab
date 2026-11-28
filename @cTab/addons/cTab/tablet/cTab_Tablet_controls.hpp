@@ -429,6 +429,8 @@ class cTab_Tablet_RscMapControl: cTab_RscMapControl
 	ptsPerSquareForEdge = QUOTE(100 / (0.86 / GUI_GRID_H));	// forest edges
 	ptsPerSquareRoad = QUOTE(1.5 / (0.86 / GUI_GRID_H));		// roads
 	ptsPerSquareObj = QUOTE(4 / (0.86 / GUI_GRID_H));		// other objects
+
+	onLoad = "_this call cTab_fnc_mapDrawing_OnLoad;";
 };
 class cTab_Tablet_notification: cTab_RscText_Tablet {
     idc = IDC_CTAB_NOTIFICATION;
@@ -436,4 +438,44 @@ class cTab_Tablet_notification: cTab_RscText_Tablet {
 	y = QUOTE(pxToScreen_Y(cTab_GUI_tablet_SCREEN_CONTENT_Y + cTab_GUI_tablet_SCREEN_CONTENT_H - 2 * cTab_GUI_tablet_OSD_TEXT_STD_SIZE));
 	w = QUOTE(pxToScreen_W(cTab_GUI_tablet_SCREEN_CONTENT_W * 0.5));
     colorBackground[] = COLOR_BLACK;
+};
+
+#define cTab_Tablet_Dropdown_Thickness_W 100
+#define cTab_Tablet_Dropdown_Thickness_H 25
+#define cTab_Tablet_Dropdown_Thickness_X cTab_GUI_tablet_OSD_LEFT_X
+#define cTab_Tablet_Dropdown_Thickness_Y (cTab_GUI_tablet_OSD_EDGE_B - cTab_GUI_tablet_OSD_MARGIN - cTab_GUI_tablet_OSD_ELEMENT_STD_H)
+#define cTab_Tablet_Dropdown_Colour_W 60
+#define cTab_Tablet_Dropdown_Colour_H 25
+#define cTab_Tablet_Dropdown_Colour_X (cTab_Tablet_Dropdown_Thickness_X + cTab_Tablet_Dropdown_Thickness_W + 10)
+#define cTab_Tablet_Dropdown_Colour_Y (cTab_GUI_tablet_OSD_EDGE_B - cTab_GUI_tablet_OSD_MARGIN - cTab_GUI_tablet_OSD_ELEMENT_STD_H)
+
+class cTab_Tablet_colorThickness: cTab_RscComboBox {
+    idc = IDC_CTAB_THICKNESSDROPDOWN;
+    
+    // Positioned in the bottom-right corner
+    x = QUOTE(pxToScreen_X(cTab_Tablet_Dropdown_Thickness_X));
+    y = QUOTE(pxToScreen_Y(cTab_Tablet_Dropdown_Thickness_Y));
+    w = QUOTE(pxToScreen_W(cTab_Tablet_Dropdown_Thickness_W));
+    h = QUOTE(pxToScreen_H(cTab_Tablet_Dropdown_Thickness_H));
+    
+    // wholeHeight = 0.25; // Max height of the expanded dropdown list
+    wholeHeight = 0.45; // Max height of the expanded dropdown list
+    
+    onLoad = "_this execVM '\cTab\shared\cTab_dropdownThickness_onLoad.sqf';";
+    onLBSelChanged = "_this execVM '\cTab\shared\cTab_dropdownThickness_onSelectedChanged.sqf';";
+};
+class cTab_Tablet_colorDropdown: cTab_RscComboBox {
+    idc = IDC_CTAB_COLORDROPDOWN;
+    
+    // Positioned in the bottom-right corner
+    x = QUOTE(pxToScreen_X(cTab_Tablet_Dropdown_Colour_X));
+    y = QUOTE(pxToScreen_Y(cTab_Tablet_Dropdown_Colour_Y));
+    w = QUOTE(pxToScreen_W(cTab_Tablet_Dropdown_Colour_W));
+    h = QUOTE(pxToScreen_H(cTab_Tablet_Dropdown_Colour_H));
+    
+    // wholeHeight = 0.25; // Max height of the expanded dropdown list
+    wholeHeight = 0.5; // Max height of the expanded dropdown list
+    
+    onLoad = "_this execVM '\cTab\shared\cTab_dropdownColour_onLoad.sqf';";
+    onLBSelChanged = "_this execVM '\cTab\shared\cTab_dropdownColour_onSelectedChanged.sqf';";
 };

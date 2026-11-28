@@ -359,6 +359,10 @@ class cTab_Tablet_dlg {
 		/*
 			### Overlays ###
 		*/
+		// ---------- COLOURS ------------
+		class colours: cTab_Tablet_colorDropdown {};
+		// ---------- THICKNESS ------------
+		class thickness: cTab_Tablet_colorThickness {};
 		// ---------- NOTIFICATION ------------
 		class notification: cTab_Tablet_notification {};
 		// ---------- LOADING ------------

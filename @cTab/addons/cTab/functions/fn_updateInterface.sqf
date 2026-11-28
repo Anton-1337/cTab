@@ -179,7 +179,10 @@ if (isNil "_mode") then {
 						IDC_CTAB_OSD_HOOK_ELEVATION,
 						IDC_CTAB_OSD_HOOK_DST,
 						IDC_CTAB_OSD_HOOK_DIR,
-						IDC_CTAB_NOTIFICATION
+						IDC_CTAB_NOTIFICATION,
+
+						IDC_CTAB_COLORDROPDOWN,
+						IDC_CTAB_THICKNESSDROPDOWN
 					]
 				};
 				if (_displayName == "cTab_Android_dlg") exitWith {
@@ -245,6 +248,8 @@ if (isNil "_mode") then {
 						_mapIDC = [_mapTypes,_mapType] call cTab_fnc_getFromPairs;
 						
 						_displayItemsToShow pushBack _mapIDC;
+						_displayItemsToShow pushBack IDC_CTAB_COLORDROPDOWN;
+						_displayItemsToShow pushBack IDC_CTAB_THICKNESSDROPDOWN;
 						
 						_mapTools = [_displayName,"mapTools"] call cTab_fnc_getSettings;
 						if (!isNil "_mapTools" && {_mapTools}) then {

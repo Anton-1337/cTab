@@ -60,6 +60,10 @@ class cTab_microDAGR_dlg
 		/*
 			### Overlays ###
 		*/
+		// ---------- COLOURS ------------
+		class colours: cTab_microDAGR_colorDropdown {};
+		// ---------- THICKNESS ------------
+		class thickness: cTab_microDAGR_colorThickness {};
 		// ---------- LOADING ------------
 		class loadingtxt: cTab_microDAGR_loadingtxt {};
 		// ---------- BRIGHTNESS ------------

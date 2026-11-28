@@ -134,6 +134,8 @@ class cTab_microDAGR_RscMapControl: cTab_RscMapControl
 	ptsPerSquareRoad = QUOTE(1.5 / cTab_microDAGR_DLGtoDSP_fctr);		// roads
 	ptsPerSquareObj = QUOTE(4 / cTab_microDAGR_DLGtoDSP_fctr);		// other objects
 
+	onLoad = "_this call cTab_fnc_mapDrawing_OnLoad;";
+
 	/*
 	// replace CustomMark with wedding cake icon
 	class CustomMark
@@ -328,4 +330,44 @@ class cTab_microDAGR_brightness: cTab_RscText_microDAGR
 	w = QUOTE(pxToScreen_W(cTab_GUI_microDAGR_MAP_W));
 	h = QUOTE(pxToScreen_H(cTab_GUI_microDAGR_MAP_H));
 	colorBackground[] = COLOR_TRANSPARENT;
+};
+
+#define cTab_microDAGR_Dropdown_Thickness_W 200
+#define cTab_microDAGR_Dropdown_Thickness_H 50
+#define cTab_microDAGR_Dropdown_Thickness_X 20
+#define cTab_microDAGR_Dropdown_Thickness_Y 60
+#define cTab_microDAGR_Dropdown_Colour_W 120
+#define cTab_microDAGR_Dropdown_Colour_H 50
+#define cTab_microDAGR_Dropdown_Colour_X (cTab_microDAGR_Dropdown_Thickness_X + cTab_microDAGR_Dropdown_Thickness_W + 20)
+#define cTab_microDAGR_Dropdown_Colour_Y 60
+
+class cTab_microDAGR_colorThickness: cTab_RscComboBox {
+    idc = IDC_CTAB_THICKNESSDROPDOWN;
+    
+    // Positioned in the bottom-left corner
+    x = QUOTE(pxToScreen_X(cTab_GUI_microDAGR_SCREEN_CONTENT_X + cTab_microDAGR_Dropdown_Thickness_X));
+    y = QUOTE(pxToScreen_Y(cTab_GUI_microDAGR_SCREEN_CONTENT_Y + cTab_GUI_microDAGR_SCREEN_CONTENT_H - cTab_microDAGR_Dropdown_Thickness_Y));
+    w = QUOTE(pxToScreen_W(cTab_microDAGR_Dropdown_Thickness_W));
+    h = QUOTE(pxToScreen_H(cTab_microDAGR_Dropdown_Thickness_H));
+    
+    // wholeHeight = 0.25; // Max height of the expanded dropdown list
+    wholeHeight = 0.45; // Max height of the expanded dropdown list
+    
+    onLoad = "_this execVM '\cTab\shared\cTab_dropdownThickness_onLoad.sqf';";
+    onLBSelChanged = "_this execVM '\cTab\shared\cTab_dropdownThickness_onSelectedChanged.sqf';";
+};
+class cTab_microDAGR_colorDropdown: cTab_RscComboBox {
+    idc = IDC_CTAB_COLORDROPDOWN;
+    
+    // Positioned in the bottom-left corner
+    x = QUOTE(pxToScreen_X(cTab_GUI_microDAGR_SCREEN_CONTENT_X + cTab_microDAGR_Dropdown_Colour_X));
+    y = QUOTE(pxToScreen_Y(cTab_GUI_microDAGR_SCREEN_CONTENT_Y + cTab_GUI_microDAGR_SCREEN_CONTENT_H - cTab_microDAGR_Dropdown_Colour_Y));
+    w = QUOTE(pxToScreen_W(cTab_microDAGR_Dropdown_Colour_W));
+    h = QUOTE(pxToScreen_H(cTab_microDAGR_Dropdown_Colour_H));
+    
+    // wholeHeight = 0.25; // Max height of the expanded dropdown list
+    wholeHeight = 0.5; // Max height of the expanded dropdown list
+    
+    onLoad = "_this execVM '\cTab\shared\cTab_dropdownColour_onLoad.sqf';";
+    onLBSelChanged = "_this execVM '\cTab\shared\cTab_dropdownColour_onSelectedChanged.sqf';";
 };

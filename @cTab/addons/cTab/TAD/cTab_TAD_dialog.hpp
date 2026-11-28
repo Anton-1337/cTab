@@ -5,7 +5,7 @@
 
 #define cTab_TAD_DLGtoDSP_fctr (0.86 / GUI_GRID_H)
 
-#include <cTab_TAD_controls.hpp>
+#include <\cTab\TAD\cTab_TAD_controls.hpp>
 
 #define MENU_sizeEx pxToScreen_H(cTab_GUI_TAD_OSD_TEXT_STD_SIZE)
 #include "\cTab\shared\cTab_markerMenu_macros.hpp"
@@ -76,6 +76,10 @@ class cTab_TAD_dlg
 		/*
 			### Overlays ###
 		*/
+		// ---------- COLOURS ------------
+		class colours: cTab_TAD_colorDropdown {};
+		// ---------- THICKNESS ------------
+		class thickness: cTab_TAD_colorThickness {};
 		// ---------- NOTIFICATION ------------
 		class notification: cTab_TAD_notification {};
 		// ---------- LOADING ------------

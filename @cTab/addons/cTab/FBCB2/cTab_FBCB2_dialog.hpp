@@ -47,6 +47,8 @@ class cTab_FBCB2_dlg {
 			ptsPerSquareForEdge = QUOTE(100 / (0.86 / GUI_GRID_H));	// forest edges
 			ptsPerSquareRoad = QUOTE(1.5 / (0.86 / GUI_GRID_H));		// roads
 			ptsPerSquareObj = QUOTE(4 / (0.86 / GUI_GRID_H));		// other objects
+
+			onLoad = "_this call cTab_fnc_mapDrawing_OnLoad;";
 		};
 		class screenTopo: screen
 		{
@@ -112,6 +114,10 @@ class cTab_FBCB2_dlg {
 		//### Secondary Map Pop up	------------------------------------------------------------------------------------------------------
 		#include "\cTab\shared\cTab_markerMenu_controls.hpp"
 
+		// ---------- COLOURS ------------
+		class colours: cTab_FBCB2_colorDropdown {};
+		// ---------- THICKNESS ------------
+		class thickness: cTab_FBCB2_colorThickness {};
 		// ---------- NOTIFICATION ------------
 		class notification: cTab_FBCB2_notification {};
 		// ---------- LOADING ------------

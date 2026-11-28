@@ -364,23 +364,23 @@ class cTab_android_notification: cTab_RscText_Android {
 	colorBackground[] = COLOR_BLACK;
 };
 
-#define cTab_Dropdown_Colour_W 60
-#define cTab_Dropdown_Colour_H 25
-#define cTab_Dropdown_Colour_X (10 + cTab_Dropdown_Colour_W)
-#define cTab_Dropdown_Colour_Y 30
-#define cTab_Dropdown_Thickness_W 100
-#define cTab_Dropdown_Thickness_H 25
-#define cTab_Dropdown_Thickness_X (cTab_Dropdown_Colour_X + cTab_Dropdown_Thickness_W + 10)
-#define cTab_Dropdown_Thickness_Y 30
+#define cTab_Android_Dropdown_Colour_W 60
+#define cTab_Android_Dropdown_Colour_H 25
+#define cTab_Android_Dropdown_Colour_X (cTab_GUI_android_OSD_EDGE_R - cTab_Android_Dropdown_Colour_W)
+#define cTab_Android_Dropdown_Colour_Y (cTab_GUI_android_OSD_EDGE_B - cTab_GUI_android_OSD_MARGIN - 20)
+#define cTab_Android_Dropdown_Thickness_W 100
+#define cTab_Android_Dropdown_Thickness_H 25
+#define cTab_Android_Dropdown_Thickness_X (cTab_Android_Dropdown_Colour_X - cTab_Android_Dropdown_Thickness_W - 10)
+#define cTab_Android_Dropdown_Thickness_Y (cTab_GUI_android_OSD_EDGE_B - cTab_GUI_android_OSD_MARGIN - 20)
 
 class cTab_android_colorDropdown: cTab_RscComboBox {
     idc = IDC_CTAB_COLORDROPDOWN;
     
     // Positioned in the bottom-right corner
-    x = QUOTE(pxToScreen_X(cTab_GUI_android_SCREEN_CONTENT_X + cTab_GUI_android_SCREEN_CONTENT_W - cTab_Dropdown_Colour_X));
-    y = QUOTE(pxToScreen_Y(cTab_GUI_android_SCREEN_CONTENT_Y + cTab_GUI_android_SCREEN_CONTENT_H - cTab_Dropdown_Colour_Y));
-    w = QUOTE(pxToScreen_W(cTab_Dropdown_Colour_W));
-    h = QUOTE(pxToScreen_H(cTab_Dropdown_Colour_H));
+    x = QUOTE(pxToScreen_X(cTab_Android_Dropdown_Colour_X));
+    y = QUOTE(pxToScreen_Y(cTab_Android_Dropdown_Colour_Y));
+    w = QUOTE(pxToScreen_W(cTab_Android_Dropdown_Colour_W));
+    h = QUOTE(pxToScreen_H(cTab_Android_Dropdown_Colour_H));
     
     // wholeHeight = 0.25; // Max height of the expanded dropdown list
     wholeHeight = 0.5; // Max height of the expanded dropdown list
@@ -392,10 +392,10 @@ class cTab_android_colorThickness: cTab_RscComboBox {
     idc = IDC_CTAB_THICKNESSDROPDOWN;
     
     // Positioned in the bottom-right corner
-    x = QUOTE(pxToScreen_X(cTab_GUI_android_SCREEN_CONTENT_X + cTab_GUI_android_SCREEN_CONTENT_W - cTab_Dropdown_Thickness_X));
-    y = QUOTE(pxToScreen_Y(cTab_GUI_android_SCREEN_CONTENT_Y + cTab_GUI_android_SCREEN_CONTENT_H - cTab_Dropdown_Thickness_Y));
-    w = QUOTE(pxToScreen_W(cTab_Dropdown_Thickness_W));
-    h = QUOTE(pxToScreen_H(cTab_Dropdown_Thickness_H));
+    x = QUOTE(pxToScreen_X(cTab_Android_Dropdown_Thickness_X));
+    y = QUOTE(pxToScreen_Y(cTab_Android_Dropdown_Thickness_Y));
+    w = QUOTE(pxToScreen_W(cTab_Android_Dropdown_Thickness_W));
+    h = QUOTE(pxToScreen_H(cTab_Android_Dropdown_Thickness_H));
     
     // wholeHeight = 0.25; // Max height of the expanded dropdown list
     wholeHeight = 0.45; // Max height of the expanded dropdown list
