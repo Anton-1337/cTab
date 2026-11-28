@@ -1669,6 +1669,7 @@ class cTab_RscMapControl
 	sizeExInfo = "(			(			(			((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 0.8)";
 	fontLevel = "TahomaB";
 	sizeExLevel = 0.02;
+	widthRailWay = 4;
 
 	colorText[] = {1,1,1,1.0};
 	font = "PuristaMedium";
